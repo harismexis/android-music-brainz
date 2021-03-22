@@ -59,8 +59,7 @@ class HomeScreenTest : InstrumentedTestSetup() {
     fun remoteFeedHasSomeInvalidIds_listShowsExpectedItems() {
         // given
         mockArtists = artistParser.getMockArtistsFromFeedWithSomeIdsInvalid()
-        artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
-        every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
+        mockSearchResultSuccess()
 
         // when
         launchActivityAndTriggerSearchResult()
@@ -73,8 +72,7 @@ class HomeScreenTest : InstrumentedTestSetup() {
     fun remoteFeedHasSomeEmptyArtistJsonItems_listHasExpectedNumberOfItems() {
         // given
         mockArtists = artistParser.getMockArtistsFromFeedWithSomeItemsEmpty()
-        artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
-        every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
+        mockSearchResultSuccess()
 
         // when
         launchActivityAndTriggerSearchResult()
@@ -87,8 +85,7 @@ class HomeScreenTest : InstrumentedTestSetup() {
     fun remoteFeedHasAllIdsInvalid_listShowsNoItems() {
         // given
         mockArtists = artistParser.getMockArtistsFromFeedWithAllIdsInvalid()
-        artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
-        every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
+        mockSearchResultSuccess()
 
         // when
         launchActivityAndTriggerSearchResult()
@@ -101,14 +98,18 @@ class HomeScreenTest : InstrumentedTestSetup() {
     fun remoteFeedIsEmptyJson_listShowsNoItems() {
         // given
         mockArtists = artistParser.getMockArtistsFromFeedWithEmptyJson()
-        artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
-        every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
+        mockSearchResultSuccess()
 
         // when
         launchActivityAndTriggerSearchResult()
 
         // then
         verifyRecycler(EXPECTED_NUM_ARTISTS_WHEN_NO_DATA)
+    }
+
+    private fun mockSearchResultSuccess() {
+        artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
+        every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
     }
 
     private fun launchActivityAndTriggerSearchResult() {
