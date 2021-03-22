@@ -1,0 +1,8 @@
+ext {
+
+    common = [
+            MUSICBRAINZ_API_BASE_URL : '\"' + "https://musicbrainz.org/ws/2/" + '\"',
+            USER_AGENT_CONTACT_INFO : '\"' + "https://github.com/harismexis" + '\"'
+    ]
+
+}

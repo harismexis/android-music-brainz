@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vh_item_root_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/vh_artist_padding_horizontal"
+    android:paddingTop="@dimen/vh_artist_padding_vertical"
+    android:paddingEnd="@dimen/vh_artist_padding_horizontal"
+    android:paddingBottom="@dimen/vh_artist_padding_vertical">
+
+    <TextView
+        android:id="@+id/txt_name"
+        style="@style/VhItemTitle"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Name label" />
+
+    <!-- -->
+
+    <TextView
+        android:id="@+id/txt_type_label"
+        style="@style/VhItemLabel"
+        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:text="@string/vh_artist_type_label"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name"
+        tools:text="Type label" />
+
+    <TextView
+        android:id="@+id/txt_type"
+        style="@style/VhItemMeta"
+        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_type_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/txt_type_label"
+        tools:text="Type" />
+
+    <!-- -->
+
+    <TextView
+        android:id="@+id/txt_country_label"
+        style="@style/VhItemLabel"
+        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:text="@string/vh_artist_country_label"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_type_label"
+        tools:text="Country label" />
+
+    <TextView
+        android:id="@+id/txt_country"
+        style="@style/VhItemMeta"
+        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_country_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/txt_country_label"
+        tools:text="Country" />
+
+    <!-- -->
+
+    <TextView
+        android:id="@+id/txt_score_label"
+        style="@style/VhItemLabel"
+        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:text="@string/vh_artist_score_label"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_country_label"
+        tools:text="Score label" />
+
+    <TextView
+        android:id="@+id/txt_score"
+        style="@style/VhItemMeta"
+        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_score_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/txt_score_label"
+        tools:text="Score" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

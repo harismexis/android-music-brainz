@@ -1,0 +1,258 @@
+{
+  "created": "2021-03-21T15:15:11.356Z",
+  "count": 202,
+  "offset": 0,
+  "artists": [
+    {
+      "id": "933fdeae-ec68-48e9-a752-8bcfd44bc429",
+      "type": "Person",
+      "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+      "score": 100,
+      "gender-id": "36d3d30a-839d-3eda-8cb3-29be4384e4a9",
+      "name": "Rory Gallagher",
+      "sort-name": "Gallagher, Rory",
+      "gender": "male",
+      "country": "IE",
+      "area": {
+        "id": "390b05d4-11ec-3bce-a343-703a366b34a5",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "Ireland",
+        "sort-name": "Ireland",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "bbd67e6e-8f53-4ee2-a067-6132f817142a",
+        "type": "Subdivision",
+        "type-id": "fd3d44c5-80a1-3842-9745-2c4972d35afa",
+        "name": "County Donegal",
+        "sort-name": "County Donegal",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "end-area": {
+        "id": "f03d09b3-39dc-4083-afd6-159e3f0d462f",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "London",
+        "sort-name": "London",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "isnis": [
+        "0000000059512909"
+      ],
+      "life-span": {
+        "begin": "1948-03-02",
+        "end": "1995-06-14",
+        "ended": true
+      },
+      "aliases": [
+        {
+          "sort-name": "GALLAGHER Rory",
+          "name": "GALLAGHER Rory",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        }
+      ],
+      "tags": [
+        {
+          "count": 1,
+          "name": "rory gallagher"
+        },
+        {
+          "count": 2,
+          "name": "hard rock"
+        },
+        {
+          "count": 3,
+          "name": "blues"
+        },
+        {
+          "count": 4,
+          "name": "blues rock"
+        },
+        {
+          "count": 2,
+          "name": "rock"
+        },
+        {
+          "count": 1,
+          "name": "rnb"
+        },
+        {
+          "count": 1,
+          "name": "irish"
+        },
+        {
+          "count": 1,
+          "name": "folk"
+        },
+        {
+          "count": 1,
+          "name": "classic pop and rock"
+        }
+      ]
+    },
+    {
+      "id": "f906681d-1c90-4697-9199-c65623a3fc85",
+      "type": "Person",
+      "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+      "score": 97,
+      "gender-id": "36d3d30a-839d-3eda-8cb3-29be4384e4a9",
+      "name": "Gallagher",
+      "sort-name": "Gallagher",
+      "gender": "male",
+      "begin-area": {
+        "id": "d4ab49e7-1d25-45e2-8659-b147e0ea3684",
+        "type": "Subdivision",
+        "type-id": "fd3d44c5-80a1-3842-9745-2c4972d35afa",
+        "name": "North Carolina",
+        "sort-name": "North Carolina",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "disambiguation": "comedian",
+      "life-span": {
+        "begin": "1946-07-24",
+        "ended": null
+      }
+    },
+    {
+      "id": "c45162bb-b625-41de-9e8f-ace946297de3",
+      "type": "Person",
+      "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+      "score": 91,
+      "gender-id": "93452b5a-a947-30c8-934f-6a4056b151c2",
+      "name": "Teresa Gallagher",
+      "sort-name": "Gallagher Teresa",
+      "gender": "female",
+      "country": "GB",
+      "area": {
+        "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "United Kingdom",
+        "sort-name": "United Kingdom",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "74e50e58-5deb-4b99-93a2-decbb365c07f",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "New York",
+        "sort-name": "New York",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "disambiguation": "American-born British actress, voice actress, and singer",
+      "life-span": {
+        "begin": "1971-03-01",
+        "ended": null
+      }
+    },
+    {
+      "id": "ba65a099-8d5f-4605-bdbd-559c23d39570",
+      "type": "Person",
+      "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+      "score": 90,
+      "gender-id": "93452b5a-a947-30c8-934f-6a4056b151c2",
+      "name": "Audrey Gallagher",
+      "sort-name": "Gallagher, Audrey",
+      "gender": "female",
+      "country": "IE",
+      "area": {
+        "id": "390b05d4-11ec-3bce-a343-703a366b34a5",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "Ireland",
+        "sort-name": "Ireland",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "4fc7132b-550d-4c84-95ab-301b0bb4863f",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Moneyglass",
+        "sort-name": "Moneyglass",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "life-span": {
+        "ended": null
+      },
+      "tags": [
+        {
+          "count": 1,
+          "name": "vocal trance"
+        },
+        {
+          "count": 1,
+          "name": "female vocal trance"
+        }
+      ]
+    },
+    {
+      "id": "1f2345fa-344e-4863-a1d7-3958d57f4301",
+      "type": "Person",
+      "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+      "score": 89,
+      "gender-id": "36d3d30a-839d-3eda-8cb3-29be4384e4a9",
+      "name": "Liam Gallagher",
+      "sort-name": "Gallagher, Liam",
+      "gender": "male",
+      "country": "GB",
+      "area": {
+        "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "United Kingdom",
+        "sort-name": "United Kingdom",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "0f41fd1c-9b1a-487b-8c6f-330a739ea87c",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Burnage",
+        "sort-name": "Burnage",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "disambiguation": "English musician, lead singer of Oasis",
+      "ipis": [
+        "00267033963"
+      ],
+      "isnis": [
+        "0000000078412962"
+      ],
+      "life-span": {
+        "begin": "1972-09-21",
+        "ended": null
+      },
+      "tags": [
+        {
+          "count": 1,
+          "name": "rock"
+        }
+      ]
+    }
+  ]
+}
