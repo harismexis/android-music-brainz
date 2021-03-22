@@ -13,7 +13,6 @@ import com.example.musicbrainz.presentation.screens.detail.viewholder.AlbumsTitl
 import com.example.musicbrainz.presentation.screens.detail.viewholder.ArtistDetailViewHolder
 
 class DetailAdapter(
-    // private val headerItem: ArtistParcel,
     private val headerItem: Artist,
     private val models: List<Album>,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

@@ -1,10 +1,13 @@
 package com.example.musicbrainz.tests
 
+import androidx.annotation.IdRes
+import androidx.annotation.StringRes
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.example.musicbrainz.R
@@ -18,7 +21,7 @@ import com.example.musicbrainz.setup.base.InstrumentedTestSetup
 import com.example.musicbrainz.setup.testutil.RecyclerCountAssertion
 import com.example.musicbrainz.setup.testutil.getExpectedText
 import com.example.musicbrainz.setup.testutil.getStringRes
-import com.example.musicbrainz.setup.testutil.withRecycler
+import com.example.musicbrainz.setup.testutil.verifyRecyclerItemAt
 import com.example.musicbrainz.setup.viewmodel.MockSharedViewModelProvider
 import io.mockk.every
 import org.junit.Assert
@@ -130,26 +133,36 @@ class HomeScreenTest : InstrumentedTestSetup() {
 
     private fun verifyRecyclerData() {
         mockArtists.forEachIndexed { index, artist ->
+
             onView(withId(R.id.artist_list)).perform(scrollToPosition<RecyclerView.ViewHolder>(index))
 
-            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_name))
-                .check(matches(withText(artist.name)))
+            verifyRecyclerValue(index, R.id.txt_name, artist.name)
 
-            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_type_label))
-                .check(matches(withText(getStringRes(R.string.vh_artist_type_label))))
-            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_type))
-                .check(matches(withText(getExpectedText(artist.type))))
+            verifyRecyclerLabel(index, R.id.txt_type_label, R.string.vh_artist_type_label)
+            verifyRecyclerValue(index, R.id.txt_type, artist.type)
 
-            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_country_label))
-                .check(matches(withText(getStringRes(R.string.vh_artist_country_label))))
-            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_country))
-                .check(matches(withText(getExpectedText(artist.country))))
+            verifyRecyclerLabel(index, R.id.txt_country_label, R.string.vh_artist_country_label)
+            verifyRecyclerValue(index, R.id.txt_country, artist.country)
 
-            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_score_label))
-                .check(matches(withText(getStringRes(R.string.vh_artist_score_label))))
-            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_score))
-                .check(matches(withText(getExpectedText(artist.score.toString()))))
+            verifyRecyclerLabel(index, R.id.txt_score_label, R.string.vh_artist_score_label)
+            verifyRecyclerValue(index, R.id.txt_score, artist.score.toString())
         }
+    }
+
+    private fun verifyRecyclerLabel(
+        index: Int,
+        @IdRes viewId: Int,
+        @StringRes resId: Int
+    ) {
+        verifyRecyclerItemAt(R.id.artist_list, index, viewId, getStringRes(resId))
+    }
+
+    private fun verifyRecyclerValue(
+        index: Int,
+        @IdRes viewId: Int,
+        value: String?
+    ) {
+        verifyRecyclerItemAt(R.id.artist_list, index, viewId, getExpectedText(value))
     }
 
 }

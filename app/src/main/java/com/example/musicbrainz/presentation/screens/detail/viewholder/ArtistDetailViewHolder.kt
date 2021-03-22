@@ -14,7 +14,7 @@ class ArtistDetailViewHolder(
         item: Artist
     ) {
         binding.apply {
-            txtName.text = item.name
+            txtName.setTextOrUnknown(item.name)
             txtType.setTextOrUnknown(item.type)
             txtCountry.setTextOrUnknown(item.country)
             txtScore.setTextOrUnknown(item.score?.toString())

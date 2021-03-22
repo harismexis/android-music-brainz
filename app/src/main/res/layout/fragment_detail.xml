@@ -27,7 +27,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/album_list"
+        android:id="@+id/detail_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"

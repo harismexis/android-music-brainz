@@ -70,9 +70,9 @@ class DetailFragment : BaseFragment() {
     }
 
     private fun initialiseRecycler() {
-        adapter = DetailAdapter(viewModel.selectedArtist!!, albums)
+        adapter = DetailAdapter(viewModel.selectedArtist, albums)
         adapter.setHasStableIds(true)
-        binding?.albumList?.let {
+        binding?.detailList?.let {
             it.layoutManager = LinearLayoutManager(this.context)
             it.adapter = adapter
             it.setDivider(R.drawable.divider)
@@ -92,7 +92,7 @@ class DetailFragment : BaseFragment() {
         binding?.let {
             it.progressBar.visibility = View.GONE
         }
-        binding?.albumList?.visibility = View.VISIBLE
+        binding?.detailList?.visibility = View.VISIBLE
         albums.clear()
         albums.addAll(items)
         adapter.notifyDataSetChanged()
