@@ -40,7 +40,7 @@ class ArtistMockParser(private val parser: BaseFileParser) {
     fun getMockArtistsFromFeedWithAllIdsAbsent(): List<Artist> =
         getMockArtistsFeedAllIdsAbsent().toItems()
 
-    fun getMockArtistsFromFeedWithEmptyJsonArray(): List<Artist> =
+    fun getMockArtistsFromFeedWithEmptyJson(): List<Artist> =
         getMockArtistsFeedEmptyJson().toItems()
 
     // get json object model

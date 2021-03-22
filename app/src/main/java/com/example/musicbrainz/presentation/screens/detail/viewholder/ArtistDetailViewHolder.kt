@@ -18,6 +18,7 @@ class ArtistDetailViewHolder(
             txtType.setTextOrUnknown(item.type)
             txtCountry.setTextOrUnknown(item.country)
             txtScore.setTextOrUnknown(item.score?.toString())
+
             txtArea.setTextAndVisibility(item.area, txtAreaLabel)
             txtBeginDate.setTextAndVisibility(item.beginDate, txtBeginDateLabel)
             txtEndDate.setTextAndVisibility(item.endDate, txtEndDateLabel)
