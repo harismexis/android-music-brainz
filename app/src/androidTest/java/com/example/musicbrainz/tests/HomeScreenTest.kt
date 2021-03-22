@@ -18,9 +18,9 @@ import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.presentation.viewmodel.SharedViewModel
 import com.example.musicbrainz.setup.base.InstrumentedTestSetup
 import com.example.musicbrainz.setup.testutil.RecyclerCountAssertion
-import com.example.musicbrainz.setup.testutil.RecyclerViewMatcher
 import com.example.musicbrainz.setup.testutil.getExpectedText
 import com.example.musicbrainz.setup.testutil.getStringRes
+import com.example.musicbrainz.setup.testutil.withRecycler
 import com.example.musicbrainz.setup.viewmodel.MockSharedViewModel
 import io.mockk.every
 import org.junit.Before
@@ -158,10 +158,5 @@ class HomeScreenTest : InstrumentedTestSetup() {
                 .check(matches(withText(getExpectedText(artist.score.toString()))))
         }
     }
-
-    private fun withRecycler(recyclerViewId: Int): RecyclerViewMatcher {
-        return RecyclerViewMatcher(recyclerViewId)
-    }
-
 
 }

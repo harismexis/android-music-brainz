@@ -17,7 +17,7 @@ import com.example.musicbrainz.presentation.result.AlbumsResult
 import com.example.musicbrainz.presentation.result.ArtistsResult
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.setup.base.InstrumentedTestSetup
-import com.example.musicbrainz.setup.testutil.RecyclerViewMatcher
+import com.example.musicbrainz.setup.testutil.withRecycler
 import com.example.musicbrainz.setup.viewmodel.MockSharedViewModel
 import io.mockk.every
 import org.junit.Before
@@ -88,30 +88,30 @@ class DetailScreenTest : InstrumentedTestSetup() {
             onView(withId(R.id.artist_list)).perform(scrollToPosition<RecyclerView.ViewHolder>(index))
 
             // name
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_name))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_name))
                 .check(matches(withText(artist.name)))
 
             // type
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_type_label))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_type_label))
                 .check(matches(withText(getString(R.string.vh_artist_type_label))))
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_type))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_type))
                 .check(matches(withText(artist.type)))
 
             // country
             onView(
-                withRecyclerView(R.id.artist_list).atPositionOnView(
+                withRecycler(R.id.artist_list).atPositionOnView(
                     index,
                     R.id.txt_country_label
                 )
             )
                 .check(matches(withText(getString(R.string.vh_artist_country_label))))
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_country))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_country))
                 .check(matches(withText(artist.country)))
 
             // score
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_score_label))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_score_label))
                 .check(matches(withText(getString(R.string.vh_artist_score_label))))
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_score))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_score))
                 .check(matches(withText(artist.score.toString())))
         }
     }
@@ -122,30 +122,30 @@ class DetailScreenTest : InstrumentedTestSetup() {
             onView(withId(R.id.artist_list)).perform(scrollToPosition<RecyclerView.ViewHolder>(index))
 
             // name
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_name))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_name))
                 .check(matches(withText(artist.name)))
 
             // type
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_type_label))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_type_label))
                 .check(matches(withText(getString(R.string.vh_artist_type_label))))
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_type))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_type))
                 .check(matches(withText(artist.type)))
 
             // country
             onView(
-                withRecyclerView(R.id.artist_list).atPositionOnView(
+                withRecycler(R.id.artist_list).atPositionOnView(
                     index,
                     R.id.txt_country_label
                 )
             )
                 .check(matches(withText(getString(R.string.vh_artist_country_label))))
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_country))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_country))
                 .check(matches(withText(artist.country)))
 
             // score
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_score_label))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_score_label))
                 .check(matches(withText(getString(R.string.vh_artist_score_label))))
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_score))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_score))
                 .check(matches(withText(artist.score.toString())))
         }
     }
@@ -156,36 +156,32 @@ class DetailScreenTest : InstrumentedTestSetup() {
             onView(withId(R.id.artist_list)).perform(scrollToPosition<RecyclerView.ViewHolder>(index))
 
             // name
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_name))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_name))
                 .check(matches(withText(artist.name)))
 
             // type
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_type_label))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_type_label))
                 .check(matches(withText(getString(R.string.vh_artist_type_label))))
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_type))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_type))
                 .check(matches(withText(artist.type)))
 
             // country
             onView(
-                withRecyclerView(R.id.artist_list).atPositionOnView(
+                withRecycler(R.id.artist_list).atPositionOnView(
                     index,
                     R.id.txt_country_label
                 )
             )
                 .check(matches(withText(getString(R.string.vh_artist_country_label))))
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_country))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_country))
                 .check(matches(withText(artist.country)))
 
             // score
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_score_label))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_score_label))
                 .check(matches(withText(getString(R.string.vh_artist_score_label))))
-            onView(withRecyclerView(R.id.artist_list).atPositionOnView(index, R.id.txt_score))
+            onView(withRecycler(R.id.artist_list).atPositionOnView(index, R.id.txt_score))
                 .check(matches(withText(artist.score.toString())))
         }
-    }
-
-    private fun withRecyclerView(recyclerViewId: Int): RecyclerViewMatcher {
-        return RecyclerViewMatcher(recyclerViewId)
     }
 
     private fun getString(id: Int): String {
