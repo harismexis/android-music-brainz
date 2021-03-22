@@ -11,30 +11,22 @@ import java.util.*
 
 class RecyclerMatcher(private val recyclerViewId: Int) {
 
-    fun atPosition(position: Int): Matcher<View> {
-        return atPositionOnView(position, -1)
-    }
-
     fun atPositionOnView(
         position: Int,
         targetViewId: Int
     ): Matcher<View> {
 
         return object : TypeSafeMatcher<View>() {
-
             var resources: Resources? = null
             var childView: View? = null
 
             override fun describeTo(description: Description) {
-                var idDescription = Integer.toString(recyclerViewId)
+                var idDescription = recyclerViewId.toString()
                 if (resources != null) {
                     idDescription = try {
                         resources!!.getResourceName(recyclerViewId)
-                    } catch (var4: NotFoundException) {
-                        String.format(
-                            "%s (resource name not found)",
-                            recyclerViewId
-                        )
+                    } catch (ex: NotFoundException) {
+                        String.format("%s (resource name not found)", recyclerViewId)
                     }
                 }
                 description.appendText("with id: $idDescription")
@@ -48,8 +40,7 @@ class RecyclerMatcher(private val recyclerViewId: Int) {
                     )
                     childView = if (recyclerView != null && recyclerView.id == recyclerViewId) {
                         Objects.requireNonNull(
-                            recyclerView
-                                .findViewHolderForAdapterPosition(position)
+                            recyclerView.findViewHolderForAdapterPosition(position)
                         )!!.itemView
                     } else {
                         return false
@@ -63,6 +54,10 @@ class RecyclerMatcher(private val recyclerViewId: Int) {
                 }
             }
         }
+    }
+
+    fun atPosition(position: Int): Matcher<View> {
+        return atPositionOnView(position, -1)
     }
 
 }
