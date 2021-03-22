@@ -13,8 +13,8 @@ import androidx.test.rule.ActivityTestRule
 import com.example.musicbrainz.R
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_NO_DATA
-import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_TWO_EMPTY
-import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_TWO_IDS_ABSENT
+import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY
+import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID
 import com.example.musicbrainz.presentation.result.ArtistsResult
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.setup.base.InstrumentedTestSetup
@@ -58,7 +58,7 @@ class HomeScreenTest : InstrumentedTestSetup() {
     @Test
     fun remoteFeedHasSomeInvalidIds_listShowsExpectedItems() {
         // given
-        mockArtists = artistParser.getMockArtistsFromFeedWithSomeIdsAbsent()
+        mockArtists = artistParser.getMockArtistsFromFeedWithSomeIdsInvalid()
         artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
         every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
 
@@ -66,7 +66,7 @@ class HomeScreenTest : InstrumentedTestSetup() {
         launchActivityAndTriggerSearchResult()
 
         // then
-        verifyRecycler(EXPECTED_NUM_ARTISTS_WHEN_TWO_IDS_ABSENT)
+        verifyRecycler(EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID)
     }
 
     @Test
@@ -80,13 +80,13 @@ class HomeScreenTest : InstrumentedTestSetup() {
         launchActivityAndTriggerSearchResult()
 
         // then
-        verifyRecycler(EXPECTED_NUM_ARTISTS_WHEN_TWO_EMPTY)
+        verifyRecycler(EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY)
     }
 
     @Test
     fun remoteFeedHasAllIdsInvalid_listShowsNoItems() {
         // given
-        mockArtists = artistParser.getMockArtistsFromFeedWithAllIdsAbsent()
+        mockArtists = artistParser.getMockArtistsFromFeedWithAllIdsInvalid()
         artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
         every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
 

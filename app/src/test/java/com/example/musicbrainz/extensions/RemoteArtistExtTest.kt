@@ -4,8 +4,8 @@ import com.example.musicbrainz.framework.extensions.toItems
 import com.example.musicbrainz.parser.ArtistMockParser
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_NO_DATA
-import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_TWO_EMPTY
-import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_TWO_IDS_ABSENT
+import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY
+import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID
 import com.example.musicbrainz.setup.UnitTestSetup
 import com.example.musicbrainz.utils.*
 import org.junit.Test
@@ -42,7 +42,7 @@ class RemoteArtistExtTest : UnitTestSetup() {
         val items = remoteFeed.toItems()
 
         // then
-        verifyListSizeWhenSomeIdsAbsent(items, EXPECTED_NUM_ARTISTS_WHEN_TWO_IDS_ABSENT)
+        verifyListSizeWhenSomeIdsAbsent(items, EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID)
         verificator.verifyItemsAgainstRemoteFeed(items, remoteFeed)
     }
 
@@ -55,7 +55,7 @@ class RemoteArtistExtTest : UnitTestSetup() {
         val items = remoteFeed.toItems()
 
         // then
-        verifyListSizeWhenSomeItemsEmpty(items, EXPECTED_NUM_ARTISTS_WHEN_TWO_EMPTY)
+        verifyListSizeWhenSomeItemsEmpty(items, EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY)
         verificator.verifyItemsAgainstRemoteFeed(items, remoteFeed)
     }
 
