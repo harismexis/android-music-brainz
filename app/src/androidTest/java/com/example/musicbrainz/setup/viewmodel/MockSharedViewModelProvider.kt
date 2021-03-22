@@ -7,9 +7,9 @@ import com.example.musicbrainz.presentation.result.ArtistsResult
 import com.example.musicbrainz.presentation.viewmodel.SharedViewModel
 import io.mockk.mockk
 
-object MockSharedViewModel {
+object MockSharedViewModelProvider {
 
-    val mockViewModel: SharedViewModel = mockk(relaxed = true)
+    val mockSharedViewModel: SharedViewModel = mockk(relaxed = true)
 
     var mArtistsResult = MutableLiveData<ArtistsResult>()
     val artistsResult: LiveData<ArtistsResult>

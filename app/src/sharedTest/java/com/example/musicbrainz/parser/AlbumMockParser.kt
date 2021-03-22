@@ -40,7 +40,7 @@ class AlbumMockParser(private val parser: BaseFileParser) {
     fun getMockAlbumsFromFeedWithAllIdsAbsent(): List<Album> =
         getMockAlbumsFeedAllIdsAbsent().toItems()
 
-    fun getMockAlbumsFromFeedWithEmptyJsonArray(): List<Album> =
+    fun getMockAlbumsFromFeedWithEmptyJson(): List<Album> =
         getMockAlbumsFeedEmptyJson().toItems()
 
     // get json object model

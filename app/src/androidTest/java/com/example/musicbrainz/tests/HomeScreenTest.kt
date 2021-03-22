@@ -8,22 +8,20 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.example.musicbrainz.R
-import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_NO_DATA
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_TWO_EMPTY
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_TWO_IDS_ABSENT
 import com.example.musicbrainz.presentation.result.ArtistsResult
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
-import com.example.musicbrainz.presentation.viewmodel.SharedViewModel
 import com.example.musicbrainz.setup.base.InstrumentedTestSetup
 import com.example.musicbrainz.setup.testutil.RecyclerCountAssertion
 import com.example.musicbrainz.setup.testutil.getExpectedText
 import com.example.musicbrainz.setup.testutil.getStringRes
 import com.example.musicbrainz.setup.testutil.withRecycler
-import com.example.musicbrainz.setup.viewmodel.MockSharedViewModel
+import com.example.musicbrainz.setup.viewmodel.MockSharedViewModelProvider
 import io.mockk.every
-import org.junit.Before
+import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -38,21 +36,14 @@ class HomeScreenTest : InstrumentedTestSetup() {
             false, false
         )
 
-    private lateinit var mockViewModel: SharedViewModel
-    private lateinit var mockArtists: List<Artist>
-    private lateinit var artistsSuccess: ArtistsResult.ArtistsSuccess
-
-    @Before
-    fun doBeforeTest() {
-        mockArtists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
-        artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
-        mockViewModel = MockSharedViewModel.mockViewModel
-    }
+    private val mockViewModel = MockSharedViewModelProvider.mockSharedViewModel
+    private var mockArtists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
+    private var artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
 
     @Test
     fun artistsFeedHasAllItemsValid_then_listShowsExpectedItems() {
         // given
-        every { mockViewModel.artistsResult } returns MockSharedViewModel.artistsResult
+        every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
 
         // when
         launchActivityAndTriggerSearchResult()
@@ -66,7 +57,7 @@ class HomeScreenTest : InstrumentedTestSetup() {
         // given
         mockArtists = artistParser.getMockArtistsFromFeedWithSomeIdsAbsent()
         artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
-        every { mockViewModel.artistsResult } returns MockSharedViewModel.artistsResult
+        every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
 
         // when
         launchActivityAndTriggerSearchResult()
@@ -80,7 +71,7 @@ class HomeScreenTest : InstrumentedTestSetup() {
         // given
         mockArtists = artistParser.getMockArtistsFromFeedWithSomeItemsEmpty()
         artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
-        every { mockViewModel.artistsResult } returns MockSharedViewModel.artistsResult
+        every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
 
         // when
         launchActivityAndTriggerSearchResult()
@@ -94,7 +85,7 @@ class HomeScreenTest : InstrumentedTestSetup() {
         // given
         mockArtists = artistParser.getMockArtistsFromFeedWithAllIdsAbsent()
         artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
-        every { mockViewModel.artistsResult } returns MockSharedViewModel.artistsResult
+        every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
 
         // when
         launchActivityAndTriggerSearchResult()
@@ -108,7 +99,7 @@ class HomeScreenTest : InstrumentedTestSetup() {
         // given
         mockArtists = artistParser.getMockArtistsFromFeedWithEmptyJson()
         artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
-        every { mockViewModel.artistsResult } returns MockSharedViewModel.artistsResult
+        every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
 
         // when
         launchActivityAndTriggerSearchResult()
@@ -120,7 +111,7 @@ class HomeScreenTest : InstrumentedTestSetup() {
     private fun launchActivityAndTriggerSearchResult() {
         testRule.launchActivity(null)
         testRule.activity.runOnUiThread {
-            MockSharedViewModel.mArtistsResult.value = artistsSuccess
+            MockSharedViewModelProvider.mArtistsResult.value = artistsSuccess
         }
     }
 
@@ -131,7 +122,9 @@ class HomeScreenTest : InstrumentedTestSetup() {
     }
 
     private fun verifyRecyclerCount(expectedNumberOfItems: Int) {
-        onView(withId(R.id.artist_list)).check(RecyclerCountAssertion(artistsSuccess.items.size))
+        // Checking if the mock result success has correct number of items
+        Assert.assertEquals(artistsSuccess.items.size, expectedNumberOfItems)
+        // Checking if recycler has correct number of items
         onView(withId(R.id.artist_list)).check(RecyclerCountAssertion(expectedNumberOfItems))
     }
 

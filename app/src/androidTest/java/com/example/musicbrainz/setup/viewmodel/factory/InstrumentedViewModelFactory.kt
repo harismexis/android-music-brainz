@@ -3,7 +3,7 @@ package com.example.musicbrainz.setup.viewmodel.factory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.musicbrainz.presentation.viewmodel.SharedViewModel
-import com.example.musicbrainz.setup.viewmodel.MockSharedViewModel
+import com.example.musicbrainz.setup.viewmodel.MockSharedViewModelProvider
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
@@ -38,6 +38,6 @@ abstract class InstrumentedViewModelModule {
 fun getMockViewModelsMap(): MutableMap<Class<out ViewModel>, Provider<ViewModel>> {
     val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>> = mutableMapOf()
     viewModels[SharedViewModel::class.java] =
-        Provider { MockSharedViewModel.mockViewModel }
+        Provider { MockSharedViewModelProvider.mockSharedViewModel }
     return viewModels
 }
