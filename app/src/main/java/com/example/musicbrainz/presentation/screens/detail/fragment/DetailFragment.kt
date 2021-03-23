@@ -28,7 +28,6 @@ class DetailFragment : BaseFragment() {
 
     override fun initialiseView() {
         setupToolbar()
-        // if (viewModel.hasSelectedArtist()) initialiseRecycler()
     }
 
     override fun onViewCreated() {
@@ -74,7 +73,7 @@ class DetailFragment : BaseFragment() {
         adapter = DetailAdapter(detailModels)
         adapter.setHasStableIds(true)
         binding?.detailList?.let {
-            it.layoutManager = LinearLayoutManager(this.context)
+            it.layoutManager = LinearLayoutManager(requireContext())
             it.adapter = adapter
             it.setDivider(R.drawable.divider)
         }
