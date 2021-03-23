@@ -99,7 +99,6 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
 
     private fun populate(models: List<Artist>) {
         binding?.let {
-            //it.swipeRefresh.isRefreshing = false
             it.progressBar.visibility = View.GONE
             it.artistList.visibility = View.VISIBLE
         }
@@ -110,7 +109,6 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
 
     private fun populateError(error: String) {
         binding?.let {
-            //it.swipeRefresh.isRefreshing = false
             it.progressBar.visibility = View.GONE
         }
         requireContext().showToast(error)
