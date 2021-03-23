@@ -158,12 +158,13 @@ class DetailScreenTest : InstrumentedTestSetup() {
     }
 
     private fun verifyDetailRecyclerData() {
-        verifyDetailHeaderRow()
-        verifyDetailAlbumRows()
+        verifyArtistHeaderRow()
+        verifyAlbumsTitleHeaderRow()
+        verifyAlbumRows()
     }
 
-    private fun verifyDetailHeaderRow() {
-        val index = 0 // header is first index
+    private fun verifyArtistHeaderRow() {
+        val index = 0 // artist header is first item
         val artist = mockViewModel.selectedArtist
 
         onView(withId(R.id.detail_list)).perform(scrollToPosition<RecyclerView.ViewHolder>(index))
@@ -201,7 +202,13 @@ class DetailScreenTest : InstrumentedTestSetup() {
 
     }
 
-    private fun verifyDetailAlbumRows() {
+    private fun verifyAlbumsTitleHeaderRow() {
+        val index = 1 // albums title is second item
+        onView(withId(R.id.detail_list)).perform(scrollToPosition<RecyclerView.ViewHolder>(index))
+        verifyRecyclerLabel(index, R.id.txt_albums_title_header, R.string.albums_title_header)
+    }
+
+    private fun verifyAlbumRows() {
         mockAlbums.forEachIndexed { indice, album ->
             val index = indice + DetailAdapter.Companion.NUM_OF_HEADERS
 

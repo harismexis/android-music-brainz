@@ -23,7 +23,7 @@
     <string name="vh_album_barcode_label">barcode</string>
 
     <!-- vh artist detail -->
-    <string name="artist_albums_label">Albums</string>
+    <string name="albums_title_header">Albums</string>
     <string name="artist_area_label">area</string>
     <string name="artist_begin_date_label">begin date</string>
     <string name="artist_end_date_label">end date</string>
