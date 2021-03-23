@@ -8,6 +8,9 @@
     <!-- toolbar -->
     <dimen name="toolbar_text_size">18sp</dimen>
 
+    <!-- search view -->
+    <dimen name="search_view_text_size">16sp</dimen>
+
     <!-- vh item -->
     <dimen name="vh_item_title_text_size">18sp</dimen>
     <dimen name="vh_item_title_text_size_large">20sp</dimen>
