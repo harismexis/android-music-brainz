@@ -1,14 +1,14 @@
 package com.example.musicbrainz.setup
 
 import com.example.musicbrainz.base.BaseTestSetup
-import org.mockito.MockitoAnnotations
+import io.mockk.MockKAnnotations
 
 abstract class UnitTestSetup : BaseTestSetup() {
 
     protected val fileParser = UnitTestFileParser()
 
     open fun initialise() {
-        MockitoAnnotations.initMocks(this)
+        MockKAnnotations.init(this)
         initialiseClassUnderTest()
     }
 

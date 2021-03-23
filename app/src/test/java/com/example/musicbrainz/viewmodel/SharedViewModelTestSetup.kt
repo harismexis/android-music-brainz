@@ -3,6 +3,8 @@ package com.example.musicbrainz.viewmodel
 import androidx.lifecycle.Observer
 import com.example.musicbrainz.framework.resource.ResourceProvider
 import com.example.musicbrainz.framework.util.ConnectivityMonitor
+import com.example.musicbrainz.framework.util.buildAlbumsQuery
+import com.example.musicbrainz.framework.util.buildSearchQuery
 import com.example.musicbrainz.interactors.InteractorGetAlbums
 import com.example.musicbrainz.interactors.InteractorSearchArtists
 import com.example.musicbrainz.parser.AlbumMockParser
@@ -11,27 +13,22 @@ import com.example.musicbrainz.presentation.result.AlbumsResult
 import com.example.musicbrainz.presentation.result.ArtistsResult
 import com.example.musicbrainz.presentation.viewmodel.SharedViewModel
 import com.example.musicbrainz.setup.UnitTestSetup
-import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.times
-import com.nhaarman.mockitokotlin2.verify
-import kotlinx.coroutines.runBlocking
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.Mockito.`when`
+import io.mockk.*
+import io.mockk.impl.annotations.MockK
 
 abstract class SharedViewModelTestSetup : UnitTestSetup() {
 
-    @Mock
+    @MockK
     protected lateinit var mockIrrSearchArtists: InteractorSearchArtists
-    @Mock
+    @MockK
     protected lateinit var mockConnectivity: ConnectivityMonitor
-    @Mock
+    @MockK
     lateinit var mockObserverArtists: Observer<ArtistsResult>
-    @Mock
+    @MockK
     lateinit var mockResourceProvider: ResourceProvider
-    @Mock
+    @MockK(relaxed = true)
     protected lateinit var mockInteractorAlbums: InteractorGetAlbums
-    @Mock
+    @MockK(relaxed = true)
     lateinit var mockObserverAlbums: Observer<AlbumsResult>
 
     private val artistParser = ArtistMockParser(fileParser)
@@ -46,9 +43,11 @@ abstract class SharedViewModelTestSetup : UnitTestSetup() {
     private val albumsSuccess = AlbumsResult.AlbumsSuccess(mockAlbums)
     private val albumsError = AlbumsResult.AlbumsError(ERROR_MSG)
 
+    private val searchArtistInput = "Rory Gallagher"
+    private val searchQuery = buildSearchQuery(searchArtistInput)
+
     val mockSelectedArtist = artists[0]
-    private var artistName = "Rory Gallagher"
-    lateinit var albumsQuery: String
+    private val albumsQuery = buildAlbumsQuery(mockSelectedArtist.id)
 
     protected lateinit var subject: SharedViewModel
 
@@ -64,41 +63,39 @@ abstract class SharedViewModelTestSetup : UnitTestSetup() {
             mockConnectivity,
             mockResourceProvider
         )
-        `when`(mockResourceProvider.getInternetOffMsg()).thenReturn(INTERNET_OFF_MSG)
+        every { mockResourceProvider.getInternetOffMsg() } returns INTERNET_OFF_MSG
         val selectedArtistId = mockSelectedArtist.id
-        albumsQuery = "arid:$selectedArtistId"
+        //albumsQuery = "arid:$selectedArtistId"
+        every { mockObserverArtists.onChanged(any()) } just runs
+        every { mockObserverAlbums.onChanged(any()) } just runs
     }
 
-    protected fun triggerSearch() {
-        subject.searchQuery = artistName
+    protected fun triggerSearchArtist() {
+        subject.searchQuery = searchQuery
     }
 
     protected fun mockInternetActive(active: Boolean) {
-        `when`(mockConnectivity.isOnline()).thenReturn(active)
+        every { mockConnectivity.isOnline() } returns active
     }
 
     protected fun verifyInternetChecked() {
-        verify(mockConnectivity, times(1)).isOnline()
+        verify(exactly = 1) { mockConnectivity.isOnline() }
     }
 
-    protected fun mockSearchCall() = runBlocking {
-        `when`(mockIrrSearchArtists.invoke(artistName)).thenReturn(artists)
+    protected fun mockSearchCall() {
+        coEvery { mockIrrSearchArtists.invoke(searchQuery) } returns artists
     }
 
-    protected fun mockSearchCallThrowsError() = runBlocking {
-        `when`(mockIrrSearchArtists.invoke(artistName)).thenThrow(
-            IllegalStateException(
-                ERROR_MSG
-            )
-        )
+    protected fun mockSearchCallThrowsError() {
+        coEvery { mockIrrSearchArtists.invoke(searchQuery) } throws IllegalStateException(ERROR_MSG)
     }
 
-    protected fun verifySearchCallDone() = runBlocking {
-        verify(mockIrrSearchArtists, Mockito.times(1)).invoke(artistName)
+    protected fun verifySearchCallDone() {
+        coVerify { mockIrrSearchArtists.invoke(searchQuery) }
     }
 
-    protected fun verifySearchCallNotDone() = runBlocking {
-        verify(mockIrrSearchArtists, Mockito.never()).invoke(any())
+    protected fun verifySearchCallNotDone() {
+        coVerify(exactly = 0) { mockIrrSearchArtists.invoke(any()) }
     }
 
     protected fun initialiseLiveData() {
@@ -107,46 +104,39 @@ abstract class SharedViewModelTestSetup : UnitTestSetup() {
     }
 
     protected fun verifySearchResultSuccess() {
-        verify(mockObserverArtists).onChanged(artistsSuccess)
+        verify(exactly = 1) { mockObserverArtists.onChanged(artistsSuccess) }
     }
 
     protected fun verifySearchResultError() {
-        verify(mockObserverArtists).onChanged(artistsError)
+        verify(exactly = 1) { mockObserverArtists.onChanged(artistsError) }
     }
 
     protected fun verifyResultInternetOff() {
-        verify(mockObserverArtists).onChanged(internetOffError)
+        verify(exactly = 1) { mockObserverArtists.onChanged(internetOffError) }
     }
 
-    // -------
-
     protected fun mockAlbumsCall() {
-        runBlocking {
-            `when`(mockInteractorAlbums.invoke(albumsQuery)).thenReturn(mockAlbums)
-        }
+        coEvery { mockInteractorAlbums.invoke(albumsQuery) } returns mockAlbums
     }
 
     protected fun mockAlbumsCallThrowsError() {
-        runBlocking {
-            `when`(mockInteractorAlbums.invoke(albumsQuery))
-                .thenThrow(IllegalStateException(ERROR_MSG))
-        }
+        coEvery { mockInteractorAlbums.invoke(albumsQuery) } throws IllegalStateException(ERROR_MSG)
     }
 
-    protected fun verifyAlbumsCallDone() = runBlocking {
-        verify(mockInteractorAlbums, Mockito.times(1)).invoke(albumsQuery)
+    protected fun verifyAlbumsCallDone() {
+        coVerify(exactly = 1) { mockInteractorAlbums.invoke(albumsQuery) }
     }
 
-    protected fun verifyAlbumsCallNotDone() = runBlocking {
-        verify(mockInteractorAlbums, Mockito.never()).invoke(any())
+    protected fun verifyAlbumsCallNotDone() {
+        coVerify(exactly = 1) { mockInteractorAlbums.invoke(any()) }
     }
 
     protected fun verifyResultAlbumsCallSuccess() {
-        verify(mockObserverAlbums).onChanged(albumsSuccess)
+        verify(exactly = 1) { mockObserverAlbums.onChanged(albumsSuccess) }
     }
 
     protected fun verifyResultAlbumsCallError() {
-        verify(mockObserverAlbums).onChanged(albumsError)
+        verify(exactly = 1) { mockObserverAlbums.onChanged(albumsError) }
     }
 
 }

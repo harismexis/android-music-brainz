@@ -18,13 +18,13 @@ class SharedViewModelTest : SharedViewModelTestSetup() {
     }
 
     @Test
-    fun internetActive_when_searchTriggered_then_resultSuccess() {
+    fun internetActive_when_searchArtistTriggered_then_resultSuccess() {
         // given
         mockInternetActive(true)
         mockSearchCall()
 
         // when
-        triggerSearch()
+        triggerSearchArtist()
 
         // then
         verifyInternetChecked()
@@ -38,7 +38,7 @@ class SharedViewModelTest : SharedViewModelTestSetup() {
         mockInternetActive(false)
 
         // when
-        triggerSearch()
+        triggerSearchArtist()
 
         // then
         verifyInternetChecked()
@@ -47,13 +47,13 @@ class SharedViewModelTest : SharedViewModelTestSetup() {
     }
 
     @Test
-    fun searchCallThrowsError_when_searchTriggered_then_resultError() {
+    fun searchArtistCallThrowsError_when_searchTriggered_then_resultError() {
         // given
         mockInternetActive(true)
         mockSearchCallThrowsError()
 
         // when
-        triggerSearch()
+        triggerSearchArtist()
 
         // then
         verifyInternetChecked()
@@ -77,7 +77,7 @@ class SharedViewModelTest : SharedViewModelTestSetup() {
     }
 
     @Test
-    fun remoteCallThrowsError_when_albumsRequested_then_resultError() {
+    fun albumsCallThrowsError_when_albumsRequested_then_resultError() {
         // given
         subject.selectedArtist = mockSelectedArtist
         mockInternetActive(true)

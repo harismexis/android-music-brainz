@@ -4,21 +4,19 @@ import com.example.musicbrainz.data.MusicBrainzRemoteRepository
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.parser.AlbumMockParser
 import com.example.musicbrainz.setup.UnitTestSetup
-import com.nhaarman.mockitokotlin2.times
-import com.nhaarman.mockitokotlin2.verify
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
 @RunWith(JUnit4::class)
 class InteractorGetAlbumsTest : UnitTestSetup() {
 
-    @Mock
+    @MockK
     private lateinit var mockRepository: MusicBrainzRemoteRepository
 
     private val mockParser = AlbumMockParser(fileParser)
@@ -31,27 +29,26 @@ class InteractorGetAlbumsTest : UnitTestSetup() {
     }
 
     override fun initialiseClassUnderTest() {
-        MockitoAnnotations.initMocks(this)
         setupMocks()
         subject = InteractorGetAlbums(mockRepository)
     }
 
     private fun setupMocks() {
         mockItems = mockParser.getMockAlbumsFromFeedWithAllItemsValid()
-        runBlocking {
-            Mockito.`when`(mockRepository.getAlbums(query)).thenReturn(mockItems)
-        }
+        coEvery { mockRepository.getAlbums(query) } returns mockItems
     }
 
     @Test
-    fun interactorInvoked_then_repositoryCallsExpectedMethodWithExpectedArgAndResult() =
+    fun interactorInvoked_then_repositoryCallsExpectedMethodWithExpectedArgAndResult() {
+        // when
+        lateinit var items: List<Album>
         runBlocking {
-            // when
-            val items = subject.invoke(query)
-
-            // then
-            verify(mockRepository, times(1)).getAlbums(query)
-            Assert.assertEquals(mockItems.size, items.size)
+            items = subject.invoke(query)
         }
+
+        // then
+        coVerify(exactly = 1) { mockRepository.getAlbums(query) }
+        Assert.assertEquals(mockItems.size, items.size)
+    }
 
 }
