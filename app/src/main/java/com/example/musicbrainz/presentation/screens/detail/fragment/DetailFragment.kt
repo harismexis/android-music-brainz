@@ -84,11 +84,11 @@ class DetailFragment : BaseFragment() {
             it.progressBar.visibility = View.GONE
             it.detailList.visibility = View.VISIBLE
         }
-        prepareDetailModels(items)
+        updateModels(items)
         adapter.notifyDataSetChanged()
     }
 
-    private fun prepareDetailModels(items: List<Album>) {
+    private fun updateModels(items: List<Album>) {
         detailModels.clear()
         detailModels.add(DetailModel.ArtistHeaderModel(viewModel.selectedArtist))
         detailModels.add(DetailModel.TextModel(getString(R.string.albums_title_header)))
