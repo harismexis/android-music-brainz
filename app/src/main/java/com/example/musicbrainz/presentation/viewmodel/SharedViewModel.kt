@@ -56,10 +56,10 @@ class SharedViewModel @Inject constructor(
         }
     }
 
-    private fun fetchArtists(name: String) {
+    private fun fetchArtists(query: String) {
         viewModelScope.launch {
             try {
-                val items = irrSearchArtists.invoke(name)
+                val items = irrSearchArtists.invoke(query)
                 mArtistsResult.value = ArtistsResult.ArtistsSuccess(items)
             } catch (e: Exception) {
                 Log.d(TAG, e.getErrorMessage())
