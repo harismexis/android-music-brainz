@@ -103,6 +103,7 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
         uiModels.clear()
         uiModels.addAll(models)
         adapter.notifyDataSetChanged()
+        binding?.artistList?.scrollToPosition(0)
     }
 
     private fun populateError(error: String) {

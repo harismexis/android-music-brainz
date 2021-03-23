@@ -96,7 +96,8 @@ class DetailFragment : BaseFragment() {
     }
 
     private fun populateError(error: String) {
-        // we call populate with empty album list to show headers only
+        // we call populate with empty album list to
+        // show artist details only
         populate(ArrayList())
         requireContext().showToast(error)
     }
