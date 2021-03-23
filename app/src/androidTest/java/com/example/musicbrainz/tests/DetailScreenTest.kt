@@ -21,6 +21,7 @@ import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALB
 import com.example.musicbrainz.presentation.result.AlbumsResult
 import com.example.musicbrainz.presentation.result.ArtistsResult
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
+import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
 import com.example.musicbrainz.setup.base.InstrumentedTestSetup
 import com.example.musicbrainz.setup.testutil.*
 import com.example.musicbrainz.setup.viewmodel.MockSharedViewModelProvider
@@ -152,8 +153,7 @@ class DetailScreenTest : InstrumentedTestSetup() {
 
     private fun verifyDetailRecyclerCount(expectedNumberOfAlbums: Int) {
         Assert.assertEquals(albumsSuccess.items.size, expectedNumberOfAlbums)
-        // we add 2 items cause detail list has a header and title as first 2 items
-        val expectedCount = albumsSuccess.items.size + 2
+        val expectedCount = albumsSuccess.items.size + DetailAdapter.Companion.NUM_OF_HEADERS
         onView(withId(R.id.detail_list)).check(RecyclerCountAssertion(expectedCount))
     }
 
@@ -203,7 +203,7 @@ class DetailScreenTest : InstrumentedTestSetup() {
 
     private fun verifyDetailAlbumRows() {
         mockAlbums.forEachIndexed { indice, album ->
-            val index = indice + 2 // we add cause there is header and title
+            val index = indice + DetailAdapter.Companion.NUM_OF_HEADERS
 
             onView(withId(R.id.detail_list)).perform(scrollToPosition<RecyclerView.ViewHolder>(index))
 

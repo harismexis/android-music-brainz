@@ -13,11 +13,12 @@ import com.example.musicbrainz.presentation.screens.detail.viewholder.AlbumsTitl
 import com.example.musicbrainz.presentation.screens.detail.viewholder.ArtistDetailViewHolder
 
 class DetailAdapter(
-    private val headerItem: Artist,
-    private val models: List<Album>,
+    private val artist: Artist,
+    private val albums: List<Album>,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
+        const val NUM_OF_HEADERS = 2
         const val VIEW_TYPE_ARTIST_DETAIL = 0
         const val VIEW_TYPE_ALBUMS_TITLE = 1
         const val VIEW_TYPE_ALBUM = 2
@@ -57,8 +58,8 @@ class DetailAdapter(
         position: Int
     ) {
         when {
-            position == 0 -> (viewHolder as ArtistDetailViewHolder).bind(headerItem)
-            position > 1 -> (viewHolder as AlbumViewHolder).bind(models[position-2])
+            position == 0 -> (viewHolder as ArtistDetailViewHolder).bind(artist)
+            position > 1 -> (viewHolder as AlbumViewHolder).bind(albums[position-NUM_OF_HEADERS])
         }
     }
 
@@ -70,9 +71,8 @@ class DetailAdapter(
         }
     }
 
-
     override fun getItemCount(): Int {
-        return models.size + 2
+        return albums.size + NUM_OF_HEADERS
     }
 
     override fun getItemId(position: Int): Long {
