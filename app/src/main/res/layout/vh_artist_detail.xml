@@ -25,7 +25,7 @@
     <TextView
         android:id="@+id/txt_type_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/artist_type_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
     <TextView
         android:id="@+id/txt_country_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/artist_country_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,7 @@
     <TextView
         android:id="@+id/txt_score_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/artist_score_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +95,7 @@
     <TextView
         android:id="@+id/txt_area_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/artist_area_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,7 +119,7 @@
     <TextView
         android:id="@+id/txt_begin_date_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/artist_begin_date_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -143,7 +143,7 @@
     <TextView
         android:id="@+id/txt_end_date_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/artist_end_date_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +167,7 @@
     <TextView
         android:id="@+id/txt_tags_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/artist_tags_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"

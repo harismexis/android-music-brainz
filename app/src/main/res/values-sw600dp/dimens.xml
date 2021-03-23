@@ -5,8 +5,10 @@
     <dimen name="toolbar_text_size">20sp</dimen>
 
     <!-- vh artist item -->
-    <dimen name="vh_item_title_text_size">28sp</dimen>
-    <dimen name="vh_item_meta_text_size">24sp</dimen>
-    <dimen name="vh_item_txt_meta_margin_start">30dp</dimen>
+    <dimen name="vh_item_title_text_size">22sp</dimen>
+    <dimen name="vh_item_title_text_size_large">26sp</dimen>
+    <dimen name="vh_item_meta_text_size">20sp</dimen>
+    <dimen name="vh_item_meta_txt_margin_start">30dp</dimen>
+    <dimen name="vh_item_label_text_size">18sp</dimen>
 
 </resources>

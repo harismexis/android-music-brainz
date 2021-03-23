@@ -25,7 +25,7 @@
     <TextView
         android:id="@+id/txt_status_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/album_status_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +37,7 @@
     <TextView
         android:id="@+id/txt_status"
         style="@style/VhItemMeta"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@+id/txt_status_label"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
     <TextView
         android:id="@+id/txt_trackcount_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/album_trackcount_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
     <TextView
         android:id="@+id/txt_trackcount"
         style="@style/VhItemMeta"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@+id/txt_trackcount_label"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +75,7 @@
     <TextView
         android:id="@+id/txt_date_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/album_date_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +87,7 @@
     <TextView
         android:id="@+id/txt_date"
         style="@style/VhItemMeta"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@+id/txt_date_label"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +100,7 @@
     <TextView
         android:id="@+id/txt_country_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/album_country_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +112,7 @@
     <TextView
         android:id="@+id/txt_country"
         style="@style/VhItemMeta"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@+id/txt_country_label"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +125,7 @@
     <TextView
         android:id="@+id/txt_disambiguation_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/album_disambiguation_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -137,7 +137,7 @@
     <TextView
         android:id="@+id/txt_disambiguation"
         style="@style/VhItemMeta"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@+id/txt_disambiguation_label"
         app:layout_constraintEnd_toEndOf="parent"
@@ -150,7 +150,7 @@
     <TextView
         android:id="@+id/txt_score_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/album_score_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -162,7 +162,7 @@
     <TextView
         android:id="@+id/txt_score"
         style="@style/VhItemMeta"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@+id/txt_score_label"
         app:layout_constraintEnd_toEndOf="parent"
@@ -175,7 +175,7 @@
     <TextView
         android:id="@+id/txt_packaging_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/album_packaging_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -187,7 +187,7 @@
     <TextView
         android:id="@+id/txt_packaging"
         style="@style/VhItemMeta"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@+id/txt_packaging_label"
         app:layout_constraintEnd_toEndOf="parent"
@@ -200,7 +200,7 @@
     <TextView
         android:id="@+id/txt_barcode_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/album_barcode_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -212,7 +212,7 @@
     <TextView
         android:id="@+id/txt_barcode"
         style="@style/VhItemMeta"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@+id/txt_barcode_label"
         app:layout_constraintEnd_toEndOf="parent"

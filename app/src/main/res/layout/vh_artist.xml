@@ -25,7 +25,7 @@
     <TextView
         android:id="@+id/txt_type_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/artist_type_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +37,7 @@
     <TextView
         android:id="@+id/txt_type"
         style="@style/VhItemMeta"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@+id/txt_type_label"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
     <TextView
         android:id="@+id/txt_country_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/artist_country_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
     <TextView
         android:id="@+id/txt_country"
         style="@style/VhItemMeta"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@+id/txt_country_label"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +75,7 @@
     <TextView
         android:id="@+id/txt_score_label"
         style="@style/VhItemLabel"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         android:text="@string/artist_score_label"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +87,7 @@
     <TextView
         android:id="@+id/txt_score"
         style="@style/VhItemMeta"
-        android:layout_marginTop="@dimen/vh_item_txt_meta_margin_top"
+        android:layout_marginTop="@dimen/vh_item_meta_txt_margin_top"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@+id/txt_score_label"
         app:layout_constraintEnd_toEndOf="parent"

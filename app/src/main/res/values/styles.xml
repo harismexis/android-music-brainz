@@ -61,10 +61,11 @@
 
     <style name="VhItemMeta" parent="VhItemTxtv">
         <item name="android:textSize">@dimen/vh_item_meta_text_size</item>
-        <item name="android:layout_marginStart">@dimen/vh_item_txt_meta_margin_start</item>
+        <item name="android:layout_marginStart">@dimen/vh_item_meta_txt_margin_start</item>
     </style>
 
     <style name="VhItemLabel" parent="VhItemTxtv">
+        <item name="android:textSize">@dimen/vh_item_label_text_size</item>
         <item name="android:textColor">@color/yellow_one</item>
     </style>
 
