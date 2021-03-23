@@ -68,25 +68,4 @@
         <item name="android:textColor">@color/yellow_one</item>
     </style>
 
-    <!-- item detail -->
-
-    <style name="DetailTxtv" parent="BaseTxtv">
-        <item name="android:layout_marginStart">@dimen/artist_detail_txtv_margin_horizontal</item>
-        <item name="android:layout_marginEnd">@dimen/artist_detail_txtv_margin_horizontal</item>
-    </style>
-
-    <style name="ItemDetailTitle" parent="DetailTxtv">
-        <item name="android:textSize">@dimen/artist_detail_title_text_size</item>
-        <item name="android:fontFamily">@font/ubuntu_bold</item>
-    </style>
-
-    <style name="ItemDetailLabel" parent="DetailTxtv">
-        <item name="android:textSize">@dimen/artist_detail_label_text_size</item>
-        <item name="android:textColor">@color/green_six</item>
-    </style>
-
-    <style name="ItemDetailMeta" parent="DetailTxtv">
-        <item name="android:textSize">@dimen/artist_detail_meta_text_size</item>
-    </style>
-
 </resources>
