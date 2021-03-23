@@ -76,6 +76,7 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         viewModel.searchQuery = query
+        showProgress(true)
         return false
     }
 
@@ -98,20 +99,22 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
     }
 
     private fun populate(models: List<Artist>) {
-        binding?.let {
-            it.progressBar.visibility = View.GONE
-            it.artistList.visibility = View.VISIBLE
-        }
+        showProgress(false)
         uiModels.clear()
         uiModels.addAll(models)
         adapter.notifyDataSetChanged()
     }
 
     private fun populateError(error: String) {
-        binding?.let {
-            it.progressBar.visibility = View.GONE
-        }
+        showProgress(false)
         requireContext().showToast(error)
+    }
+
+    private fun showProgress(show: Boolean) {
+        val visibility = if (show) View.VISIBLE else View.GONE
+        binding?.let {
+            it.progressBar.visibility = visibility
+        }
     }
 
 }

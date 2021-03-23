@@ -93,7 +93,7 @@ class DetailFragment : BaseFragment() {
     private fun populate(items: List<Album>) {
         binding?.let {
             it.progressBar.visibility = View.GONE
-            it.detailList.visibility = View.VISIBLE
+            //it.detailList.visibility = View.VISIBLE
         }
         prepareDetailModels(items)
         adapter.notifyDataSetChanged()
@@ -107,9 +107,8 @@ class DetailFragment : BaseFragment() {
     }
 
     private fun populateError(error: String) {
-        binding?.let {
-            it.progressBar.visibility = View.GONE
-        }
+        // we call populate with empty album list to show headers only
+        populate(ArrayList())
         requireContext().showToast(error)
     }
 

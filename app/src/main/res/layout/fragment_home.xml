@@ -42,7 +42,6 @@
         android:clipToPadding="false"
         android:paddingTop="@dimen/home_list_padding_vertical"
         android:paddingBottom="@dimen/home_list_padding_vertical"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
