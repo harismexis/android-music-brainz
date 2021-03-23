@@ -1,7 +1,5 @@
 package com.example.musicbrainz.domain
 
-import java.io.Serializable
-
 data class Artist(
     val id: String,
     val type: String?,
@@ -14,4 +12,4 @@ data class Artist(
     val beginDate: String?,
     val endDate: String?,
     val tags: List<String?>?
-) : Serializable
+)

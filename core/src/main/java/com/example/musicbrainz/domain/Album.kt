@@ -1,7 +1,5 @@
 package com.example.musicbrainz.domain
 
-import java.io.Serializable
-
 data class Album(
     val id: String,
     val score: Int?,
@@ -13,5 +11,5 @@ data class Album(
     val country: String?,
     val barcode: String?,
     val trackCount: Int?
-): Serializable
+)
 
