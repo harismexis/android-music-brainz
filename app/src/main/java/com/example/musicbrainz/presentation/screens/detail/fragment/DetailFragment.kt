@@ -91,8 +91,8 @@ class DetailFragment : BaseFragment() {
     private fun populate(items: List<Album>) {
         binding?.let {
             it.progressBar.visibility = View.GONE
+            it.detailList.visibility = View.VISIBLE
         }
-        binding?.detailList?.visibility = View.VISIBLE
         albums.clear()
         albums.addAll(items)
         adapter.notifyDataSetChanged()
