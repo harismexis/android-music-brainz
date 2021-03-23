@@ -5,10 +5,10 @@
     android:id="@+id/vh_item_root_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="@dimen/vh_artist_padding_horizontal"
-    android:paddingTop="@dimen/vh_artist_padding_vertical"
-    android:paddingEnd="@dimen/vh_artist_padding_horizontal"
-    android:paddingBottom="@dimen/vh_artist_padding_vertical">
+    android:paddingStart="@dimen/vh_item_padding_horizontal"
+    android:paddingTop="@dimen/vh_item_padding_vertical"
+    android:paddingEnd="@dimen/vh_item_padding_horizontal"
+    android:paddingBottom="@dimen/vh_item_padding_vertical">
 
     <TextView
         android:id="@+id/txt_title"

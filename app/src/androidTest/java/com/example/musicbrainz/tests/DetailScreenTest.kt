@@ -29,7 +29,6 @@ import io.mockk.every
 import io.mockk.just
 import io.mockk.runs
 import org.junit.Assert
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -48,9 +47,9 @@ class DetailScreenTest : InstrumentedTestSetup() {
     private var mockAlbums = albumParser.getMockAlbumsFromFeedWithAllItemsValid()
     private var albumsSuccess = AlbumsResult.AlbumsSuccess(mockAlbums)
     private val clickIndex = 0
+    private val numOfDetailHeaders = DetailAdapter.Companion.NUM_OF_HEADERS
 
-    @Before
-    fun doBeforeEachTest() {
+    init {
         every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
         every { mockViewModel.fetchAlbums() } just runs
         every { mockViewModel.hasSelectedArtist() } returns true
@@ -153,7 +152,7 @@ class DetailScreenTest : InstrumentedTestSetup() {
 
     private fun verifyDetailRecyclerCount(expectedNumberOfAlbums: Int) {
         Assert.assertEquals(albumsSuccess.items.size, expectedNumberOfAlbums)
-        val expectedCount = albumsSuccess.items.size + DetailAdapter.Companion.NUM_OF_HEADERS
+        val expectedCount = albumsSuccess.items.size + numOfDetailHeaders
         onView(withId(R.id.detail_list)).check(RecyclerCountAssertion(expectedCount))
     }
 
@@ -210,7 +209,7 @@ class DetailScreenTest : InstrumentedTestSetup() {
 
     private fun verifyAlbumRows() {
         mockAlbums.forEachIndexed { indice, album ->
-            val index = indice + DetailAdapter.Companion.NUM_OF_HEADERS
+            val index = indice + numOfDetailHeaders
 
             onView(withId(R.id.detail_list)).perform(scrollToPosition<RecyclerView.ViewHolder>(index))
 

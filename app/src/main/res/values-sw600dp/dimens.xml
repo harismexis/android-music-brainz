@@ -7,11 +7,6 @@
     <!-- vh artist item -->
     <dimen name="vh_item_title_text_size">28sp</dimen>
     <dimen name="vh_item_meta_text_size">24sp</dimen>
-    <dimen name="vh_item_txt_margin_horizontal">30dp</dimen>
-
-    <!-- artist detail -->
-    <dimen name="artist_detail_title_text_size">30sp</dimen>
-    <dimen name="artist_detail_label_text_size">24sp</dimen>
-    <dimen name="artist_detail_meta_text_size">24sp</dimen>
+    <dimen name="vh_item_txt_meta_margin_start">30dp</dimen>
 
 </resources>
