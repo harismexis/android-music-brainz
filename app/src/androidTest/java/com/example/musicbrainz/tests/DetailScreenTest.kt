@@ -13,6 +13,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.example.musicbrainz.R
+import com.example.musicbrainz.framework.extensions.tagString
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_ALL_IDS_VALID
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_NO_DATA
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_EMPTY
@@ -37,10 +38,7 @@ class DetailScreenTest : InstrumentedTestSetup() {
 
     @get:Rule
     val testRule: ActivityTestRule<MainActivity> =
-        ActivityTestRule(
-            MainActivity::class.java,
-            false, false
-        )
+        ActivityTestRule(MainActivity::class.java, false, false)
 
     private val mockViewModel = MockSharedViewModelProvider.mockSharedViewModel
     private val mockArtists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
@@ -171,26 +169,21 @@ class DetailScreenTest : InstrumentedTestSetup() {
         onView(withId(R.id.detail_list)).perform(scrollToPosition<RecyclerView.ViewHolder>(index))
 
         verifyRecyclerValue(index, R.id.txt_name, artist.name)
+
         verifyRecyclerLabel(index, R.id.txt_type_label, R.string.vh_artist_type_label)
         verifyRecyclerValue(index, R.id.txt_type, artist.type)
+
         verifyRecyclerLabel(index, R.id.txt_country_label, R.string.vh_artist_country_label)
         verifyRecyclerValue(index, R.id.txt_country, artist.country)
+
         verifyRecyclerLabel(index, R.id.txt_score_label, R.string.vh_artist_score_label)
         verifyRecyclerValue(index, R.id.txt_score, artist.score.toString())
 
-        if (!artist.area.isNullOrBlank()) {
-            verifyRecyclerLabel(index, R.id.txt_area_label, R.string.artist_area_label)
-            verifyRecyclerValue(index, R.id.txt_area, artist.area)
-        } else {
-            verifyLabelAndValueGone(index, R.id.txt_area_label, R.id.txt_area)
-        }
+        verifyRecyclerLabel(index, R.id.txt_area_label, R.string.artist_area_label)
+        verifyRecyclerValue(index, R.id.txt_area, artist.area)
 
-        if (!artist.beginDate.isNullOrBlank()) {
-            verifyRecyclerLabel(index, R.id.txt_begin_date_label, R.string.artist_begin_date_label)
-            verifyRecyclerValue(index, R.id.txt_begin_date, artist.beginDate)
-        } else {
-            verifyLabelAndValueGone(index, R.id.txt_begin_date_label, R.id.txt_begin_date)
-        }
+        verifyRecyclerLabel(index, R.id.txt_begin_date_label, R.string.artist_begin_date_label)
+        verifyRecyclerValue(index, R.id.txt_begin_date, artist.beginDate)
 
         if (!artist.endDate.isNullOrBlank()) {
             verifyRecyclerLabel(index, R.id.txt_end_date_label, R.string.artist_end_date_label)
@@ -198,6 +191,14 @@ class DetailScreenTest : InstrumentedTestSetup() {
         } else {
             verifyLabelAndValueGone(index, R.id.txt_end_date_label, R.id.txt_end_date)
         }
+
+        if (!artist.tagString().isNullOrBlank()) {
+            verifyRecyclerLabel(index, R.id.txt_tags_label, R.string.artist_tags_label)
+            verifyRecyclerValue(index, R.id.txt_tags, artist.tagString())
+        } else {
+            verifyLabelAndValueGone(index, R.id.txt_tags_label, R.id.txt_tags)
+        }
+
     }
 
     private fun verifyDetailAlbumRows() {
@@ -208,62 +209,29 @@ class DetailScreenTest : InstrumentedTestSetup() {
 
             verifyRecyclerValue(index, R.id.txt_title, album.title)
 
-            if (!album.status.isNullOrBlank()) {
-                verifyRecyclerLabel(index, R.id.txt_status_label, R.string.vh_album_status_label)
-                verifyRecyclerValue(index, R.id.txt_status, album.status)
-            } else {
-                verifyLabelAndValueGone(index, R.id.txt_status_label, R.id.txt_status)
-            }
+            verifyRecyclerLabel(index, R.id.txt_status_label, R.string.vh_album_status_label)
+            verifyRecyclerValue(index, R.id.txt_status, album.status)
 
-            if (album.trackCount != null) {
-                verifyRecyclerLabel(index, R.id.txt_trackcount_label, R.string.vh_album_trackcount_label)
-                verifyRecyclerValue(index, R.id.txt_trackcount, album.trackCount.toString())
-            } else {
-                verifyLabelAndValueGone(index, R.id.txt_trackcount_label, R.id.txt_trackcount)
-            }
+            verifyRecyclerLabel(index, R.id.txt_trackcount_label, R.string.vh_album_trackcount_label)
+            verifyRecyclerValue(index, R.id.txt_trackcount, album.trackCount.toString())
 
-            if (!album.date.isNullOrBlank()) {
-                verifyRecyclerLabel(index, R.id.txt_date_label, R.string.vh_album_date_label)
-                verifyRecyclerValue(index, R.id.txt_date, album.date)
-            } else {
-                verifyLabelAndValueGone(index, R.id.txt_date_label, R.id.txt_date)
-            }
+            verifyRecyclerLabel(index, R.id.txt_date_label, R.string.vh_album_date_label)
+            verifyRecyclerValue(index, R.id.txt_date, album.date)
 
-            if (!album.country.isNullOrBlank()) {
-                verifyRecyclerLabel(index, R.id.txt_country_label, R.string.vh_album_country_label)
-                verifyRecyclerValue(index, R.id.txt_country, album.country)
-            } else {
-                verifyLabelAndValueGone(index, R.id.txt_country_label, R.id.txt_country)
-            }
+            verifyRecyclerLabel(index, R.id.txt_country_label, R.string.vh_album_country_label)
+            verifyRecyclerValue(index, R.id.txt_country, album.country)
 
-            if (!album.disambiguation.isNullOrBlank()) {
-                verifyRecyclerLabel(index, R.id.txt_disambiguation_label, R.string.vh_album_disambiguation_label)
-                verifyRecyclerValue(index, R.id.txt_disambiguation, album.disambiguation)
-            } else {
-                verifyLabelAndValueGone(index, R.id.txt_disambiguation_label, R.id.txt_disambiguation)
-            }
+            verifyRecyclerLabel(index, R.id.txt_disambiguation_label, R.string.vh_album_disambiguation_label)
+            verifyRecyclerValue(index, R.id.txt_disambiguation, album.disambiguation)
 
-            if (album.score != null) {
-                verifyRecyclerLabel(index, R.id.txt_score_label, R.string.vh_album_score_label)
-                verifyRecyclerValue(index, R.id.txt_score, album.score.toString())
-            } else {
-                verifyLabelAndValueGone(index, R.id.txt_score_label, R.id.txt_score)
-            }
+            verifyRecyclerLabel(index, R.id.txt_score_label, R.string.vh_album_score_label)
+            verifyRecyclerValue(index, R.id.txt_score, album.score.toString())
 
-            if (album.packaging != null) {
-                verifyRecyclerLabel(index, R.id.txt_packaging_label, R.string.vh_album_packaging_label)
-                verifyRecyclerValue(index, R.id.txt_packaging, album.packaging)
-            } else {
-                verifyLabelAndValueGone(index, R.id.txt_packaging_label, R.id.txt_packaging)
-            }
+            verifyRecyclerLabel(index, R.id.txt_packaging_label, R.string.vh_album_packaging_label)
+            verifyRecyclerValue(index, R.id.txt_packaging, album.packaging)
 
-            if (!album.barcode.isNullOrBlank()) {
-                verifyRecyclerLabel(index, R.id.txt_barcode_label, R.string.vh_album_barcode_label)
-                verifyRecyclerValue(index, R.id.txt_barcode, album.barcode)
-            } else {
-                verifyLabelAndValueGone(index, R.id.txt_barcode_label, R.id.txt_barcode)
-            }
-
+            verifyRecyclerLabel(index, R.id.txt_barcode_label, R.string.vh_album_barcode_label)
+            verifyRecyclerValue(index, R.id.txt_barcode, album.barcode)
         }
     }
 

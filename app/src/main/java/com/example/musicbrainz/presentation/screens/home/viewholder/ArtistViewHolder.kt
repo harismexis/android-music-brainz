@@ -18,12 +18,14 @@ class ArtistViewHolder(
         item: Artist,
         position: Int
     ) {
-        binding.txtName.setTextOrUnknown(item.name)
-        binding.txtType.setTextOrUnknown(item.type)
-        binding.txtCountry.setTextOrUnknown(item.country)
-        binding.txtScore.setTextOrUnknown(item.score?.toString())
-        itemView.setOnClickListener {
-            itemClick.onArtistClick(item, position)
+        binding.apply {
+            txtName.setTextOrUnknown(item.name)
+            txtType.setTextOrUnknown(item.type)
+            txtCountry.setTextOrUnknown(item.country)
+            txtScore.setTextOrUnknown(item.score?.toString())
+            itemView.setOnClickListener {
+                itemClick.onArtistClick(item, position)
+            }
         }
     }
 

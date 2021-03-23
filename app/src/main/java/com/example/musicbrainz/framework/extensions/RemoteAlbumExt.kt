@@ -7,7 +7,7 @@ import com.example.musicbrainz.framework.datasource.network.model.album.RemoteAl
 fun AlbumFeed?.toItems(): List<Album> {
     val items = mutableListOf<Album>()
     if (this == null || this.releases == null) return items.toList()
-    val filteredList = this.releases.filter { it != null && !it.id.isNullOrBlank() }
+    val filteredList = this.releases.filter { it.isValid() }
     items.addAll(filteredList.map {
         it!!.toItem(it.id!!)
     })
@@ -27,4 +27,11 @@ private fun RemoteAlbum.toItem(id: String): Album {
         this.barcode,
         this.trackCount
     )
+}
+
+private fun RemoteAlbum?.isValid(): Boolean {
+    this?.let {
+        return !it.id.isNullOrBlank() && !it.title.isNullOrBlank()
+    }
+    return false
 }

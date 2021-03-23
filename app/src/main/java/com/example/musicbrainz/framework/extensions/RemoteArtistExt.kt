@@ -7,7 +7,7 @@ import com.example.musicbrainz.framework.datasource.network.model.artist.RemoteA
 fun ArtistFeed?.toItems(): List<Artist> {
     val items = mutableListOf<Artist>()
     if (this == null || this.artists == null) return items.toList()
-    val filteredList = this.artists.filter { it != null && !it.id.isNullOrBlank() }
+    val filteredList = this.artists.filter { it.isValid() }
     items.addAll(filteredList.map {
         it!!.toItem(it.id!!)
     })
@@ -28,4 +28,11 @@ private fun RemoteArtist.toItem(id: String): Artist {
         this.lifeSpan?.end,
         this.tags?.map { it.name }
     )
+}
+
+private fun RemoteArtist?.isValid(): Boolean {
+    this?.let {
+        return !it.id.isNullOrBlank() && !it.name.isNullOrBlank()
+    }
+    return false
 }
