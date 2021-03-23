@@ -70,7 +70,7 @@ class DetailScreenTest : InstrumentedTestSetup() {
     }
 
     @Test
-    fun clickSearchResult_opensDetailsAndShowsExpectedDataWhenAlbumFeedHasDomeInvalidIds() {
+    fun clickSearchResult_opensDetailsAndShowsExpectedDataWhenAlbumFeedHasSomeInvalidIds() {
         // given
         mockAlbums = albumParser.getMockAlbumsFromFeedWithSomeIdsInvalid()
         mockAlbumsResultSuccess()
@@ -269,61 +269,3 @@ class DetailScreenTest : InstrumentedTestSetup() {
     }
 
 }
-
-/*
-//@Test
-    fun clickSearchResult_opensDetailsAndShowsExpectedDataWhenAlbumFeedHasSomeIdsInvalid() {
-        // given
-        mockAlbums = albumParser.getMockAlbumsFromFeedWithSomeIdsAbsent()
-        albumsSuccess = AlbumsResult.AlbumsSuccess(mockAlbums)
-        every { mockViewModel.albumsResult } returns MockSharedViewModelProvider.albumsResult
-
-        // when
-        openSearchAndClickFirstItemAndLoadAlbums()
-
-        // then
-        verifyRecycler(EXPECTED_NUM_ALBUMS_WHEN_TWO_IDS_ABSENT)
-    }
-
-    //@Test
-    fun clickSearchResult_opensDetailsAndShowsExpectedDataWhenAlbumFeedHasSomeItemsEmpty() {
-        // given
-        mockAlbums = albumParser.getMockAlbumsFromFeedWithSomeItemsEmpty()
-        albumsSuccess = AlbumsResult.AlbumsSuccess(mockAlbums)
-        every { mockViewModel.albumsResult } returns MockSharedViewModelProvider.albumsResult
-
-        // when
-        openSearchAndClickFirstItemAndLoadAlbums()
-
-        // then
-        verifyRecycler(EXPECTED_NUM_ALBUMS_WHEN_TWO_EMPTY)
-    }
-
-    //@Test
-    fun clickSearchResult_opensDetailsAndShowsExpectedDataWhenAlbumFeedHasAllIdsInvalid() {
-        // given
-        mockAlbums = albumParser.getMockAlbumsFromFeedWithAllIdsAbsent()
-        albumsSuccess = AlbumsResult.AlbumsSuccess(mockAlbums)
-        every { mockViewModel.albumsResult } returns MockSharedViewModelProvider.albumsResult
-
-        // when
-        openSearchAndClickFirstItemAndLoadAlbums()
-
-        // then
-        verifyRecycler(EXPECTED_NUM_ALBUMS_WHEN_NO_DATA)
-    }
-
-    //@Test
-    fun clickSearchResult_opensDetailsAndShowsExpectedDataWhenAlbumFeedIsEmptyJson() {
-        // given
-        mockAlbums = albumParser.getMockAlbumsFromFeedWithEmptyJson()
-        albumsSuccess = AlbumsResult.AlbumsSuccess(mockAlbums)
-        every { mockViewModel.albumsResult } returns MockSharedViewModelProvider.albumsResult
-
-        // when
-        openSearchAndClickFirstItemAndLoadAlbums()
-
-        // then
-        verifyRecycler(EXPECTED_NUM_ALBUMS_WHEN_NO_DATA)
-    }
- */

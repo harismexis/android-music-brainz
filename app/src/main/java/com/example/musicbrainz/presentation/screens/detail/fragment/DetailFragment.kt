@@ -16,6 +16,7 @@ import com.example.musicbrainz.framework.extensions.setDivider
 import com.example.musicbrainz.framework.extensions.showToast
 import com.example.musicbrainz.presentation.result.AlbumsResult
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
+import com.example.musicbrainz.presentation.screens.detail.adapter.DetailModel
 import com.example.musicbrainz.presentation.viewmodel.SharedViewModel
 
 class DetailFragment : BaseFragment() {
@@ -23,7 +24,7 @@ class DetailFragment : BaseFragment() {
     private var binding: FragmentDetailBinding? = null
     private lateinit var viewModel: SharedViewModel
     private lateinit var adapter: DetailAdapter
-    private var albums: MutableList<Album> = mutableListOf()
+    private var detailModels: MutableList<DetailModel> = mutableListOf()
 
     override fun onViewCreated() {
         if (viewModel.hasSelectedArtist()) {
@@ -70,7 +71,8 @@ class DetailFragment : BaseFragment() {
     }
 
     private fun initialiseRecycler() {
-        adapter = DetailAdapter(viewModel.selectedArtist, albums)
+        detailModels.clear()
+        adapter = DetailAdapter(detailModels)
         adapter.setHasStableIds(true)
         binding?.detailList?.let {
             it.layoutManager = LinearLayoutManager(this.context)
@@ -93,9 +95,15 @@ class DetailFragment : BaseFragment() {
             it.progressBar.visibility = View.GONE
             it.detailList.visibility = View.VISIBLE
         }
-        albums.clear()
-        albums.addAll(items)
+        prepareDetailModels(items)
         adapter.notifyDataSetChanged()
+    }
+
+    private fun prepareDetailModels(items: List<Album>) {
+        detailModels.clear()
+        detailModels.add(DetailModel.ArtistHeaderModel(viewModel.selectedArtist))
+        detailModels.add(DetailModel.TextModel(getString(R.string.albums_title_header)))
+        detailModels.addAll(items.map { DetailModel.AlbumModel(it) })
     }
 
     private fun populateError(error: String) {
