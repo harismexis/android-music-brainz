@@ -7,20 +7,20 @@
     <string name="missing_value">unknown</string>
 
     <!-- vh artist -->
-    <string name="vh_artist_name_label">name</string>
-    <string name="vh_artist_type_label">type</string>
-    <string name="vh_artist_country_label">from</string>
-    <string name="vh_artist_score_label">score</string>
+    <string name="artist_name_label">name</string>
+    <string name="artist_type_label">type</string>
+    <string name="artist_country_label">from</string>
+    <string name="artist_score_label">score</string>
 
     <!-- vh album -->
-    <string name="vh_album_status_label">status</string>
-    <string name="vh_album_trackcount_label">tracks</string>
-    <string name="vh_album_date_label">date</string>
-    <string name="vh_album_country_label">country</string>
-    <string name="vh_album_disambiguation_label">disambiguation</string>
-    <string name="vh_album_score_label">score</string>
-    <string name="vh_album_packaging_label">packaging</string>
-    <string name="vh_album_barcode_label">barcode</string>
+    <string name="album_status_label">status</string>
+    <string name="album_trackcount_label">tracks</string>
+    <string name="album_date_label">date</string>
+    <string name="album_country_label">country</string>
+    <string name="album_disambiguation_label">disambiguation</string>
+    <string name="album_score_label">score</string>
+    <string name="album_packaging_label">packaging</string>
+    <string name="album_barcode_label">barcode</string>
 
     <!-- vh artist detail -->
     <string name="albums_title_header">Albums</string>

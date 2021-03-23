@@ -139,13 +139,13 @@ class HomeScreenTest : InstrumentedTestSetup() {
 
             verifyRecyclerValue(index, R.id.txt_name, artist.name)
 
-            verifyRecyclerLabel(index, R.id.txt_type_label, R.string.vh_artist_type_label)
+            verifyRecyclerLabel(index, R.id.txt_type_label, R.string.artist_type_label)
             verifyRecyclerValue(index, R.id.txt_type, artist.type)
 
-            verifyRecyclerLabel(index, R.id.txt_country_label, R.string.vh_artist_country_label)
+            verifyRecyclerLabel(index, R.id.txt_country_label, R.string.artist_country_label)
             verifyRecyclerValue(index, R.id.txt_country, artist.country)
 
-            verifyRecyclerLabel(index, R.id.txt_score_label, R.string.vh_artist_score_label)
+            verifyRecyclerLabel(index, R.id.txt_score_label, R.string.artist_score_label)
             verifyRecyclerValue(index, R.id.txt_score, artist.score.toString())
         }
     }

@@ -171,13 +171,13 @@ class DetailScreenTest : InstrumentedTestSetup() {
 
         verifyRecyclerValue(index, R.id.txt_name, artist.name)
 
-        verifyRecyclerLabel(index, R.id.txt_type_label, R.string.vh_artist_type_label)
+        verifyRecyclerLabel(index, R.id.txt_type_label, R.string.artist_type_label)
         verifyRecyclerValue(index, R.id.txt_type, artist.type)
 
-        verifyRecyclerLabel(index, R.id.txt_country_label, R.string.vh_artist_country_label)
+        verifyRecyclerLabel(index, R.id.txt_country_label, R.string.artist_country_label)
         verifyRecyclerValue(index, R.id.txt_country, artist.country)
 
-        verifyRecyclerLabel(index, R.id.txt_score_label, R.string.vh_artist_score_label)
+        verifyRecyclerLabel(index, R.id.txt_score_label, R.string.artist_score_label)
         verifyRecyclerValue(index, R.id.txt_score, artist.score.toString())
 
         verifyRecyclerLabel(index, R.id.txt_area_label, R.string.artist_area_label)
@@ -216,28 +216,28 @@ class DetailScreenTest : InstrumentedTestSetup() {
 
             verifyRecyclerValue(index, R.id.txt_title, album.title)
 
-            verifyRecyclerLabel(index, R.id.txt_status_label, R.string.vh_album_status_label)
+            verifyRecyclerLabel(index, R.id.txt_status_label, R.string.album_status_label)
             verifyRecyclerValue(index, R.id.txt_status, album.status)
 
-            verifyRecyclerLabel(index, R.id.txt_trackcount_label, R.string.vh_album_trackcount_label)
+            verifyRecyclerLabel(index, R.id.txt_trackcount_label, R.string.album_trackcount_label)
             verifyRecyclerValue(index, R.id.txt_trackcount, album.trackCount.toString())
 
-            verifyRecyclerLabel(index, R.id.txt_date_label, R.string.vh_album_date_label)
+            verifyRecyclerLabel(index, R.id.txt_date_label, R.string.album_date_label)
             verifyRecyclerValue(index, R.id.txt_date, album.date)
 
-            verifyRecyclerLabel(index, R.id.txt_country_label, R.string.vh_album_country_label)
+            verifyRecyclerLabel(index, R.id.txt_country_label, R.string.album_country_label)
             verifyRecyclerValue(index, R.id.txt_country, album.country)
 
-            verifyRecyclerLabel(index, R.id.txt_disambiguation_label, R.string.vh_album_disambiguation_label)
+            verifyRecyclerLabel(index, R.id.txt_disambiguation_label, R.string.album_disambiguation_label)
             verifyRecyclerValue(index, R.id.txt_disambiguation, album.disambiguation)
 
-            verifyRecyclerLabel(index, R.id.txt_score_label, R.string.vh_album_score_label)
+            verifyRecyclerLabel(index, R.id.txt_score_label, R.string.album_score_label)
             verifyRecyclerValue(index, R.id.txt_score, album.score.toString())
 
-            verifyRecyclerLabel(index, R.id.txt_packaging_label, R.string.vh_album_packaging_label)
+            verifyRecyclerLabel(index, R.id.txt_packaging_label, R.string.album_packaging_label)
             verifyRecyclerValue(index, R.id.txt_packaging, album.packaging)
 
-            verifyRecyclerLabel(index, R.id.txt_barcode_label, R.string.vh_album_barcode_label)
+            verifyRecyclerLabel(index, R.id.txt_barcode_label, R.string.album_barcode_label)
             verifyRecyclerValue(index, R.id.txt_barcode, album.barcode)
         }
     }

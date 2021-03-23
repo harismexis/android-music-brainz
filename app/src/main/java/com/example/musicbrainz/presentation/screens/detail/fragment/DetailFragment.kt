@@ -26,8 +26,14 @@ class DetailFragment : BaseFragment() {
     private lateinit var adapter: DetailAdapter
     private var detailModels: MutableList<DetailModel> = mutableListOf()
 
+    override fun initialiseView() {
+        setupToolbar()
+        // if (viewModel.hasSelectedArtist()) initialiseRecycler()
+    }
+
     override fun onViewCreated() {
         if (viewModel.hasSelectedArtist()) {
+            initialiseRecycler()
             observeLiveData()
             viewModel.fetchAlbums()
         }
@@ -63,13 +69,6 @@ class DetailFragment : BaseFragment() {
         })
     }
 
-    override fun initialiseView() {
-        setupToolbar()
-        if (viewModel.hasSelectedArtist()) {
-            initialiseRecycler()
-        }
-    }
-
     private fun initialiseRecycler() {
         detailModels.clear()
         adapter = DetailAdapter(detailModels)
@@ -81,19 +80,10 @@ class DetailFragment : BaseFragment() {
         }
     }
 
-    private fun setupToolbar() {
-        val navController = findNavController()
-        val appBarConf = AppBarConfiguration(navController.graph)
-        binding?.toolbar?.let {
-            it.setupWithNavController(navController, appBarConf)
-            it.setNavigationIcon(R.drawable.ic_arrow_left_white_rounded_24dp)
-        }
-    }
-
     private fun populate(items: List<Album>) {
         binding?.let {
             it.progressBar.visibility = View.GONE
-            //it.detailList.visibility = View.VISIBLE
+            it.detailList.visibility = View.VISIBLE
         }
         prepareDetailModels(items)
         adapter.notifyDataSetChanged()
@@ -110,6 +100,15 @@ class DetailFragment : BaseFragment() {
         // we call populate with empty album list to show headers only
         populate(ArrayList())
         requireContext().showToast(error)
+    }
+
+    private fun setupToolbar() {
+        val navController = findNavController()
+        val appBarConf = AppBarConfiguration(navController.graph)
+        binding?.toolbar?.let {
+            it.setupWithNavController(navController, appBarConf)
+            it.setNavigationIcon(R.drawable.ic_arrow_left_white_rounded_24dp)
+        }
     }
 
 }

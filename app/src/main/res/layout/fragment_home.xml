@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/default_background_color"
+    android:paddingBottom="@dimen/root_padding_vertical"
     tools:context=".presentation.screens.home.fragment.HomeFragment">
 
     <androidx.appcompat.widget.Toolbar
@@ -39,9 +40,8 @@
         android:id="@+id/artist_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/list_margin_top"
         android:clipToPadding="false"
-        android:paddingTop="@dimen/home_list_padding_vertical"
-        android:paddingBottom="@dimen/home_list_padding_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
