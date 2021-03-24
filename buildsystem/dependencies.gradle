@@ -25,7 +25,6 @@ ext {
     def work = '2.2.0'
     def truth = '1.0'
     def dagger_2 = '2.30.1'
-    def mockito = '3.3.0'
     def mockk = '1.9.3' //1.10.3-jdk8
     def mockk_android = '1.9.3' // 1.10.3-jdk8
     def google_truth = '0.42'
@@ -87,8 +86,6 @@ ext {
             work_testing    : "androidx.work:work-testing:$work",
             coroutines_test : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_android",
 
-            mockito_android : "org.mockito:mockito-android:$mockito",
-            mockito_core    : "org.mockito:mockito-core:$mockito",
             mockk_android : "io.mockk:mockk-android:$mockk_android",
             nav_testing     : "androidx.navigation:navigation-testing:$nav_version"
     ]

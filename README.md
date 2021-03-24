@@ -9,7 +9,7 @@ Screen where the user can see information for the selected Artist and their albu
 
 The project is written in Kotlin with Clean Architecture + MVVM and uses JetPack components 
 i.e. Navigation, Coroutines, LiveData, ViewModel. Also some libraries have been used
-i.e. Retrofit, Gson, Dagger, Mockito-kotlin, Mockk, Espresso.
+i.e. Retrofit, Gson, Dagger, Mockk, Espresso.
 
 ### Tests:
 
