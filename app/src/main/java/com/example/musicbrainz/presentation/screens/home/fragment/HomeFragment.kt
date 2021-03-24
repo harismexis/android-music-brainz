@@ -12,15 +12,16 @@ import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.base.BaseFragment
 import com.example.musicbrainz.framework.extensions.setDivider
 import com.example.musicbrainz.framework.extensions.showToast
+import com.example.musicbrainz.framework.extensions.toParcel
 import com.example.musicbrainz.presentation.result.ArtistsResult
 import com.example.musicbrainz.presentation.screens.home.adapter.ArtistAdapter
 import com.example.musicbrainz.presentation.screens.home.viewholder.ArtistViewHolder
-import com.example.musicbrainz.presentation.viewmodel.SharedViewModel
+import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeViewModel
 
 class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
     android.widget.SearchView.OnQueryTextListener {
 
-    private lateinit var viewModel: SharedViewModel
+    private lateinit var viewModel: HomeViewModel
     private var binding: FragmentHomeBinding? = null
     private lateinit var adapter: ArtistAdapter
     private var uiModels: MutableList<Artist> = mutableListOf()
@@ -36,9 +37,9 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
 
     override fun initialiseViewModel() {
         viewModel = ViewModelProviders.of(
-            requireActivity(),
+            this,
             viewModelFactory
-        )[SharedViewModel::class.java]
+        )[HomeViewModel::class.java]
     }
 
     override fun initialiseViewBinding(
@@ -69,8 +70,7 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
         position: Int
     ) {
         binding?.searchView?.clearFocus()
-        viewModel.selectedArtist = item
-        val action = HomeFragmentDirections.actionHomeDestToDetailDest()
+        val action = HomeFragmentDirections.actionHomeDestToDetailDest(item.toParcel())
         findNavController().navigate(action)
     }
 
@@ -103,6 +103,7 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
         uiModels.clear()
         uiModels.addAll(models)
         adapter.notifyDataSetChanged()
+        binding?.artistList?.scrollToPosition(0)
     }
 
     private fun populateError(error: String) {

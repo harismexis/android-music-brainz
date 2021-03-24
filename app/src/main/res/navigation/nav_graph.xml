@@ -22,6 +22,10 @@
         android:name="com.example.musicbrainz.presentation.screens.detail.fragment.DetailFragment"
         tools:layout="@layout/fragment_detail">
 
+        <argument
+            android:name="selected_artist"
+            app:argType="com.example.musicbrainz.framework.parcelable.ArtistParcel" />
+
     </fragment>
 
 </navigation>

@@ -14,40 +14,29 @@ import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.framework.base.BaseFragment
 import com.example.musicbrainz.framework.extensions.setDivider
 import com.example.musicbrainz.framework.extensions.showToast
+import com.example.musicbrainz.framework.extensions.toArtist
+import com.example.musicbrainz.framework.parcelable.ArtistParcel
 import com.example.musicbrainz.presentation.result.AlbumsResult
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailModel
-import com.example.musicbrainz.presentation.viewmodel.SharedViewModel
+import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailViewModel
 
 class DetailFragment : BaseFragment() {
 
+    companion object {
+        private const val ARG_SELECTED_ARTIST = "selected_artist"
+    }
+
     private var binding: FragmentDetailBinding? = null
-    private lateinit var viewModel: SharedViewModel
+    private lateinit var viewModel: DetailViewModel
     private lateinit var adapter: DetailAdapter
     private var detailModels: MutableList<DetailModel> = mutableListOf()
 
-    override fun initialiseView() {
-        setupToolbar()
-    }
-
-    override fun onViewCreated() {
-        if (viewModel.hasSelectedArtist()) {
-            initialiseRecycler()
-            observeLiveData()
-            viewModel.fetchAlbums()
-        }
-    }
-
-    override fun onDestroyView() {
-        binding = null
-        super.onDestroyView()
-    }
-
     override fun initialiseViewModel() {
         viewModel = ViewModelProviders.of(
-            requireActivity(),
+            this,
             viewModelFactory
-        )[SharedViewModel::class.java]
+        )[DetailViewModel::class.java]
     }
 
     override fun initialiseViewBinding(
@@ -57,15 +46,17 @@ class DetailFragment : BaseFragment() {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
     }
 
-    override fun getRootView() = binding?.root
+    override fun initialiseView() {
+        setupToolbar()
+    }
 
-    override fun observeLiveData() {
-        viewModel.albumsResult.observe(viewLifecycleOwner, {
-            when (it) {
-                is AlbumsResult.AlbumsSuccess -> populate(it.items)
-                is AlbumsResult.AlbumsError -> populateError(it.error)
-            }
-        })
+    override fun onViewCreated() {
+        retrieveSelectedArtist()
+        if (viewModel.hasSelectedArtist()) {
+            initialiseRecycler()
+            observeLiveData()
+            viewModel.fetchAlbums()
+        }
     }
 
     private fun initialiseRecycler() {
@@ -79,10 +70,19 @@ class DetailFragment : BaseFragment() {
         }
     }
 
+    override fun observeLiveData() {
+        viewModel.albumsResult.observe(viewLifecycleOwner, {
+            when (it) {
+                is AlbumsResult.AlbumsSuccess -> populate(it.items)
+                is AlbumsResult.AlbumsError -> populateError(it.error)
+            }
+        })
+    }
+
     private fun populate(items: List<Album>) {
         binding?.let {
             it.progressBar.visibility = View.GONE
-            it.detailList.visibility = View.VISIBLE
+            // it.detailList.visibility = View.VISIBLE
         }
         updateModels(items)
         adapter.notifyDataSetChanged()
@@ -102,6 +102,13 @@ class DetailFragment : BaseFragment() {
         requireContext().showToast(error)
     }
 
+    private fun retrieveSelectedArtist() {
+        val artistParcel: ArtistParcel? = arguments?.getParcelable(ARG_SELECTED_ARTIST)
+        artistParcel?.let {
+            viewModel.selectedArtist = it.toArtist()
+        }
+    }
+
     private fun setupToolbar() {
         val navController = findNavController()
         val appBarConf = AppBarConfiguration(navController.graph)
@@ -111,4 +118,10 @@ class DetailFragment : BaseFragment() {
         }
     }
 
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
+    }
+
+    override fun getRootView() = binding?.root
 }
