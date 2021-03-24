@@ -23,8 +23,4 @@ class AlbumViewHolder(
         }
     }
 
-    fun unbind() {
-        // Release resources, unsubscribe etc
-    }
-
 }

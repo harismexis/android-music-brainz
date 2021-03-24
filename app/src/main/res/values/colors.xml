@@ -30,13 +30,6 @@
     <color name="yellow_one">#ffc800</color>
     <color name="yellow_two">#ffb200</color>
 
-    <color name="green_four">#81C784</color>
-    <color name="green_five">#66BB6A</color>
-    <color name="green_six">#4CAF50</color>
-
-    <color name="light_green_six">#8BC34A</color>
-    <color name="light_green_seven">#7CB342</color>
-
     <!-- End Palette -->
 
     <color name="default_background_color">@color/black_six</color>

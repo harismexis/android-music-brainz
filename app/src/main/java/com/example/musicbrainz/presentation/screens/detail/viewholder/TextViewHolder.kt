@@ -10,4 +10,5 @@ class TextViewHolder(
     fun bind(value: String) {
         binding.txtAlbumsTitleHeader.text = value
     }
+
 }

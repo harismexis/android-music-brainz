@@ -29,8 +29,4 @@ class ArtistViewHolder(
         }
     }
 
-    fun unbind() {
-        // Release resources, unsubscribe etc
-    }
-
 }

@@ -41,9 +41,4 @@ class ArtistAdapter(
         return position.toLong()
     }
 
-    override fun onViewDetachedFromWindow(holder: ArtistViewHolder) {
-        super.onViewDetachedFromWindow(holder)
-        holder.unbind()
-    }
-
 }
