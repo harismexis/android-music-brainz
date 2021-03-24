@@ -76,8 +76,6 @@ dependencies {
     implementation navigationDependencies.values()
     implementation luceneDependencies.values()
 
-    debugImplementation librariesDebug.values()
-
     kapt annotationProcessorsDependencies.values()
 
     testImplementation testLibraries.values()
