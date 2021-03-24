@@ -56,8 +56,4 @@ class RecyclerMatcher(private val recyclerViewId: Int) {
         }
     }
 
-    fun atPosition(position: Int): Matcher<View> {
-        return atPositionOnView(position, -1)
-    }
-
 }
