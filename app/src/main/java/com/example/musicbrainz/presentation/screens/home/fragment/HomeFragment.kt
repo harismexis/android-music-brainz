@@ -26,15 +26,6 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
     private lateinit var adapter: ArtistAdapter
     private var uiModels: MutableList<Artist> = mutableListOf()
 
-    override fun onViewCreated() {
-        observeLiveData()
-    }
-
-    override fun onDestroyView() {
-        binding = null
-        super.onDestroyView()
-    }
-
     override fun initialiseViewModel() {
         viewModel = ViewModelProviders.of(
             this,
@@ -49,11 +40,27 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
         binding = FragmentHomeBinding.inflate(inflater, container, false)
     }
 
-    override fun getRootView() = binding?.root
-
     override fun initialiseView() {
         initialiseRecycler()
         initialiseSearchView()
+    }
+
+    private fun initialiseRecycler() {
+        adapter = ArtistAdapter(uiModels, this)
+        adapter.setHasStableIds(true)
+        binding?.artistList?.let {
+            it.layoutManager = LinearLayoutManager(this.context)
+            it.adapter = adapter
+            it.setDivider(R.drawable.divider)
+        }
+    }
+
+    private fun initialiseSearchView() {
+        binding?.searchView?.setOnQueryTextListener(this)
+    }
+
+    override fun onViewCreated() {
+        observeLiveData()
     }
 
     override fun observeLiveData() {
@@ -63,6 +70,18 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
                 is ArtistsResult.ArtistsError -> populateError(it.error)
             }
         })
+    }
+
+    private fun populate(models: List<Artist>) {
+        showProgress(false)
+        uiModels.clear()
+        uiModels.addAll(models)
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun populateError(error: String) {
+        showProgress(false)
+        requireContext().showToast(error)
     }
 
     override fun onArtistClick(
@@ -84,37 +103,18 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
         return false
     }
 
-    private fun initialiseRecycler() {
-        adapter = ArtistAdapter(uiModels, this)
-        adapter.setHasStableIds(true)
-        binding?.artistList?.let {
-            it.layoutManager = LinearLayoutManager(this.context)
-            it.adapter = adapter
-            it.setDivider(R.drawable.divider)
-        }
-    }
-
-    private fun initialiseSearchView() {
-        binding?.searchView?.setOnQueryTextListener(this)
-    }
-
-    private fun populate(models: List<Artist>) {
-        showProgress(false)
-        uiModels.clear()
-        uiModels.addAll(models)
-        adapter.notifyDataSetChanged()
-    }
-
-    private fun populateError(error: String) {
-        showProgress(false)
-        requireContext().showToast(error)
-    }
-
     private fun showProgress(show: Boolean) {
         val visibility = if (show) View.VISIBLE else View.GONE
         binding?.let {
             it.progressBar.visibility = visibility
         }
     }
+
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
+    }
+
+    override fun getRootView() = binding?.root
 
 }

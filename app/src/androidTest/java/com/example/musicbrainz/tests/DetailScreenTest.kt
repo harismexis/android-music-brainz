@@ -13,6 +13,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.example.musicbrainz.R
+import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.framework.extensions.tagString
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_ALL_IDS_VALID
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_NO_DATA
@@ -44,27 +45,25 @@ class DetailScreenTest : InstrumentedTestSetup() {
     private val mockHomeViewModel = MockHomeVmProvider.mockHomeViewModel
     private var mockArtists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
     private var artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
+    private var clickIndexOnSearchList = 0
 
     private val mockDetailViewModel = MockDetailVmProvider.mockDetailViewModel
-
-    private var mockAlbums = albumParser.getMockAlbumsFromFeedWithAllItemsValid()
-    private var albumsSuccess = AlbumsResult.AlbumsSuccess(mockAlbums)
-
-    private val clickIndex = 0
+    private lateinit var mockAlbums: List<Album>
+    private lateinit var albumsSuccess: AlbumsResult.AlbumsSuccess
     private val numOfDetailHeaders = DetailAdapter.Companion.NUM_OF_HEADERS
 
     init {
         every { mockHomeViewModel.artistsResult } returns MockHomeVmProvider.artistsResult
-
         every { mockDetailViewModel.fetchAlbums() } just runs
         every { mockDetailViewModel.hasSelectedArtist() } returns true
-        every { mockDetailViewModel.selectedArtist } returns mockArtists[clickIndex]
+        every { mockDetailViewModel.selectedArtist } returns mockArtists[clickIndexOnSearchList]
     }
 
     @Test
     fun clickSearchResult_opensDetailsAndShowsExpectedDataWhenAlbumFeedHasAllItemsValid() {
         // given
-        every { mockDetailViewModel.albumsResult } returns MockDetailVmProvider.albumsResult
+        mockAlbums = albumParser.getMockAlbumsFromFeedWithAllItemsValid()
+        mockAlbumsResultSuccess()
 
         // when
         openSearchAndClickFirstItemAndLoadAlbums()
@@ -132,7 +131,7 @@ class DetailScreenTest : InstrumentedTestSetup() {
 
     private fun openSearchAndClickFirstItemAndLoadAlbums() {
         launchActivityAndTriggerSearchResult()
-        clickRecyclerAt(clickIndex) // click on first item to open Details Screen
+        clickRecyclerAt(clickIndexOnSearchList) // click an artist on search list to open Details
         triggerAlbumsResult()
     }
 
