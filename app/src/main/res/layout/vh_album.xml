@@ -20,8 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Title" />
 
-    <!-- -->
-
     <TextView
         android:id="@+id/txt_status_label"
         style="@style/VhItemLabel"
@@ -44,8 +42,6 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/txt_status_label"
         tools:text="Status" />
-
-    <!-- -->
 
     <TextView
         android:id="@+id/txt_trackcount_label"
@@ -70,8 +66,6 @@
         app:layout_constraintStart_toEndOf="@+id/txt_trackcount_label"
         tools:text="Trackcount" />
 
-    <!-- -->
-
     <TextView
         android:id="@+id/txt_date_label"
         style="@style/VhItemLabel"
@@ -94,8 +88,6 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/txt_date_label"
         tools:text="Date" />
-
-    <!-- -->
 
     <TextView
         android:id="@+id/txt_country_label"
@@ -120,8 +112,6 @@
         app:layout_constraintStart_toEndOf="@+id/txt_country_label"
         tools:text="Country" />
 
-    <!-- -->
-
     <TextView
         android:id="@+id/txt_disambiguation_label"
         style="@style/VhItemLabel"
@@ -144,8 +134,6 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/txt_disambiguation_label"
         tools:text="Disambiguation" />
-
-    <!-- -->
 
     <TextView
         android:id="@+id/txt_score_label"
@@ -170,8 +158,6 @@
         app:layout_constraintStart_toEndOf="@+id/txt_score_label"
         tools:text="Score" />
 
-    <!-- -->
-
     <TextView
         android:id="@+id/txt_packaging_label"
         style="@style/VhItemLabel"
@@ -194,8 +180,6 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/txt_packaging_label"
         tools:text="Packaging" />
-
-    <!-- -->
 
     <TextView
         android:id="@+id/txt_barcode_label"

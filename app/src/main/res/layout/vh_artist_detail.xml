@@ -180,18 +180,13 @@
         android:id="@+id/txt_tags"
         style="@style/VhItemMeta"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="8dp"
-        android:maxLines="100"
+        android:layout_marginTop="@dimen/txt_tags_margin_top"
+        android:maxLines="20"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@+id/txt_tags_label"
         app:layout_constraintTop_toBottomOf="@+id/txt_tags_label"
         tools:text="Tags" />
-
-    <!--
-    val endDate: String?,
-    val hasEnded: Boolean?,
-     -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

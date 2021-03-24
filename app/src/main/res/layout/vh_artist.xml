@@ -20,8 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Name label" />
 
-    <!-- -->
-
     <TextView
         android:id="@+id/txt_type_label"
         style="@style/VhItemLabel"
@@ -44,8 +42,6 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/txt_type_label"
         tools:text="Type" />
-
-    <!-- -->
 
     <TextView
         android:id="@+id/txt_country_label"
@@ -70,8 +66,6 @@
         app:layout_constraintStart_toEndOf="@+id/txt_country_label"
         tools:text="Country" />
 
-    <!-- -->
-
     <TextView
         android:id="@+id/txt_score_label"
         style="@style/VhItemLabel"
@@ -94,6 +88,5 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/txt_score_label"
         tools:text="Score" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

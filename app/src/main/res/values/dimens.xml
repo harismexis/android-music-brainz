@@ -21,6 +21,8 @@
     <dimen name="vh_item_padding_vertical">16dp</dimen>
     <dimen name="vh_item_padding_horizontal">16dp</dimen>
 
+    <dimen name="txt_tags_margin_top">8dp</dimen>
+
     <!-- recycler divider -->
     <dimen name="divider_margin_horizontal">16dp</dimen>
 
