@@ -24,7 +24,8 @@ import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
 import com.example.musicbrainz.setup.base.InstrumentedTestSetup
 import com.example.musicbrainz.setup.testutil.*
-import com.example.musicbrainz.setup.viewmodel.MockSharedViewModelProvider
+import com.example.musicbrainz.setup.viewmodel.MockDetailViewModelProvider
+import com.example.musicbrainz.setup.viewmodel.MockHomeViewModelProvider
 import io.mockk.every
 import io.mockk.just
 import io.mockk.runs
@@ -40,26 +41,27 @@ class DetailScreenTest : InstrumentedTestSetup() {
     val testRule: ActivityTestRule<MainActivity> =
         ActivityTestRule(MainActivity::class.java, false, false)
 
-    private val mockViewModel = MockSharedViewModelProvider.mockSharedViewModel
-    private val mockArtists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
-    private val artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
+    private val mockHomeViewModel = MockHomeViewModelProvider.mockHomeViewModel
+    private var mockArtists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
+    private var artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
 
+    private val mockDetailViewModel = MockDetailViewModelProvider.mockDetailViewModel
     private var mockAlbums = albumParser.getMockAlbumsFromFeedWithAllItemsValid()
     private var albumsSuccess = AlbumsResult.AlbumsSuccess(mockAlbums)
     private val clickIndex = 0
     private val numOfDetailHeaders = DetailAdapter.Companion.NUM_OF_HEADERS
 
     init {
-        every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
-        every { mockViewModel.fetchAlbums() } just runs
-        every { mockViewModel.hasSelectedArtist() } returns true
-        every { mockViewModel.selectedArtist } returns mockArtists[clickIndex]
+        every { mockHomeViewModel.artistsResult } returns MockHomeViewModelProvider.artistsResult
+        every { mockDetailViewModel.fetchAlbums() } just runs
+        every { mockDetailViewModel.hasSelectedArtist() } returns true
+        every { mockDetailViewModel.selectedArtist } returns mockArtists[clickIndex]
     }
 
     @Test
     fun clickSearchResult_opensDetailsAndShowsExpectedDataWhenAlbumFeedHasAllItemsValid() {
         // given
-        every { mockViewModel.albumsResult } returns MockSharedViewModelProvider.albumsResult
+        every { mockDetailViewModel.albumsResult } returns MockDetailViewModelProvider.albumsResult
 
         // when
         openSearchAndClickFirstItemAndLoadAlbums()
@@ -122,7 +124,7 @@ class DetailScreenTest : InstrumentedTestSetup() {
 
     private fun mockAlbumsResultSuccess() {
         albumsSuccess = AlbumsResult.AlbumsSuccess(mockAlbums)
-        every { mockViewModel.albumsResult } returns MockSharedViewModelProvider.albumsResult
+        every { mockDetailViewModel.albumsResult } returns MockDetailViewModelProvider.albumsResult
     }
 
     private fun openSearchAndClickFirstItemAndLoadAlbums() {
@@ -134,13 +136,13 @@ class DetailScreenTest : InstrumentedTestSetup() {
     private fun launchActivityAndTriggerSearchResult() {
         testRule.launchActivity(null)
         testRule.activity.runOnUiThread {
-            MockSharedViewModelProvider.mArtistsResult.value = artistsSuccess
+            MockHomeViewModelProvider.mArtistsResult.value = artistsSuccess
         }
     }
 
     private fun triggerAlbumsResult() {
         testRule.activity.runOnUiThread {
-            MockSharedViewModelProvider.mAlbumsResult.value = albumsSuccess
+            MockDetailViewModelProvider.mAlbumsResult.value = albumsSuccess
         }
     }
 
@@ -164,7 +166,7 @@ class DetailScreenTest : InstrumentedTestSetup() {
 
     private fun verifyArtistHeaderRow() {
         val index = 0 // artist header is first item
-        val artist = mockViewModel.selectedArtist
+        val artist = mockDetailViewModel.selectedArtist
 
         onView(withId(R.id.detail_list)).perform(scrollToPosition<RecyclerView.ViewHolder>(index))
 

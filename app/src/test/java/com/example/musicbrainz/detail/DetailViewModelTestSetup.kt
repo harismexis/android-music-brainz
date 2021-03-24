@@ -1,29 +1,23 @@
-package com.example.musicbrainz.viewmodel
+package com.example.musicbrainz.detail
 
 import androidx.lifecycle.Observer
 import com.example.musicbrainz.framework.resource.ResourceProvider
 import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildAlbumsQuery
-import com.example.musicbrainz.framework.util.buildSearchQuery
 import com.example.musicbrainz.interactors.InteractorGetAlbums
-import com.example.musicbrainz.interactors.InteractorSearchArtists
 import com.example.musicbrainz.parser.AlbumMockParser
 import com.example.musicbrainz.parser.ArtistMockParser
 import com.example.musicbrainz.presentation.result.AlbumsResult
 import com.example.musicbrainz.presentation.result.ArtistsResult
-import com.example.musicbrainz.presentation.viewmodel.SharedViewModel
+import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailViewModel
 import com.example.musicbrainz.setup.UnitTestSetup
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 
-abstract class SharedViewModelTestSetup : UnitTestSetup() {
+abstract class DetailViewModelTestSetup : UnitTestSetup() {
 
     @MockK
-    protected lateinit var mockIrrSearchArtists: InteractorSearchArtists
-    @MockK
     protected lateinit var mockConnectivity: ConnectivityMonitor
-    @MockK
-    lateinit var mockObserverArtists: Observer<ArtistsResult>
     @MockK
     lateinit var mockResourceProvider: ResourceProvider
     @MockK(relaxed = true)
@@ -35,21 +29,17 @@ abstract class SharedViewModelTestSetup : UnitTestSetup() {
     private val albumParser = AlbumMockParser(fileParser)
 
     private val artists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
-    private val artistsSuccess = ArtistsResult.ArtistsSuccess(artists)
-    private val artistsError = ArtistsResult.ArtistsError(ERROR_MSG)
+
     private val internetOffError = ArtistsResult.ArtistsError(INTERNET_OFF_MSG)
 
     private val mockAlbums = albumParser.getMockAlbumsFromFeedWithAllItemsValid()
     private val albumsSuccess = AlbumsResult.AlbumsSuccess(mockAlbums)
     private val albumsError = AlbumsResult.AlbumsError(ERROR_MSG)
 
-    private val searchArtistInput = "Rory Gallagher"
-    private val searchQuery = buildSearchQuery(searchArtistInput)
-
     val mockSelectedArtist = artists[0]
     private val albumsQuery = buildAlbumsQuery(mockSelectedArtist.id)
 
-    protected lateinit var subject: SharedViewModel
+    protected lateinit var subject: DetailViewModel
 
     companion object {
         const val ERROR_MSG = "error"
@@ -57,21 +47,13 @@ abstract class SharedViewModelTestSetup : UnitTestSetup() {
     }
 
     override fun initialiseClassUnderTest() {
-        subject = SharedViewModel(
-            mockIrrSearchArtists,
+        subject = DetailViewModel(
             mockInteractorAlbums,
             mockConnectivity,
             mockResourceProvider
         )
         every { mockResourceProvider.getInternetOffMsg() } returns INTERNET_OFF_MSG
-        val selectedArtistId = mockSelectedArtist.id
-        //albumsQuery = "arid:$selectedArtistId"
-        every { mockObserverArtists.onChanged(any()) } just runs
         every { mockObserverAlbums.onChanged(any()) } just runs
-    }
-
-    protected fun triggerSearchArtist() {
-        subject.searchQuery = searchQuery
     }
 
     protected fun mockInternetActive(active: Boolean) {
@@ -82,37 +64,8 @@ abstract class SharedViewModelTestSetup : UnitTestSetup() {
         verify(exactly = 1) { mockConnectivity.isOnline() }
     }
 
-    protected fun mockSearchCall() {
-        coEvery { mockIrrSearchArtists.invoke(searchQuery) } returns artists
-    }
-
-    protected fun mockSearchCallThrowsError() {
-        coEvery { mockIrrSearchArtists.invoke(searchQuery) } throws IllegalStateException(ERROR_MSG)
-    }
-
-    protected fun verifySearchCallDone() {
-        coVerify { mockIrrSearchArtists.invoke(searchQuery) }
-    }
-
-    protected fun verifySearchCallNotDone() {
-        coVerify(exactly = 0) { mockIrrSearchArtists.invoke(any()) }
-    }
-
     protected fun initialiseLiveData() {
-        subject.artistsResult.observeForever(mockObserverArtists)
         subject.albumsResult.observeForever(mockObserverAlbums)
-    }
-
-    protected fun verifySearchResultSuccess() {
-        verify(exactly = 1) { mockObserverArtists.onChanged(artistsSuccess) }
-    }
-
-    protected fun verifySearchResultError() {
-        verify(exactly = 1) { mockObserverArtists.onChanged(artistsError) }
-    }
-
-    protected fun verifyResultInternetOff() {
-        verify(exactly = 1) { mockObserverArtists.onChanged(internetOffError) }
     }
 
     protected fun mockAlbumsCall() {

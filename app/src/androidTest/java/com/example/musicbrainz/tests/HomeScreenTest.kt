@@ -22,7 +22,7 @@ import com.example.musicbrainz.setup.testutil.RecyclerCountAssertion
 import com.example.musicbrainz.setup.testutil.getExpectedText
 import com.example.musicbrainz.setup.testutil.getStringRes
 import com.example.musicbrainz.setup.testutil.verifyRecyclerItemAt
-import com.example.musicbrainz.setup.viewmodel.MockSharedViewModelProvider
+import com.example.musicbrainz.setup.viewmodel.MockHomeViewModelProvider
 import io.mockk.every
 import org.junit.Assert
 import org.junit.Rule
@@ -39,14 +39,14 @@ class HomeScreenTest : InstrumentedTestSetup() {
             false, false
         )
 
-    private val mockViewModel = MockSharedViewModelProvider.mockSharedViewModel
+    private val mockViewModel = MockHomeViewModelProvider.mockHomeViewModel
     private var mockArtists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
     private var artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
 
     @Test
     fun artistsFeedHasAllItemsValid_then_listShowsExpectedItems() {
         // given
-        every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
+        every { mockViewModel.artistsResult } returns MockHomeViewModelProvider.artistsResult
 
         // when
         launchActivityAndTriggerSearchResult()
@@ -109,13 +109,13 @@ class HomeScreenTest : InstrumentedTestSetup() {
 
     private fun mockSearchResultSuccess() {
         artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
-        every { mockViewModel.artistsResult } returns MockSharedViewModelProvider.artistsResult
+        every { mockViewModel.artistsResult } returns MockHomeViewModelProvider.artistsResult
     }
 
     private fun launchActivityAndTriggerSearchResult() {
         testRule.launchActivity(null)
         testRule.activity.runOnUiThread {
-            MockSharedViewModelProvider.mArtistsResult.value = artistsSuccess
+            MockHomeViewModelProvider.mArtistsResult.value = artistsSuccess
         }
     }
 
