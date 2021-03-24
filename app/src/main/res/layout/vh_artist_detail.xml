@@ -20,8 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Name label" />
 
-    <!-- -->
-
     <TextView
         android:id="@+id/txt_type_label"
         style="@style/VhItemLabel"
@@ -41,8 +39,6 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/txt_type_label"
         tools:text="Type" />
-
-    <!-- -->
 
     <TextView
         android:id="@+id/txt_country_label"
@@ -66,8 +62,6 @@
         app:layout_constraintStart_toEndOf="@+id/txt_country_label"
         tools:text="Country" />
 
-    <!-- -->
-
     <TextView
         android:id="@+id/txt_score_label"
         style="@style/VhItemLabel"
@@ -89,8 +83,6 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/txt_score_label"
         tools:text="Score" />
-
-    <!-- -->
 
     <TextView
         android:id="@+id/txt_area_label"
@@ -114,8 +106,6 @@
         app:layout_constraintStart_toEndOf="@+id/txt_area_label"
         tools:text="Area" />
 
-    <!-- -->
-
     <TextView
         android:id="@+id/txt_begin_date_label"
         style="@style/VhItemLabel"
@@ -138,8 +128,6 @@
         app:layout_constraintStart_toEndOf="@+id/txt_begin_date_label"
         tools:text="Begin date" />
 
-    <!-- -->
-
     <TextView
         android:id="@+id/txt_end_date_label"
         style="@style/VhItemLabel"
@@ -161,8 +149,6 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/txt_end_date_label"
         tools:text="End date" />
-
-    <!-- -->
 
     <TextView
         android:id="@+id/txt_tags_label"
