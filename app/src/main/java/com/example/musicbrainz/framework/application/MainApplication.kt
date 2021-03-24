@@ -1,7 +1,5 @@
 package com.example.musicbrainz.framework.application
 
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import com.example.musicbrainz.BuildConfig
 import com.example.musicbrainz.framework.di.DaggerMainComponent
 import com.example.musicbrainz.framework.di.MainComponent
@@ -37,15 +35,29 @@ class MainApplication : DaggerApplication(), HasAndroidInjector {
 
     private fun buildUserAgent(): String {
         val userAgentContact = BuildConfig.USER_AGENT_CONTACT_INFO
-        val name = applicationInfo.name
+        val appName = getAppName()
+        val appVersion = getAppVersion()
+        return "$appName/$appVersion ( $userAgentContact )"
+    }
+
+    private fun getAppVersion(): String {
         var version = "1.0"
         try {
-            val info: PackageInfo = packageManager.getPackageInfo(packageName, 0)
-            version = info.versionName
-        } catch (e: PackageManager.NameNotFoundException) {
+            version = packageManager.getPackageInfo(packageName, 0).versionName
+        } catch (e: Exception) {
             e.printStackTrace()
         }
-        return "$name/$version ( $userAgentContact )"
+        return version
+    }
+
+    private fun getAppName(): String {
+        var name = "MusicBrainz"
+        try {
+            name = packageManager.getApplicationLabel(applicationInfo).toString()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return name
     }
 
 }
