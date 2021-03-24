@@ -11,6 +11,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.example.musicbrainz.R
+import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_NO_DATA
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY
@@ -40,13 +41,14 @@ class HomeScreenTest : InstrumentedTestSetup() {
         )
 
     private val mockViewModel = MockHomeVmProvider.mockHomeViewModel
-    private var mockArtists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
-    private var artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
+    private lateinit var mockArtists: List<Artist>
+    private lateinit var artistsSuccess: ArtistsResult.ArtistsSuccess
 
     @Test
     fun artistsFeedHasAllItemsValid_then_listShowsExpectedItems() {
         // given
-        every { mockViewModel.artistsResult } returns MockHomeVmProvider.artistsResult
+        mockArtists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
+        mockSearchResultSuccess()
 
         // when
         launchActivityAndTriggerSearchResult()
