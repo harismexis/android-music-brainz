@@ -9,6 +9,7 @@ import com.example.musicbrainz.parser.ArtistMockParser
 import com.example.musicbrainz.setup.UnitTestSetup
 import com.example.musicbrainz.utils.AlbumVerificator
 import com.example.musicbrainz.utils.ArtistVerificator
+import com.example.musicbrainz.utils.verifyListsHaveSameSize
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
@@ -54,6 +55,7 @@ class MusicBrainzRemoteDataSourceTest : UnitTestSetup() {
 
         // then
         coVerify(exactly = 1) { mockDao.getArtists(searchQuery) }
+        verifyListsHaveSameSize(items, mockFeed.artists!!)
         artistVerificator.verifyItemsAgainstRemoteFeed(items, mockFeed)
     }
 
@@ -72,6 +74,7 @@ class MusicBrainzRemoteDataSourceTest : UnitTestSetup() {
 
             // then
             coVerify(exactly = 1) { mockDao.getAlbums(albumsQuery) }
+            verifyListsHaveSameSize(items, mockFeed.releases!!)
             albumVerificator.verifyItemsAgainstRemoteFeed(items, mockFeed)
         }
     }

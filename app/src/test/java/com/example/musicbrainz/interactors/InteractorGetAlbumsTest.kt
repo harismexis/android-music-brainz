@@ -39,7 +39,7 @@ class InteractorGetAlbumsTest : UnitTestSetup() {
     }
 
     @Test
-    fun interactorInvoked_then_repositoryCallsExpectedMethodWithExpectedArgAndResult() {
+    fun interactorInvoked_then_repositoryCallsExpectedMethodWithExpectedArgs() {
         // when
         lateinit var items: List<Album>
         runBlocking {
