@@ -18,11 +18,11 @@ abstract class DetailViewModelTestSetup : UnitTestSetup() {
     @MockK
     protected lateinit var mockConnectivity: ConnectivityMonitor
     @MockK
-    lateinit var mockResourceProvider: ResourceProvider
+    protected lateinit var mockResourceProvider: ResourceProvider
     @MockK(relaxed = true)
     protected lateinit var mockInteractorAlbums: InteractorGetAlbums
     @MockK(relaxed = true)
-    lateinit var mockObserverAlbums: Observer<AlbumsResult>
+    protected lateinit var mockObserverAlbums: Observer<AlbumsResult>
 
     private val artistParser = ArtistMockParser(fileParser)
     val mockSelectedArtist = artistParser.getMockArtist()

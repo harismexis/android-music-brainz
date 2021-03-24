@@ -19,9 +19,9 @@ abstract class HomeViewModelTestSetup : UnitTestSetup() {
     @MockK
     protected lateinit var mockConnectivity: ConnectivityMonitor
     @MockK
-    lateinit var mockObserverArtists: Observer<ArtistsResult>
+    protected lateinit var mockObserverArtists: Observer<ArtistsResult>
     @MockK
-    lateinit var mockResourceProvider: ResourceProvider
+    protected lateinit var mockResourceProvider: ResourceProvider
 
     private val artistParser = ArtistMockParser(fileParser)
     private val artists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
