@@ -33,7 +33,7 @@ abstract class HomeViewModelTestSetup : UnitTestSetup() {
     private val searchArtistInput = "Rory Gallagher"
     private val searchQuery = buildSearchQuery(searchArtistInput)
 
-    val mockSelectedArtist = artists[0]
+    private val mockSelectedArtist = artists[0]
 
     protected lateinit var subject: HomeViewModel
 

@@ -27,9 +27,10 @@ class MusicBrainzRemoteDataSourceTest : UnitTestSetup() {
     private val albumParser = AlbumMockParser(fileParser)
     private var artistVerificator = ArtistVerificator()
     private var albumVerificator = AlbumVerificator()
-    private lateinit var subject: MusicBrainzRemoteDataSource
     private var searchQuery = "search query"
     private var albumsQuery = "albums query"
+
+    private lateinit var subject: MusicBrainzRemoteDataSource
 
     init {
         initialise()
