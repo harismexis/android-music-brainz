@@ -4,11 +4,11 @@ import com.example.musicbrainz.data.MusicBrainzRemoteRepository
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.parser.AlbumMockParser
 import com.example.musicbrainz.setup.UnitTestSetup
+import com.example.musicbrainz.utils.verifyListsHaveSameSize
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -48,7 +48,7 @@ class InteractorGetAlbumsTest : UnitTestSetup() {
 
         // then
         coVerify(exactly = 1) { mockRepository.getAlbums(query) }
-        Assert.assertEquals(mockItems.size, items.size)
+        verifyListsHaveSameSize(mockItems, items)
     }
 
 }

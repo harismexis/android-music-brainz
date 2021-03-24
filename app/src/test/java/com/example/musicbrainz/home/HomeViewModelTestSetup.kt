@@ -24,16 +24,12 @@ abstract class HomeViewModelTestSetup : UnitTestSetup() {
     lateinit var mockResourceProvider: ResourceProvider
 
     private val artistParser = ArtistMockParser(fileParser)
-
     private val artists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
     private val artistsSuccess = ArtistsResult.ArtistsSuccess(artists)
     private val artistsError = ArtistsResult.ArtistsError(ERROR_MSG)
     private val internetOffError = ArtistsResult.ArtistsError(INTERNET_OFF_MSG)
-
     private val searchArtistInput = "Rory Gallagher"
     private val searchQuery = buildSearchQuery(searchArtistInput)
-
-    private val mockSelectedArtist = artists[0]
 
     protected lateinit var subject: HomeViewModel
 
@@ -49,8 +45,6 @@ abstract class HomeViewModelTestSetup : UnitTestSetup() {
             mockResourceProvider
         )
         every { mockResourceProvider.getInternetOffMsg() } returns INTERNET_OFF_MSG
-        val selectedArtistId = mockSelectedArtist.id
-        //albumsQuery = "arid:$selectedArtistId"
         every { mockObserverArtists.onChanged(any()) } just runs
     }
 

@@ -18,7 +18,7 @@ class HomeViewModelTest : HomeViewModelTestSetup() {
     }
 
     @Test
-    fun internetActive_when_searchArtistTriggered_then_resultSuccess() {
+    fun searchCallSuccessful_when_searchArtistTriggered_then_resultSuccess() {
         // given
         mockInternetActive(true)
         mockSearchCall()
@@ -33,21 +33,7 @@ class HomeViewModelTest : HomeViewModelTestSetup() {
     }
 
     @Test
-    fun internetOff_when_searchTriggered_then_resultError() {
-        // given
-        mockInternetActive(false)
-
-        // when
-        triggerSearchArtist()
-
-        // then
-        verifyInternetChecked()
-        verifySearchCallNotDone()
-        verifyResultInternetOff()
-    }
-
-    @Test
-    fun searchArtistCallThrowsError_when_searchTriggered_then_resultError() {
+    fun searchCallThrowsError_when_searchTriggered_then_resultError() {
         // given
         mockInternetActive(true)
         mockSearchCallThrowsError()
@@ -59,6 +45,20 @@ class HomeViewModelTest : HomeViewModelTestSetup() {
         verifyInternetChecked()
         verifySearchCallDone()
         verifySearchResultError()
+    }
+
+    @Test
+    fun internetOff_when_searchTriggered_then_resultError() {
+        // given
+        mockInternetActive(false)
+
+        // when
+        triggerSearchArtist()
+
+        // then
+        verifyInternetChecked()
+        verifySearchCallNotDone()
+        verifyResultInternetOff()
     }
 
 }

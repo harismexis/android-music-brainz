@@ -8,7 +8,6 @@ import com.example.musicbrainz.interactors.InteractorGetAlbums
 import com.example.musicbrainz.parser.AlbumMockParser
 import com.example.musicbrainz.parser.ArtistMockParser
 import com.example.musicbrainz.presentation.result.AlbumsResult
-import com.example.musicbrainz.presentation.result.ArtistsResult
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailViewModel
 import com.example.musicbrainz.setup.UnitTestSetup
 import io.mockk.*
@@ -26,17 +25,13 @@ abstract class DetailViewModelTestSetup : UnitTestSetup() {
     lateinit var mockObserverAlbums: Observer<AlbumsResult>
 
     private val artistParser = ArtistMockParser(fileParser)
+    val mockSelectedArtist = artistParser.getMockArtist()
+
     private val albumParser = AlbumMockParser(fileParser)
-
-    private val artists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
-
-    private val internetOffError = ArtistsResult.ArtistsError(INTERNET_OFF_MSG)
-
     private val mockAlbums = albumParser.getMockAlbumsFromFeedWithAllItemsValid()
     private val albumsSuccess = AlbumsResult.AlbumsSuccess(mockAlbums)
     private val albumsError = AlbumsResult.AlbumsError(ERROR_MSG)
-
-    val mockSelectedArtist = artists[0]
+    private val internetOffError = AlbumsResult.AlbumsError(INTERNET_OFF_MSG)
     private val albumsQuery = buildAlbumsQuery(mockSelectedArtist.id)
 
     protected lateinit var subject: DetailViewModel
@@ -81,7 +76,7 @@ abstract class DetailViewModelTestSetup : UnitTestSetup() {
     }
 
     protected fun verifyAlbumsCallNotDone() {
-        coVerify(exactly = 1) { mockInteractorAlbums.invoke(any()) }
+        coVerify(exactly = 0) { mockInteractorAlbums.invoke(any()) }
     }
 
     protected fun verifyResultAlbumsCallSuccess() {
@@ -90,6 +85,10 @@ abstract class DetailViewModelTestSetup : UnitTestSetup() {
 
     protected fun verifyResultAlbumsCallError() {
         verify(exactly = 1) { mockObserverAlbums.onChanged(albumsError) }
+    }
+
+    protected fun verifyResultInternetOff() {
+        verify(exactly = 1) { mockObserverAlbums.onChanged(internetOffError) }
     }
 
 }

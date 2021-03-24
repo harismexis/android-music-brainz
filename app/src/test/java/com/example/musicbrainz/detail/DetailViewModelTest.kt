@@ -18,7 +18,7 @@ class DetailViewModelTest : DetailViewModelTestSetup() {
     }
 
     @Test
-    fun internetOn_when_albumsRequested_then_resultSuccess() {
+    fun albumsCallSuccessful_when_albumsRequested_then_resultSuccess() {
         // given
         subject.selectedArtist = mockSelectedArtist
         mockAlbumsCall()
@@ -45,6 +45,20 @@ class DetailViewModelTest : DetailViewModelTestSetup() {
         // then
         verifyAlbumsCallDone()
         verifyResultAlbumsCallError()
+    }
+
+    @Test
+    fun internetOff_when_albumsRequested_then_resultError() {
+        // given
+        mockInternetActive(false)
+
+        // when
+        subject.fetchAlbums()
+
+        // then
+        verifyInternetChecked()
+        verifyAlbumsCallNotDone()
+        verifyResultInternetOff()
     }
 
 }
