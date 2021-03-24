@@ -94,8 +94,10 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        viewModel.searchQuery = query
-        showProgress(true)
+        if (!query.isNullOrBlank()) {
+            showProgress(true)
+            viewModel.searchQuery = query
+        }
         return false
     }
 

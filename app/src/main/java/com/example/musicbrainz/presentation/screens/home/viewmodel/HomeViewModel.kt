@@ -31,18 +31,15 @@ class HomeViewModel @Inject constructor(
             field = value
             value?.let {
                 if (!value.isNullOrBlank()) {
-                    onArtistSearched(value)
+                    onSearchQueryUpdated(value)
                 }
             }
         }
 
-    private fun onArtistSearched(name: String) {
-        if (!connectivity.isOnline()) {
+    private fun onSearchQueryUpdated(name: String) {
+        if (!connectivity.isOnline())
             mArtistsResult.value = ArtistsResult.ArtistsError(resProvider.getInternetOffMsg())
-        } else {
-            val query = buildSearchQuery(name)
-            fetchArtists(query)
-        }
+        else fetchArtists(buildSearchQuery(name))
     }
 
     private fun fetchArtists(query: String) {
