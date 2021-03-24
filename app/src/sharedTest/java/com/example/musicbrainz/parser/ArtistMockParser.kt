@@ -24,7 +24,7 @@ class ArtistMockParser(private val parser: BaseFileParser) {
         private const val TEST_ARTISTS_FILE_EMPTY_JSON = "test-data/empty_json.json"
     }
 
-    // get artist items
+    // artist items
 
     fun getMockArtist(): Artist = getMockArtistsFromFeedWithAllItemsValid()[0]
 
@@ -43,7 +43,7 @@ class ArtistMockParser(private val parser: BaseFileParser) {
     fun getMockArtistsFromFeedWithEmptyJson(): List<Artist> =
         getMockArtistsFeedEmptyJson().toItems()
 
-    // get json object model
+    // json object model
 
     fun getMockArtistsFeedAllIdsValid(): ArtistFeed =
         getMockArtistsFeed(getMockArtistsDataAllIdsValid())
@@ -64,7 +64,7 @@ class ArtistMockParser(private val parser: BaseFileParser) {
         return convertToModel(text)
     }
 
-    // get raw string json
+    // raw string json
 
     private fun getMockArtistsDataAllIdsValid(): String =
         parser.getFileAsString(TEST_ARTISTS_FILE_10_VALID_ITEMS)

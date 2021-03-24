@@ -24,9 +24,7 @@ class AlbumMockParser(private val parser: BaseFileParser) {
         private const val TEST_FILE_EMPTY_JSON = "test-data/empty_json.json"
     }
 
-    // get artist items
-
-    fun getMockAlbum(): Album = getMockAlbumsFromFeedWithAllItemsValid()[0]
+    // album items
 
     fun getMockAlbumsFromFeedWithAllItemsValid(): List<Album> =
         getMockAlbumsFeedAllIdsValid().toItems()
@@ -43,7 +41,7 @@ class AlbumMockParser(private val parser: BaseFileParser) {
     fun getMockAlbumsFromFeedWithEmptyJson(): List<Album> =
         getMockAlbumsFeedEmptyJson().toItems()
 
-    // get json object model
+    // json object model
 
     fun getMockAlbumsFeedAllIdsValid(): AlbumFeed =
         getMockAlbumsFeed(getMockAlbumsDataAllIdsValid())
@@ -64,7 +62,7 @@ class AlbumMockParser(private val parser: BaseFileParser) {
         return convertToModel(text)
     }
 
-    // get raw string json
+    // raw string json
 
     private fun getMockAlbumsDataAllIdsValid(): String =
         parser.getFileAsString(TEST_ALBUMS_FILE_10_VALID_ITEMS)
