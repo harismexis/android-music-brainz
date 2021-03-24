@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailViewModel
 import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeViewModel
-import com.example.musicbrainz.presentation.viewmodel.SharedViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
@@ -36,11 +35,6 @@ abstract class ViewModelModule {
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(SharedViewModel::class)
-    internal abstract fun sharedViewModel(viewModel: SharedViewModel): ViewModel
 
     @Binds
     @IntoMap
