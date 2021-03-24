@@ -4,7 +4,7 @@
     <string name="app_name">MusicBrainz</string>
     <string name="screen_home_label">Artists</string>
     <string name="screen_artist_detail_label">Details</string>
-    <string name="missing_value">unknown</string>
+    <string name="missing_value">n/a</string>
 
     <!-- vh artist -->
     <string name="artist_name_label">name</string>
