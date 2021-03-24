@@ -42,7 +42,6 @@ class ArtistVerificator {
         Assert.assertEquals(expected.endArea?.name, actual.endArea)
         Assert.assertEquals(expected.lifeSpan?.begin, actual.beginDate)
         Assert.assertEquals(expected.lifeSpan?.end, actual.endDate)
-        Assert.assertEquals(expected.country, actual.country)
         Assert.assertEquals(expected.tags?.map { it.name }, actual.tags)
     }
 }
