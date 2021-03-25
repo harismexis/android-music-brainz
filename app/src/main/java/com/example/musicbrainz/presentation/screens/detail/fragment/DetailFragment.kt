@@ -3,7 +3,7 @@ package com.example.musicbrainz.presentation.screens.detail.fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -27,17 +27,10 @@ class DetailFragment : BaseFragment() {
         private const val ARG_SELECTED_ARTIST = "selected_artist"
     }
 
+    private val viewModel: DetailViewModel by viewModels { viewModelFactory }
     private var binding: FragmentDetailBinding? = null
-    private lateinit var viewModel: DetailViewModel
     private lateinit var adapter: DetailAdapter
     private var detailModels: MutableList<DetailModel> = mutableListOf()
-
-    override fun initialiseViewModel() {
-        viewModel = ViewModelProviders.of(
-            this,
-            viewModelFactory
-        )[DetailViewModel::class.java]
-    }
 
     override fun initialiseViewBinding(
         inflater: LayoutInflater,

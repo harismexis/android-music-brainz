@@ -20,11 +20,6 @@ abstract class BaseFragment : Fragment() {
         super.onAttach(context)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initialiseViewModel()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,8 +46,6 @@ abstract class BaseFragment : Fragment() {
     abstract fun getRootView(): View?
 
     abstract fun onViewCreated()
-
-    abstract fun initialiseViewModel()
 
     abstract fun observeLiveData()
 

@@ -3,7 +3,7 @@ package com.example.musicbrainz.presentation.screens.home.fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.musicbrainz.R
@@ -21,17 +21,10 @@ import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeViewModel
 class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
     android.widget.SearchView.OnQueryTextListener {
 
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModels { viewModelFactory }
     private var binding: FragmentHomeBinding? = null
     private lateinit var adapter: ArtistAdapter
     private var uiModels: MutableList<Artist> = mutableListOf()
-
-    override fun initialiseViewModel() {
-        viewModel = ViewModelProviders.of(
-            this,
-            viewModelFactory
-        )[HomeViewModel::class.java]
-    }
 
     override fun initialiseViewBinding(
         inflater: LayoutInflater,
