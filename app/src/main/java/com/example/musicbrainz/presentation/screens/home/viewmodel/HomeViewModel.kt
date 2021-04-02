@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.musicbrainz.framework.event.Event
 import com.example.musicbrainz.framework.extensions.getErrorMessage
 import com.example.musicbrainz.framework.resource.ResourceProvider
 import com.example.musicbrainz.framework.util.ConnectivityMonitor
@@ -26,6 +27,10 @@ class HomeViewModel @Inject constructor(
     val artistsResult: LiveData<ArtistsResult>
         get() = mArtistsResult
 
+    private val mShowErrorMessage = MutableLiveData<Event<String>>()
+    val showErrorMessage : LiveData<Event<String>>
+        get() = mShowErrorMessage
+
     var searchQuery: String? = null
         set(value) {
             field = value
@@ -37,8 +42,10 @@ class HomeViewModel @Inject constructor(
         }
 
     private fun onSearchQueryUpdated(name: String) {
-        if (!connectivity.isOnline())
+        if (!connectivity.isOnline()) {
             mArtistsResult.value = ArtistsResult.ArtistsError(resProvider.getInternetOffMsg())
+            mShowErrorMessage.value = Event(resProvider.getInternetOffMsg())
+        }
         else fetchArtists(buildSearchQuery(name))
     }
 
@@ -50,6 +57,7 @@ class HomeViewModel @Inject constructor(
             } catch (e: Exception) {
                 Log.d(TAG, e.getErrorMessage())
                 mArtistsResult.value = ArtistsResult.ArtistsError(e.getErrorMessage())
+                mShowErrorMessage.value = Event(e.getErrorMessage())
             }
         }
     }

@@ -10,6 +10,7 @@ import com.example.musicbrainz.R
 import com.example.musicbrainz.databinding.FragmentHomeBinding
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.base.BaseFragment
+import com.example.musicbrainz.framework.event.EventObserver
 import com.example.musicbrainz.framework.extensions.setDivider
 import com.example.musicbrainz.framework.extensions.showToast
 import com.example.musicbrainz.framework.extensions.toParcel
@@ -63,6 +64,10 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
                 is ArtistsResult.ArtistsError -> populateError(it.error)
             }
         })
+
+        viewModel.showErrorMessage.observe(viewLifecycleOwner, EventObserver {
+            requireContext().showToast(it)
+        })
     }
 
     private fun populate(models: List<Artist>) {
@@ -74,7 +79,6 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
 
     private fun populateError(error: String) {
         showProgress(false)
-        requireContext().showToast(error)
     }
 
     override fun onArtistClick(
