@@ -1,13 +1,14 @@
 allprojects {
     repositories {
         google()
+        mavenCentral()
         jcenter()
     }
 }
 
 ext {
     nav_version = '2.3.4'
-    kotlin = '1.4.32'
+    kotlin = '1.5.10'
     def appcompat = '1.3.0'
     def material = '1.3.0'
     def constraint_layout = '2.0.4'
@@ -50,16 +51,16 @@ ext {
     ]
 
     androidTestLibraries = [
-            test_core       : "androidx.test:core:$androidx_test",
-            runner          : "androidx.test:runner:$androidx_test",
-            rules           : "androidx.test:rules:$androidx_test",
-            junit           : "androidx.test.ext:junit:$androidx_junit",
-            espresso_core               : "androidx.test.espresso:espresso-core:$espresso",
-            espresso_contrib            : "androidx.test.espresso:espresso-contrib:$espresso",
-            arch_core       : "androidx.arch.core:core-testing:$arch_core",
-            coroutines_test : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_android",
-            mockk_android : "io.mockk:mockk-android:$mockk_android",
-            nav_testing     : "androidx.navigation:navigation-testing:$nav_version"
+            test_core        : "androidx.test:core:$androidx_test",
+            runner           : "androidx.test:runner:$androidx_test",
+            rules            : "androidx.test:rules:$androidx_test",
+            junit            : "androidx.test.ext:junit:$androidx_junit",
+            espresso_core    : "androidx.test.espresso:espresso-core:$espresso",
+            espresso_contrib : "androidx.test.espresso:espresso-contrib:$espresso",
+            arch_core        : "androidx.arch.core:core-testing:$arch_core",
+            coroutines_test  : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_android",
+            mockk_android    : "io.mockk:mockk-android:$mockk_android",
+            nav_testing      : "androidx.navigation:navigation-testing:$nav_version"
     ]
 
     daggerDependancies = [
@@ -74,12 +75,12 @@ ext {
     ]
 
     navigationDependencies = [
-            nav_fragment : "androidx.navigation:navigation-fragment:$nav_version",
-            nav_ui : "androidx.navigation:navigation-ui:$nav_version",
+            nav_fragment     : "androidx.navigation:navigation-fragment:$nav_version",
+            nav_ui           : "androidx.navigation:navigation-ui:$nav_version",
             nav_fragment_ktx : "androidx.navigation:navigation-fragment-ktx:$nav_version",
-            nav_ui_ktx : "androidx.navigation:navigation-ui-ktx:$nav_version",
-            nav_dynamic_features_fragment : "androidx.navigation:navigation-dynamic-features-fragment:$nav_version",
-            nav_compose : "androidx.navigation:navigation-compose:1.0.0-alpha09"
+            nav_ui_ktx       : "androidx.navigation:navigation-ui-ktx:$nav_version",
+            dynamic_features : "androidx.navigation:navigation-dynamic-features-fragment:$nav_version",
+            nav_compose      : "androidx.navigation:navigation-compose:1.0.0-alpha09"
     ]
 
     luceneDependencies = [
