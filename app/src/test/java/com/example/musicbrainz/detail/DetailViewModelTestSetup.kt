@@ -29,9 +29,9 @@ abstract class DetailViewModelTestSetup : UnitTestSetup() {
 
     private val albumParser = AlbumMockParser(fileParser)
     private val mockAlbums = albumParser.getMockAlbumsFromFeedWithAllItemsValid()
-    private val albumsSuccess = AlbumsResult.AlbumsSuccess(mockAlbums)
-    private val albumsError = AlbumsResult.AlbumsError(ERROR_MSG)
-    private val internetOffError = AlbumsResult.AlbumsError(INTERNET_OFF_MSG)
+    private val albumsSuccess = AlbumsResult.Success(mockAlbums)
+    private val albumsError = AlbumsResult.Error(ERROR_MSG)
+    private val internetOffError = AlbumsResult.Error(INTERNET_OFF_MSG)
     private val albumsQuery = buildAlbumsQuery(mockSelectedArtist.id)
 
     protected lateinit var subject: DetailViewModel

@@ -35,7 +35,7 @@ class DetailViewModel @Inject constructor(
 
     fun fetchAlbums() {
         if (!connectivity.isOnline()) {
-            mAlbumsResult.value = AlbumsResult.AlbumsError(resProvider.getInternetOffMsg())
+            mAlbumsResult.value = AlbumsResult.Error(resProvider.getInternetOffMsg())
         } else {
             val query = buildAlbumsQuery(selectedArtist.id)
             fetchAlbums(query)
@@ -46,10 +46,10 @@ class DetailViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val items = irrGetAlbums.invoke(query)
-                mAlbumsResult.value = AlbumsResult.AlbumsSuccess(items)
+                mAlbumsResult.value = AlbumsResult.Success(items)
             } catch (e: Exception) {
                 Log.d(TAG, e.getErrorMessage())
-                mAlbumsResult.value = AlbumsResult.AlbumsError(e.getErrorMessage())
+                mAlbumsResult.value = AlbumsResult.Error(e.getErrorMessage())
             }
         }
     }

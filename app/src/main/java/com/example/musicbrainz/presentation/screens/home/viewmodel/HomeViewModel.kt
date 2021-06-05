@@ -43,7 +43,7 @@ class HomeViewModel @Inject constructor(
 
     private fun onSearchQueryUpdated(name: String) {
         if (!connectivity.isOnline()) {
-            mArtistsResult.value = ArtistsResult.ArtistsError(resProvider.getInternetOffMsg())
+            mArtistsResult.value = ArtistsResult.Error(resProvider.getInternetOffMsg())
             mShowErrorMessage.value = Event(resProvider.getInternetOffMsg())
         }
         else fetchArtists(buildSearchQuery(name))
@@ -53,10 +53,10 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val items = irrSearchArtists.invoke(query)
-                mArtistsResult.value = ArtistsResult.ArtistsSuccess(items)
+                mArtistsResult.value = ArtistsResult.Success(items)
             } catch (e: Exception) {
                 Log.d(TAG, e.getErrorMessage())
-                mArtistsResult.value = ArtistsResult.ArtistsError(e.getErrorMessage())
+                mArtistsResult.value = ArtistsResult.Error(e.getErrorMessage())
                 mShowErrorMessage.value = Event(e.getErrorMessage())
             }
         }

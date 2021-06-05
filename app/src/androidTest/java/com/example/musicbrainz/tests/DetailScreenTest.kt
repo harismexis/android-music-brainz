@@ -44,12 +44,12 @@ class DetailScreenTest : InstrumentedTestSetup() {
 
     private val mockHomeViewModel = MockHomeVmProvider.mockHomeViewModel
     private var mockArtists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
-    private var artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
+    private var artistsSuccess = ArtistsResult.Success(mockArtists)
     private var clickIndexOnSearchList = 0
 
     private val mockDetailViewModel = MockDetailVmProvider.mockDetailViewModel
     private lateinit var mockAlbums: List<Album>
-    private lateinit var albumsSuccess: AlbumsResult.AlbumsSuccess
+    private lateinit var albumsSuccess: AlbumsResult.Success
     private val numOfDetailHeaders = DetailAdapter.Companion.NUM_OF_HEADERS
 
     init {
@@ -125,7 +125,7 @@ class DetailScreenTest : InstrumentedTestSetup() {
     }
 
     private fun mockAlbumsResultSuccess() {
-        albumsSuccess = AlbumsResult.AlbumsSuccess(mockAlbums)
+        albumsSuccess = AlbumsResult.Success(mockAlbums)
         every { mockDetailViewModel.albumsResult } returns MockDetailVmProvider.albumsResult
     }
 

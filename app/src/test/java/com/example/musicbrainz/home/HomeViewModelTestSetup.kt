@@ -25,9 +25,9 @@ abstract class HomeViewModelTestSetup : UnitTestSetup() {
 
     private val artistParser = ArtistMockParser(fileParser)
     private val artists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
-    private val artistsSuccess = ArtistsResult.ArtistsSuccess(artists)
-    private val artistsError = ArtistsResult.ArtistsError(ERROR_MSG)
-    private val internetOffError = ArtistsResult.ArtistsError(INTERNET_OFF_MSG)
+    private val artistsSuccess = ArtistsResult.Success(artists)
+    private val artistsError = ArtistsResult.Error(ERROR_MSG)
+    private val internetOffError = ArtistsResult.Error(INTERNET_OFF_MSG)
     private val searchArtistInput = "Rory Gallagher"
     private val searchQuery = buildSearchQuery(searchArtistInput)
 

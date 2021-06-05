@@ -66,8 +66,8 @@ class DetailFragment : BaseFragment() {
     override fun observeLiveData() {
         viewModel.albumsResult.observe(viewLifecycleOwner, {
             when (it) {
-                is AlbumsResult.AlbumsSuccess -> populate(it.items)
-                is AlbumsResult.AlbumsError -> populateError(it.error)
+                is AlbumsResult.Success -> populate(it.items)
+                is AlbumsResult.Error -> populateError(it.error)
             }
         })
     }

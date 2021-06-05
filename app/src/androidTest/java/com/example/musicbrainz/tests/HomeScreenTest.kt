@@ -42,7 +42,7 @@ class HomeScreenTest : InstrumentedTestSetup() {
 
     private val mockViewModel = MockHomeVmProvider.mockHomeViewModel
     private lateinit var mockArtists: List<Artist>
-    private lateinit var artistsSuccess: ArtistsResult.ArtistsSuccess
+    private lateinit var artistsSuccess: ArtistsResult.Success
 
     @Test
     fun artistsFeedHasAllItemsValid_then_listShowsExpectedItems() {
@@ -110,7 +110,7 @@ class HomeScreenTest : InstrumentedTestSetup() {
     }
 
     private fun mockSearchResultSuccess() {
-        artistsSuccess = ArtistsResult.ArtistsSuccess(mockArtists)
+        artistsSuccess = ArtistsResult.Success(mockArtists)
         every { mockViewModel.artistsResult } returns MockHomeVmProvider.artistsResult
     }
 
