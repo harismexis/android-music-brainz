@@ -70,7 +70,7 @@ ext {
 
     annotationProcessorsDependencies = [
             dagger_compiler         : "com.google.dagger:dagger-compiler:$dagger_2",
-            dagger_android_processor: "com.google.dagger:dagger-android-processor:$dagger_2",
+            dagger_android_processor: "com.google.dagger:dagger-android-processor:$dagger_2"
     ]
 
     navigationDependencies = [
