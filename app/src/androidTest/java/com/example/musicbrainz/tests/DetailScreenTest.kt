@@ -2,6 +2,7 @@ package com.example.musicbrainz.tests
 
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -25,8 +26,8 @@ import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
 import com.example.musicbrainz.setup.base.InstrumentedTestSetup
 import com.example.musicbrainz.setup.testutil.*
-import com.example.musicbrainz.setup.viewmodel.MockDetailVmProvider
-import com.example.musicbrainz.setup.viewmodel.MockHomeVmProvider
+import com.example.musicbrainz.setup.viewmodel.factory.mockDetailViewModel
+import com.example.musicbrainz.setup.viewmodel.factory.mockHomeViewModel
 import io.mockk.every
 import io.mockk.just
 import io.mockk.runs
@@ -42,18 +43,18 @@ class DetailScreenTest : InstrumentedTestSetup() {
     val testRule: ActivityTestRule<MainActivity> =
         ActivityTestRule(MainActivity::class.java, false, false)
 
-    private val mockHomeViewModel = MockHomeVmProvider.mockHomeViewModel
     private var mockArtists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
     private var artistsSuccess = ArtistsResult.Success(mockArtists)
     private var clickIndexOnSearchList = 0
+    private var mockArtistsResult = MutableLiveData<ArtistsResult>()
 
-    private val mockDetailViewModel = MockDetailVmProvider.mockDetailViewModel
+    private var mockAlbumsResult = MutableLiveData<AlbumsResult>()
     private lateinit var mockAlbums: List<Album>
     private lateinit var albumsSuccess: AlbumsResult.Success
     private val numOfDetailHeaders = DetailAdapter.Companion.NUM_OF_HEADERS
 
     init {
-        every { mockHomeViewModel.artistsResult } returns MockHomeVmProvider.artistsResult
+        every { mockHomeViewModel.artistsResult } returns mockArtistsResult
         every { mockDetailViewModel.fetchAlbums() } just runs
         every { mockDetailViewModel.hasSelectedArtist() } returns true
         every { mockDetailViewModel.selectedArtist } returns mockArtists[clickIndexOnSearchList]
@@ -126,7 +127,7 @@ class DetailScreenTest : InstrumentedTestSetup() {
 
     private fun mockAlbumsResultSuccess() {
         albumsSuccess = AlbumsResult.Success(mockAlbums)
-        every { mockDetailViewModel.albumsResult } returns MockDetailVmProvider.albumsResult
+        every { mockDetailViewModel.albumsResult } returns mockAlbumsResult
     }
 
     private fun openSearchAndClickFirstItemAndLoadAlbums() {
@@ -138,13 +139,13 @@ class DetailScreenTest : InstrumentedTestSetup() {
     private fun launchActivityAndTriggerSearchResult() {
         testRule.launchActivity(null)
         testRule.activity.runOnUiThread {
-            MockHomeVmProvider.artistsResult.value = artistsSuccess
+            mockArtistsResult.value = artistsSuccess
         }
     }
 
     private fun triggerAlbumsResult() {
         testRule.activity.runOnUiThread {
-            MockDetailVmProvider.albumsResult.value = albumsSuccess
+            mockAlbumsResult.value = albumsSuccess
         }
     }
 

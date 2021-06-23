@@ -2,6 +2,7 @@ package com.example.musicbrainz.tests
 
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -23,7 +24,7 @@ import com.example.musicbrainz.setup.testutil.RecyclerCountAssertion
 import com.example.musicbrainz.setup.testutil.getExpectedText
 import com.example.musicbrainz.setup.testutil.getStringRes
 import com.example.musicbrainz.setup.testutil.verifyRecyclerItemAt
-import com.example.musicbrainz.setup.viewmodel.MockHomeVmProvider
+import com.example.musicbrainz.setup.viewmodel.factory.mockHomeViewModel
 import io.mockk.every
 import org.junit.Assert
 import org.junit.Rule
@@ -40,7 +41,7 @@ class HomeScreenTest : InstrumentedTestSetup() {
             false, false
         )
 
-    private val mockViewModel = MockHomeVmProvider.mockHomeViewModel
+    private var mockArtistsResult = MutableLiveData<ArtistsResult>()
     private lateinit var mockArtists: List<Artist>
     private lateinit var artistsSuccess: ArtistsResult.Success
 
@@ -111,13 +112,13 @@ class HomeScreenTest : InstrumentedTestSetup() {
 
     private fun mockSearchResultSuccess() {
         artistsSuccess = ArtistsResult.Success(mockArtists)
-        every { mockViewModel.artistsResult } returns MockHomeVmProvider.artistsResult
+        every { mockHomeViewModel.artistsResult } returns mockArtistsResult
     }
 
     private fun launchActivityAndTriggerSearchResult() {
         testRule.launchActivity(null)
         testRule.activity.runOnUiThread {
-            MockHomeVmProvider.artistsResult.value = artistsSuccess
+            mockArtistsResult.value = artistsSuccess
         }
     }
 
