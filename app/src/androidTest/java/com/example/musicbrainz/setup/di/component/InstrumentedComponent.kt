@@ -1,8 +1,7 @@
 package com.example.musicbrainz.setup.di.component
 
 import com.example.musicbrainz.framework.di.ui.FragmentBindingsModule
-import com.example.musicbrainz.setup.application.InstrumentedMainApplication
-import com.example.musicbrainz.setup.di.module.InstrumentedApplicationModule
+import com.example.musicbrainz.setup.application.InstrumentedApplication
 import com.example.musicbrainz.setup.viewmodel.factory.InstrumentedViewModelModule
 import dagger.BindsInstance
 import dagger.Component
@@ -16,15 +15,14 @@ import javax.inject.Singleton
         AndroidSupportInjectionModule::class,
         FragmentBindingsModule::class,
         InstrumentedViewModelModule::class,
-        InstrumentedApplicationModule::class
     ]
 )
-interface InstrumentedMainComponent : AndroidInjector<InstrumentedMainApplication> {
+interface InstrumentedComponent : AndroidInjector<InstrumentedApplication> {
 
     @Component.Factory
     interface Factory {
-        fun create(@BindsInstance application: InstrumentedMainApplication)
-                : InstrumentedMainComponent
+        fun create(@BindsInstance application: InstrumentedApplication)
+                : InstrumentedComponent
     }
 
 }

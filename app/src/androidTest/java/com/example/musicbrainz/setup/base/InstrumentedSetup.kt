@@ -4,7 +4,7 @@ import com.example.musicbrainz.parser.AlbumMockParser
 import com.example.musicbrainz.parser.ArtistMockParser
 import com.example.musicbrainz.setup.testutil.InstrumentedFileParser
 
-open class InstrumentedTestSetup {
+open class InstrumentedSetup {
 
     protected val mockParser = InstrumentedFileParser()
     protected val artistParser = ArtistMockParser(mockParser)

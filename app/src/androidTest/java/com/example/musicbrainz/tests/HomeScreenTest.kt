@@ -19,7 +19,7 @@ import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_AR
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID
 import com.example.musicbrainz.presentation.result.ArtistsResult
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
-import com.example.musicbrainz.setup.base.InstrumentedTestSetup
+import com.example.musicbrainz.setup.base.InstrumentedSetup
 import com.example.musicbrainz.setup.testutil.RecyclerCountAssertion
 import com.example.musicbrainz.setup.testutil.getExpectedText
 import com.example.musicbrainz.setup.testutil.getStringRes
@@ -32,7 +32,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class HomeScreenTest : InstrumentedTestSetup() {
+class HomeScreenTest : InstrumentedSetup() {
 
     @get:Rule
     val testRule: ActivityTestRule<MainActivity> =
