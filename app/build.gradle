@@ -70,18 +70,13 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(':core')
-
     implementation libraries.values()
     implementation daggerDependancies.values()
     implementation navigationDependencies.values()
     implementation luceneDependencies.values()
-
     kapt annotationProcessorsDependencies.values()
-
     testImplementation testLibraries.values()
-
     androidTestImplementation androidTestLibraries.values()
-
     kaptAndroidTest annotationProcessorsDependencies.dagger_compiler
     kaptAndroidTest annotationProcessorsDependencies.dagger_android_processor
 
