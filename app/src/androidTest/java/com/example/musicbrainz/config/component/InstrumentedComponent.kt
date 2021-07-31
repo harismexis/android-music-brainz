@@ -1,7 +1,7 @@
-package com.example.musicbrainz.setup.di.component
+package com.example.musicbrainz.config.component
 
+import com.example.musicbrainz.config.application.InstrumentedApplication
 import com.example.musicbrainz.framework.di.ui.FragmentBindingsModule
-import com.example.musicbrainz.setup.application.InstrumentedApplication
 import com.example.musicbrainz.setup.viewmodel.factory.InstrumentedViewModelModule
 import dagger.BindsInstance
 import dagger.Component

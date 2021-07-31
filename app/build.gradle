@@ -18,7 +18,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "com.example.musicbrainz.setup.runner.InstrumentedRunner"
+        testInstrumentationRunner "com.example.musicbrainz.config.runner.InstrumentedRunner"
         buildConfigField "String", "MUSICBRAINZ_API_BASE_URL", commonValues.MUSICBRAINZ_API_BASE_URL
         buildConfigField "String", "USER_AGENT_CONTACT_INFO", commonValues.USER_AGENT_CONTACT_INFO
     }
