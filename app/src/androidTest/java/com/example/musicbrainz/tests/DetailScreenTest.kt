@@ -14,6 +14,9 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.example.musicbrainz.R
+import com.example.musicbrainz.base.BaseInstrumentedTest
+import com.example.musicbrainz.config.factory.mockDetailViewModel
+import com.example.musicbrainz.config.factory.mockHomeViewModel
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.framework.extensions.tagString
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_ALL_IDS_VALID
@@ -24,10 +27,7 @@ import com.example.musicbrainz.presentation.result.AlbumsResult
 import com.example.musicbrainz.presentation.result.ArtistsResult
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
-import com.example.musicbrainz.setup.base.InstrumentedSetup
 import com.example.musicbrainz.setup.util.*
-import com.example.musicbrainz.setup.viewmodel.factory.mockDetailViewModel
-import com.example.musicbrainz.setup.viewmodel.factory.mockHomeViewModel
 import io.mockk.every
 import io.mockk.just
 import io.mockk.runs
@@ -37,7 +37,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class DetailScreenTest : InstrumentedSetup() {
+class DetailScreenTest : BaseInstrumentedTest() {
 
     @get:Rule
     val testRule: ActivityTestRule<MainActivity> =

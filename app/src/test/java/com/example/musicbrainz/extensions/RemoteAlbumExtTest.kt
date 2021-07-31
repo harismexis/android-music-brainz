@@ -6,14 +6,14 @@ import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALB
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_NO_DATA
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_EMPTY
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_IDS_INVALID
-import com.example.musicbrainz.setup.UnitTestSetup
+import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.util.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-class RemoteAlbumExtTest : UnitTestSetup() {
+class RemoteAlbumExtTest : BaseUnitTest() {
 
     private val verificator = AlbumVerificator()
     private val mockParser = AlbumMockParser(fileParser)

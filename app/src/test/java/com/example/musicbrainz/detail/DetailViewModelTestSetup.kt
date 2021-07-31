@@ -9,11 +9,11 @@ import com.example.musicbrainz.parser.AlbumMockParser
 import com.example.musicbrainz.parser.ArtistMockParser
 import com.example.musicbrainz.presentation.result.AlbumsResult
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailViewModel
-import com.example.musicbrainz.setup.UnitTestSetup
+import com.example.musicbrainz.setup.BaseUnitTest
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 
-abstract class DetailViewModelTestSetup : UnitTestSetup() {
+abstract class DetailViewModelTestSetup : BaseUnitTest() {
 
     @MockK
     protected lateinit var mockConnectivity: ConnectivityMonitor

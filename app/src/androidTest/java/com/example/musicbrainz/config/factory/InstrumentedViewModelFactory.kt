@@ -1,4 +1,4 @@
-package com.example.musicbrainz.setup.viewmodel.factory
+package com.example.musicbrainz.config.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

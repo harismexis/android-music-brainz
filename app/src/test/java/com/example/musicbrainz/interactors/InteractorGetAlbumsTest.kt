@@ -3,7 +3,7 @@ package com.example.musicbrainz.interactors
 import com.example.musicbrainz.data.MusicBrainzRemoteRepository
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.parser.AlbumMockParser
-import com.example.musicbrainz.setup.UnitTestSetup
+import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.util.verifyListsHaveSameSize
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -14,7 +14,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-class InteractorGetAlbumsTest : UnitTestSetup() {
+class InteractorGetAlbumsTest : BaseUnitTest() {
 
     @MockK
     private lateinit var mockRepository: MusicBrainzRemoteRepository

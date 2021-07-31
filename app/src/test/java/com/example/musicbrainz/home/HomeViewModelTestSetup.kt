@@ -8,11 +8,11 @@ import com.example.musicbrainz.interactors.InteractorSearchArtists
 import com.example.musicbrainz.parser.ArtistMockParser
 import com.example.musicbrainz.presentation.result.ArtistsResult
 import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeViewModel
-import com.example.musicbrainz.setup.UnitTestSetup
+import com.example.musicbrainz.setup.BaseUnitTest
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 
-abstract class HomeViewModelTestSetup : UnitTestSetup() {
+abstract class HomeViewModelTestSetup : BaseUnitTest() {
 
     @MockK
     protected lateinit var mockIrrSearchArtists: InteractorSearchArtists

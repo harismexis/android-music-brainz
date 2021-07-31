@@ -12,6 +12,8 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.example.musicbrainz.R
+import com.example.musicbrainz.base.BaseInstrumentedTest
+import com.example.musicbrainz.config.factory.mockHomeViewModel
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_NO_DATA
@@ -19,12 +21,10 @@ import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_AR
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID
 import com.example.musicbrainz.presentation.result.ArtistsResult
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
-import com.example.musicbrainz.setup.base.InstrumentedSetup
 import com.example.musicbrainz.setup.util.RecyclerCountAssertion
 import com.example.musicbrainz.setup.util.getExpectedText
 import com.example.musicbrainz.setup.util.getStringRes
 import com.example.musicbrainz.setup.util.verifyRecyclerItemAt
-import com.example.musicbrainz.setup.viewmodel.factory.mockHomeViewModel
 import io.mockk.every
 import org.junit.Assert
 import org.junit.Rule
@@ -32,7 +32,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class HomeScreenTest : InstrumentedSetup() {
+class HomeScreenTest : BaseInstrumentedTest() {
 
     @get:Rule
     val testRule: ActivityTestRule<MainActivity> =

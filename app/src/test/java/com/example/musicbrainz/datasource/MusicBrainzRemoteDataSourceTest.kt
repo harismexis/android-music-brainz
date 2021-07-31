@@ -6,7 +6,7 @@ import com.example.musicbrainz.framework.datasource.network.data.MusicBrainzRemo
 import com.example.musicbrainz.framework.datasource.network.data.MusicBrainzRemoteDataSource
 import com.example.musicbrainz.parser.AlbumMockParser
 import com.example.musicbrainz.parser.ArtistMockParser
-import com.example.musicbrainz.setup.UnitTestSetup
+import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.util.AlbumVerificator
 import com.example.musicbrainz.util.ArtistVerificator
 import com.example.musicbrainz.util.verifyListsHaveSameSize
@@ -19,7 +19,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-class MusicBrainzRemoteDataSourceTest : UnitTestSetup() {
+class MusicBrainzRemoteDataSourceTest : BaseUnitTest() {
 
     @MockK
     private lateinit var mockDao: MusicBrainzRemoteDao
