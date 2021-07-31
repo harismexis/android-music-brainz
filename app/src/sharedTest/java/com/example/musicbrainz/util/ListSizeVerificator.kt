@@ -1,4 +1,4 @@
-package com.example.musicbrainz.utils
+package com.example.musicbrainz.util
 
 import org.junit.Assert
 

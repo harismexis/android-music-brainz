@@ -7,7 +7,7 @@ import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_AR
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID
 import com.example.musicbrainz.setup.UnitTestSetup
-import com.example.musicbrainz.utils.*
+import com.example.musicbrainz.util.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4

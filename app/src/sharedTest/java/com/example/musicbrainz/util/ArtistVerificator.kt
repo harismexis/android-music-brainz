@@ -1,4 +1,4 @@
-package com.example.musicbrainz.utils
+package com.example.musicbrainz.util
 
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.datasource.network.model.artist.ArtistFeed

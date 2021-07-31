@@ -1,4 +1,4 @@
-package com.example.musicbrainz.setup.testutil
+package com.example.musicbrainz.setup.util
 
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.musicbrainz.parser.BaseFileParser

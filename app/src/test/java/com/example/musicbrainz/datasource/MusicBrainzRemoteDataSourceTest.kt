@@ -7,9 +7,9 @@ import com.example.musicbrainz.framework.datasource.network.data.MusicBrainzRemo
 import com.example.musicbrainz.parser.AlbumMockParser
 import com.example.musicbrainz.parser.ArtistMockParser
 import com.example.musicbrainz.setup.UnitTestSetup
-import com.example.musicbrainz.utils.AlbumVerificator
-import com.example.musicbrainz.utils.ArtistVerificator
-import com.example.musicbrainz.utils.verifyListsHaveSameSize
+import com.example.musicbrainz.util.AlbumVerificator
+import com.example.musicbrainz.util.ArtistVerificator
+import com.example.musicbrainz.util.verifyListsHaveSameSize
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK

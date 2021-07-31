@@ -2,7 +2,7 @@ package com.example.musicbrainz.setup.base
 
 import com.example.musicbrainz.parser.AlbumMockParser
 import com.example.musicbrainz.parser.ArtistMockParser
-import com.example.musicbrainz.setup.testutil.InstrumentedFileParser
+import com.example.musicbrainz.setup.util.InstrumentedFileParser
 
 open class InstrumentedSetup {
 

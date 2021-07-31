@@ -1,4 +1,4 @@
-package com.example.musicbrainz.setup.testutil
+package com.example.musicbrainz.setup.util
 
 import android.content.res.Resources
 import android.content.res.Resources.NotFoundException

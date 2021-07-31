@@ -4,7 +4,7 @@ import com.example.musicbrainz.data.MusicBrainzRemoteRepository
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.parser.ArtistMockParser
 import com.example.musicbrainz.setup.UnitTestSetup
-import com.example.musicbrainz.utils.verifyListsHaveSameSize
+import com.example.musicbrainz.util.verifyListsHaveSameSize
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK

@@ -20,10 +20,10 @@ import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_AR
 import com.example.musicbrainz.presentation.result.ArtistsResult
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.setup.base.InstrumentedSetup
-import com.example.musicbrainz.setup.testutil.RecyclerCountAssertion
-import com.example.musicbrainz.setup.testutil.getExpectedText
-import com.example.musicbrainz.setup.testutil.getStringRes
-import com.example.musicbrainz.setup.testutil.verifyRecyclerItemAt
+import com.example.musicbrainz.setup.util.RecyclerCountAssertion
+import com.example.musicbrainz.setup.util.getExpectedText
+import com.example.musicbrainz.setup.util.getStringRes
+import com.example.musicbrainz.setup.util.verifyRecyclerItemAt
 import com.example.musicbrainz.setup.viewmodel.factory.mockHomeViewModel
 import io.mockk.every
 import org.junit.Assert
