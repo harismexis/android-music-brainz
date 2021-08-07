@@ -1,10 +1,10 @@
 package com.example.musicbrainz.framework.util.extensions
 
 import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.framework.data.model.artist.ArtistFeed
+import com.example.musicbrainz.framework.data.model.artist.ArtistsResponse
 import com.example.musicbrainz.framework.datasource.network.model.artist.RemoteArtist
 
-fun ArtistFeed?.toItems(): List<Artist> {
+fun ArtistsResponse?.toItems(): List<Artist> {
     val items = mutableListOf<Artist>()
     if (this == null || this.artists == null) return items.toList()
     val filteredList = this.artists.filter { it.isValid() }

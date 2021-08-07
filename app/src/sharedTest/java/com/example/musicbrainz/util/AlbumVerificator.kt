@@ -1,7 +1,7 @@
 package com.example.musicbrainz.util
 
 import com.example.musicbrainz.domain.Album
-import com.example.musicbrainz.framework.data.model.album.AlbumFeed
+import com.example.musicbrainz.framework.data.model.album.AlbumsResponse
 import com.example.musicbrainz.framework.data.model.album.RemoteAlbum
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_NO_DATA
 import org.junit.Assert
@@ -10,7 +10,7 @@ class AlbumVerificator {
 
     fun verifyItemsAgainstRemoteFeed(
         actualItems: List<Album>,
-        remoteFeed: AlbumFeed?
+        remoteFeed: AlbumsResponse?
     ) {
         if (remoteFeed == null || remoteFeed.releases.isNullOrEmpty()) {
             verifyListSizeForNoData(actualItems, EXPECTED_NUM_ALBUMS_WHEN_NO_DATA)

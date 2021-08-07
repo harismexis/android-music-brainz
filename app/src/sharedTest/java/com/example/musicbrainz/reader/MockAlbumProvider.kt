@@ -1,7 +1,7 @@
 package com.example.musicbrainz.reader
 
 import com.example.musicbrainz.domain.Album
-import com.example.musicbrainz.framework.data.model.album.AlbumFeed
+import com.example.musicbrainz.framework.data.model.album.AlbumsResponse
 import com.example.musicbrainz.framework.util.extensions.toItems
 import com.example.musicbrainz.util.convertToModel
 
@@ -44,22 +44,22 @@ class MockAlbumProvider(private val reader: BaseFileReader) {
 
     // json object model
 
-    fun getMockAlbumsFeedAllIdsValid(): AlbumFeed =
+    fun getMockAlbumsFeedAllIdsValid(): AlbumsResponse =
         getMockAlbumsFeed(getMockAlbumsDataAllIdsValid())
 
-    fun getMockAlbumsFeedSomeIdsInvalid(): AlbumFeed =
+    fun getMockAlbumsFeedSomeIdsInvalid(): AlbumsResponse =
         getMockAlbumsFeed(getMockAlbumsDataSomeIdsInvalid())
 
-    fun getMockAlbumsFeedSomeItemsEmpty(): AlbumFeed =
+    fun getMockAlbumsFeedSomeItemsEmpty(): AlbumsResponse =
         getMockAlbumsFeed(getMockAlbumsDataSomeItemsEmpty())
 
-    fun getMockAlbumsFeedAllIdsInvalid(): AlbumFeed =
+    fun getMockAlbumsFeedAllIdsInvalid(): AlbumsResponse =
         getMockAlbumsFeed(getMockAlbumsDataAllIdsInvalid())
 
-    fun getMockAlbumsFeedEmptyJson(): AlbumFeed =
+    fun getMockAlbumsFeedEmptyJson(): AlbumsResponse =
         getMockAlbumsFeed(mockAlbumsDataEmptyJson())
 
-    private fun getMockAlbumsFeed(text: String): AlbumFeed {
+    private fun getMockAlbumsFeed(text: String): AlbumsResponse {
         return convertToModel(text)
     }
 

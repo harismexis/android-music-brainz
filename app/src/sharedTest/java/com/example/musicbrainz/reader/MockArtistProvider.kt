@@ -1,7 +1,7 @@
 package com.example.musicbrainz.reader
 
 import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.framework.data.model.artist.ArtistFeed
+import com.example.musicbrainz.framework.data.model.artist.ArtistsResponse
 import com.example.musicbrainz.framework.util.extensions.toItems
 import com.example.musicbrainz.util.convertToModel
 
@@ -46,22 +46,22 @@ class MockArtistProvider(private val reader: BaseFileReader) {
 
     // json object model
 
-    fun getMockArtistsFeedAllIdsValid(): ArtistFeed =
+    fun getMockArtistsFeedAllIdsValid(): ArtistsResponse =
         getMockArtistsFeed(getMockArtistsDataAllIdsValid())
 
-    fun getMockArtistsFeedSomeIdsAbsent(): ArtistFeed =
+    fun getMockArtistsFeedSomeIdsAbsent(): ArtistsResponse =
         getMockArtistsFeed(getMockArtistsDataSomeIdsAbsent())
 
-    fun getMockArtistsFeedSomeItemsEmpty(): ArtistFeed =
+    fun getMockArtistsFeedSomeItemsEmpty(): ArtistsResponse =
         getMockArtistsFeed(getMockArtistsDataSomeItemsEmpty())
 
-    fun getMockArtistsFeedAllIdsAbsent(): ArtistFeed =
+    fun getMockArtistsFeedAllIdsAbsent(): ArtistsResponse =
         getMockArtistsFeed(getMockArtistsDataAllIdsAbsent())
 
-    fun getMockArtistsFeedEmptyJson(): ArtistFeed =
+    fun getMockArtistsFeedEmptyJson(): ArtistsResponse =
         getMockArtistsFeed(mockArtistsDataEmptyJson())
 
-    private fun getMockArtistsFeed(text: String): ArtistFeed {
+    private fun getMockArtistsFeed(text: String): ArtistsResponse {
         return convertToModel(text)
     }
 
