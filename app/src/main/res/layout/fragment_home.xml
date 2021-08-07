@@ -19,6 +19,7 @@
 
         <TextView
             style="@style/ToolbarText"
+            android:visibility="gone"
             android:layout_gravity="start"
             android:text="@string/screen_home_label"
             tools:text="Toolbar title" />
@@ -26,11 +27,11 @@
         <SearchView
             android:id="@+id/searchView"
             style="@style/SearchViewStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="false"
             android:iconifiedByDefault="false"
-            android:queryHint="Search"
+            android:queryHint="Search Artists"
             app:theme="@style/SearchViewTextStyle" />
 
     </androidx.appcompat.widget.Toolbar>

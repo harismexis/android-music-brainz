@@ -9,16 +9,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.musicbrainz.R
 import com.example.musicbrainz.databinding.FragmentHomeBinding
 import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.presentation.base.BaseFragment
 import com.example.musicbrainz.framework.util.extensions.setDivider
 import com.example.musicbrainz.framework.util.extensions.showSnackBar
 import com.example.musicbrainz.framework.util.observer.EventObserver
+import com.example.musicbrainz.presentation.base.BaseInjectedFragment
 import com.example.musicbrainz.presentation.screens.home.adapter.ArtistAdapter
 import com.example.musicbrainz.presentation.screens.home.viewholder.ArtistViewHolder
 import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeVm
 import com.example.musicbrainz.util.result.ArtistsResult
 
-class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
+class HomeFragment : BaseInjectedFragment(),
+    ArtistViewHolder.ArtistClickListener,
     android.widget.SearchView.OnQueryTextListener {
 
     private val viewModel: HomeVm by viewModels { vmFactory }

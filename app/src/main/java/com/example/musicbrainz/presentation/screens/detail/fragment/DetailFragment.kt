@@ -12,16 +12,16 @@ import com.example.musicbrainz.R
 import com.example.musicbrainz.databinding.FragmentDetailBinding
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.presentation.base.BaseFragment
 import com.example.musicbrainz.framework.util.extensions.setDivider
 import com.example.musicbrainz.framework.util.extensions.showSnackBar
 import com.example.musicbrainz.framework.util.observer.EventObserver
+import com.example.musicbrainz.presentation.base.BaseInjectedFragment
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailModel
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailVm
 import com.example.musicbrainz.util.result.AlbumsResult
 
-class DetailFragment : BaseFragment() {
+class DetailFragment : BaseInjectedFragment() {
 
     companion object {
         private const val ARG_SELECTED_ARTIST = "selected_artist"
