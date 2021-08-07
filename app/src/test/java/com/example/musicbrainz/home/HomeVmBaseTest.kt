@@ -1,7 +1,6 @@
 package com.example.musicbrainz.home
 
 import androidx.lifecycle.Observer
-import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildSearchQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeVm
@@ -16,15 +15,12 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
     @MockK
     protected lateinit var mockIrrSearchArtists: UseCaseSearchArtists
     @MockK
-    protected lateinit var mockConnectivity: ConnectivityMonitor
-    @MockK
     protected lateinit var mockObserverArtists: Observer<ArtistsResult>
     @MockK
     protected lateinit var mockResourceProvider: ResourceProvider
-
     private val artists = artistProvider.getMockArtistsFromFeedWithAllItemsValid()
     private val artistsSuccess = ArtistsResult.Success(artists)
-    val error = Exception(ERROR_MSG)
+    private val error = Exception(ERROR_MSG)
     private val artistsError = ArtistsResult.Error(error)
     private val searchArtistInput = "Rory Gallagher"
     private val searchQuery = buildSearchQuery(searchArtistInput)
@@ -44,7 +40,6 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
     private fun initClassUnderTest() {
         subject = HomeVm(
             mockIrrSearchArtists,
-            mockConnectivity,
             mockResourceProvider
         )
         every { mockResourceProvider.getInternetOffMsg() } returns INTERNET_OFF_MSG

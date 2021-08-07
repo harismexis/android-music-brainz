@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildSearchQuery
 import com.example.musicbrainz.framework.util.extensions.getErrorMessage
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
@@ -17,7 +16,6 @@ import javax.inject.Inject
 
 class HomeVm @Inject constructor(
     private val searchArtists: UseCaseSearchArtists,
-    private val connectivity: ConnectivityMonitor,
     private val resProvider: ResourceProvider
 ) : ViewModel() {
 

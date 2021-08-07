@@ -1,7 +1,6 @@
 package com.example.musicbrainz.detail
 
 import androidx.lifecycle.Observer
-import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildAlbumsQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailVm
@@ -14,8 +13,6 @@ import io.mockk.impl.annotations.MockK
 abstract class DetailVmBaseTest : BaseUnitTest() {
 
     @MockK
-    protected lateinit var mockConnectivity: ConnectivityMonitor
-    @MockK
     protected lateinit var mockResourceProvider: ResourceProvider
     @MockK
     protected lateinit var mockUseCaseAlbums: UseCaseGetAlbums
@@ -24,7 +21,7 @@ abstract class DetailVmBaseTest : BaseUnitTest() {
     protected val mockSelectedArtist = artistProvider.getMockArtist()
     private val mockAlbums = albumProvider.getMockAlbumsFromFeedWithAllItemsValid()
     private val albumsSuccess = AlbumsResult.Success(mockAlbums)
-    val error = Exception(ERROR_MSG)
+    private val error = Exception(ERROR_MSG)
     private val albumsError = AlbumsResult.Error(error)
     private val albumsQuery = buildAlbumsQuery(mockSelectedArtist.id)
 
@@ -43,7 +40,6 @@ abstract class DetailVmBaseTest : BaseUnitTest() {
     private fun initClassUnderTest() {
         subject = DetailVm(
             mockUseCaseAlbums,
-            mockConnectivity,
             mockResourceProvider
         )
         every { mockResourceProvider.getInternetOffMsg() } returns INTERNET_OFF_MSG

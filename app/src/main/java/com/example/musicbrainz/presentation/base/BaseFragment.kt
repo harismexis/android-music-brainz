@@ -1,4 +1,4 @@
-package com.example.musicbrainz.framework.base
+package com.example.musicbrainz.presentation.base
 
 import android.content.Context
 import android.os.Bundle

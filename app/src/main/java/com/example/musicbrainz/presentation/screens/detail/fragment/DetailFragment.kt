@@ -12,7 +12,7 @@ import com.example.musicbrainz.R
 import com.example.musicbrainz.databinding.FragmentDetailBinding
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.framework.base.BaseFragment
+import com.example.musicbrainz.presentation.base.BaseFragment
 import com.example.musicbrainz.framework.util.extensions.setDivider
 import com.example.musicbrainz.framework.util.extensions.showSnackBar
 import com.example.musicbrainz.framework.util.observer.EventObserver
