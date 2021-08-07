@@ -2,8 +2,8 @@ package com.example.musicbrainz.datasource
 
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.framework.datasource.network.data.MusicBrainzRemoteDao
-import com.example.musicbrainz.framework.datasource.network.data.MusicBrainzRemoteDataSource
+import com.example.musicbrainz.framework.data.data.MusicBrainzRemoteDao
+import com.example.musicbrainz.framework.data.data.MusicBrainzRemoteDataSource
 import com.example.musicbrainz.parser.AlbumMockParser
 import com.example.musicbrainz.parser.ArtistMockParser
 import com.example.musicbrainz.setup.BaseUnitTest

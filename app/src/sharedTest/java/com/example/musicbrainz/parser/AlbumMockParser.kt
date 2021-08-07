@@ -1,8 +1,8 @@
 package com.example.musicbrainz.parser
 
 import com.example.musicbrainz.domain.Album
-import com.example.musicbrainz.framework.datasource.network.model.album.AlbumFeed
-import com.example.musicbrainz.framework.extensions.toItems
+import com.example.musicbrainz.framework.data.model.album.AlbumFeed
+import com.example.musicbrainz.framework.util.extensions.toItems
 
 class AlbumMockParser(private val parser: BaseFileParser) {
 

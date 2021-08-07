@@ -18,13 +18,13 @@ import com.example.musicbrainz.base.BaseInstrumentedTest
 import com.example.musicbrainz.config.factory.mockDetailViewModel
 import com.example.musicbrainz.config.factory.mockHomeViewModel
 import com.example.musicbrainz.domain.Album
-import com.example.musicbrainz.framework.extensions.tagString
+import com.example.musicbrainz.framework.util.extensions.tagString
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_ALL_IDS_VALID
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_NO_DATA
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_EMPTY
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_IDS_INVALID
-import com.example.musicbrainz.presentation.result.AlbumsResult
-import com.example.musicbrainz.presentation.result.ArtistsResult
+import com.example.musicbrainz.result.AlbumsResult
+import com.example.musicbrainz.result.ArtistsResult
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
 import com.example.musicbrainz.setup.util.*

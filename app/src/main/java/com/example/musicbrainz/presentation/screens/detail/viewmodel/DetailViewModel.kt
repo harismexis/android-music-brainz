@@ -6,12 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.framework.extensions.getErrorMessage
-import com.example.musicbrainz.framework.resource.ResourceProvider
+import com.example.musicbrainz.framework.util.extensions.getErrorMessage
+import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildAlbumsQuery
 import com.example.musicbrainz.interactors.InteractorGetAlbums
-import com.example.musicbrainz.presentation.result.AlbumsResult
+import com.example.musicbrainz.result.AlbumsResult
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

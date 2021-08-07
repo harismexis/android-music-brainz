@@ -1,13 +1,13 @@
 package com.example.musicbrainz.detail
 
 import androidx.lifecycle.Observer
-import com.example.musicbrainz.framework.resource.ResourceProvider
+import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildAlbumsQuery
 import com.example.musicbrainz.interactors.InteractorGetAlbums
 import com.example.musicbrainz.parser.AlbumMockParser
 import com.example.musicbrainz.parser.ArtistMockParser
-import com.example.musicbrainz.presentation.result.AlbumsResult
+import com.example.musicbrainz.result.AlbumsResult
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailViewModel
 import com.example.musicbrainz.setup.BaseUnitTest
 import io.mockk.*

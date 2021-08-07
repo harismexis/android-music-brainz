@@ -3,7 +3,7 @@ package com.example.musicbrainz.presentation.screens.home.viewholder
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicbrainz.databinding.VhArtistBinding
 import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.framework.extensions.setTextOrUnknown
+import com.example.musicbrainz.framework.util.extensions.setTextOrUnknown
 
 class ArtistViewHolder(
     private val binding: VhArtistBinding,

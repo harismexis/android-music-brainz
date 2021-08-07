@@ -12,11 +12,11 @@ import com.example.musicbrainz.R
 import com.example.musicbrainz.databinding.FragmentDetailBinding
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.framework.base.BaseFragment
-import com.example.musicbrainz.framework.extensions.setDivider
-import com.example.musicbrainz.framework.extensions.showToast
-import com.example.musicbrainz.framework.extensions.toArtist
-import com.example.musicbrainz.framework.parcelable.ArtistParcel
-import com.example.musicbrainz.presentation.result.AlbumsResult
+import com.example.musicbrainz.framework.util.extensions.setDivider
+import com.example.musicbrainz.framework.util.extensions.showToast
+import com.example.musicbrainz.framework.util.extensions.toArtist
+import com.example.musicbrainz.framework.util.parcelable.ArtistParcel
+import com.example.musicbrainz.result.AlbumsResult
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailModel
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailViewModel

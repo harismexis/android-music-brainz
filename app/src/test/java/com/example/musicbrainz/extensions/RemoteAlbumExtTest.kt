@@ -1,6 +1,6 @@
 package com.example.musicbrainz.extensions
 
-import com.example.musicbrainz.framework.extensions.toItems
+import com.example.musicbrainz.framework.util.extensions.toItems
 import com.example.musicbrainz.parser.AlbumMockParser
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_ALL_IDS_VALID
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_NO_DATA

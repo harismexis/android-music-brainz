@@ -2,9 +2,9 @@ package com.example.musicbrainz.framework.di.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.musicbrainz.framework.vmfactory.ViewModelFactory
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailViewModel
 import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeViewModel
+import com.example.musicbrainz.presentation.vmfactory.ViewModelFactory
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module

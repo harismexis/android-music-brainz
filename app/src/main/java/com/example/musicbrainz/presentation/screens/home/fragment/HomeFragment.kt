@@ -10,14 +10,14 @@ import com.example.musicbrainz.R
 import com.example.musicbrainz.databinding.FragmentHomeBinding
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.base.BaseFragment
-import com.example.musicbrainz.framework.event.EventObserver
-import com.example.musicbrainz.framework.extensions.setDivider
-import com.example.musicbrainz.framework.extensions.showToast
-import com.example.musicbrainz.framework.extensions.toParcel
-import com.example.musicbrainz.presentation.result.ArtistsResult
+import com.example.musicbrainz.framework.util.event.EventObserver
+import com.example.musicbrainz.framework.util.extensions.setDivider
+import com.example.musicbrainz.framework.util.extensions.showToast
+import com.example.musicbrainz.framework.util.extensions.toParcel
 import com.example.musicbrainz.presentation.screens.home.adapter.ArtistAdapter
 import com.example.musicbrainz.presentation.screens.home.viewholder.ArtistViewHolder
 import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeViewModel
+import com.example.musicbrainz.result.ArtistsResult
 
 class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
     android.widget.SearchView.OnQueryTextListener {

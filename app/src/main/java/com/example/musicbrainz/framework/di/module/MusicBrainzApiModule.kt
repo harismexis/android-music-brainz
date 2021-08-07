@@ -2,8 +2,8 @@ package com.example.musicbrainz.framework.di.module
 
 import com.example.musicbrainz.BuildConfig
 import com.example.musicbrainz.framework.application.MainApplication
-import com.example.musicbrainz.framework.datasource.network.api.MusicBrainzApi
-import com.example.musicbrainz.framework.datasource.network.interceptor.UserAgentHeaderInterceptor
+import com.example.musicbrainz.framework.data.api.MusicBrainzApi
+import com.example.musicbrainz.framework.data.interceptor.UserAgentHeaderInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module

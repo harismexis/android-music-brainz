@@ -1,7 +1,7 @@
 package com.example.musicbrainz.framework.di.module
 
 import com.example.musicbrainz.data.MusicBrainzRemoteRepository
-import com.example.musicbrainz.framework.datasource.network.data.MusicBrainzRemoteDataSource
+import com.example.musicbrainz.framework.data.data.MusicBrainzRemoteDataSource
 import com.example.musicbrainz.interactors.InteractorGetAlbums
 import com.example.musicbrainz.interactors.InteractorSearchArtists
 import dagger.Module

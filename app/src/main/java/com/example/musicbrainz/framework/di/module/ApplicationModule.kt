@@ -2,7 +2,7 @@ package com.example.musicbrainz.framework.di.module
 
 import android.content.Context
 import com.example.musicbrainz.framework.application.MainApplication
-import com.example.musicbrainz.framework.resource.ResourceProvider
+import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import dagger.Module
 import dagger.Provides
 

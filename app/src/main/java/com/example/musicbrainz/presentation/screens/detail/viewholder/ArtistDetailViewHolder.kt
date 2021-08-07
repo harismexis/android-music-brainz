@@ -3,9 +3,9 @@ package com.example.musicbrainz.presentation.screens.detail.viewholder
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicbrainz.databinding.VhArtistDetailBinding
 import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.framework.extensions.setTextAndVisibility
-import com.example.musicbrainz.framework.extensions.setTextOrUnknown
-import com.example.musicbrainz.framework.extensions.tagString
+import com.example.musicbrainz.framework.util.extensions.setTextAndVisibility
+import com.example.musicbrainz.framework.util.extensions.setTextOrUnknown
+import com.example.musicbrainz.framework.util.extensions.tagString
 
 class ArtistDetailViewHolder(
     private val binding: VhArtistDetailBinding,

@@ -19,7 +19,7 @@ import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_AR
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_NO_DATA
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY
 import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID
-import com.example.musicbrainz.presentation.result.ArtistsResult
+import com.example.musicbrainz.result.ArtistsResult
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.setup.util.RecyclerCountAssertion
 import com.example.musicbrainz.setup.util.getExpectedText

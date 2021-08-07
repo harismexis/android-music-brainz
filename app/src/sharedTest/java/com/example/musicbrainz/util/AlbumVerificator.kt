@@ -1,8 +1,8 @@
 package com.example.musicbrainz.util
 
 import com.example.musicbrainz.domain.Album
-import com.example.musicbrainz.framework.datasource.network.model.album.AlbumFeed
-import com.example.musicbrainz.framework.datasource.network.model.album.RemoteAlbum
+import com.example.musicbrainz.framework.data.model.album.AlbumFeed
+import com.example.musicbrainz.framework.data.model.album.RemoteAlbum
 import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_NO_DATA
 import org.junit.Assert
 
