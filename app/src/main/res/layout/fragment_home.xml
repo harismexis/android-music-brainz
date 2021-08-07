@@ -17,13 +17,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
-        <TextView
-            style="@style/ToolbarText"
-            android:visibility="gone"
-            android:layout_gravity="start"
-            android:text="@string/screen_home_label"
-            tools:text="Toolbar title" />
-
         <SearchView
             android:id="@+id/searchView"
             style="@style/SearchViewStyle"

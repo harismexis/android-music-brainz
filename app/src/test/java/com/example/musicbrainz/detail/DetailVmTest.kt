@@ -10,7 +10,7 @@ class DetailVmTest : DetailVmBaseTest() {
     @Test
     fun albumsCallSuccessful_albumsResultSuccess() {
         // given
-        subject.selectedArtist = mockSelectedArtist
+        subject.artist = mockSelectedArtist
         mockAlbumsCall()
 
         // when
@@ -24,7 +24,7 @@ class DetailVmTest : DetailVmBaseTest() {
     @Test
     fun albumsCallThrows_albumsResultError() {
         // given
-        subject.selectedArtist = mockSelectedArtist
+        subject.artist = mockSelectedArtist
         mockAlbumsCallThrows()
 
         // when

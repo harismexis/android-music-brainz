@@ -19,12 +19,12 @@ import com.example.musicbrainz.config.vmfactory.mockDetailViewModel
 import com.example.musicbrainz.config.vmfactory.mockHomeViewModel
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.framework.util.extensions.tagString
+import com.example.musicbrainz.presentation.screens.activity.MainActivity
+import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_ALL_IDS_VALID
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_NO_DATA
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_EMPTY
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_IDS_INVALID
-import com.example.musicbrainz.presentation.screens.activity.MainActivity
-import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
 import com.example.musicbrainz.util.*
 import com.example.musicbrainz.util.result.AlbumsResult
 import com.example.musicbrainz.util.result.ArtistsResult
@@ -57,7 +57,7 @@ class DetailScreenTest : BaseInstrumentedTest() {
         every { mockHomeViewModel.artists } returns mockArtistsResult
         every { mockDetailViewModel.fetchAlbums() } just runs
         every { mockDetailViewModel.hasSelectedArtist() } returns true
-        every { mockDetailViewModel.selectedArtist } returns mockArtists[clickIndexOnSearchList]
+        every { mockDetailViewModel.artist } returns mockArtists[clickIndexOnSearchList]
     }
 
     @Test
@@ -169,7 +169,7 @@ class DetailScreenTest : BaseInstrumentedTest() {
 
     private fun verifyArtistHeaderRow() {
         val index = 0 // artist header is first item
-        val artist = mockDetailViewModel.selectedArtist
+        val artist = mockDetailViewModel.artist
 
         onView(withId(R.id.detail_list)).perform(scrollToPosition<RecyclerView.ViewHolder>(index))
 

@@ -65,7 +65,7 @@ class HomeFragment : BaseInjectedFragment(),
             }
         })
 
-        viewModel.showMsg.observe(viewLifecycleOwner, EventObserver {
+        viewModel.showMsgEvent.observe(viewLifecycleOwner, EventObserver {
             binding?.root?.showSnackBar(it)
         })
     }

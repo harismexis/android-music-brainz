@@ -71,7 +71,7 @@ class DetailFragment : BaseInjectedFragment() {
             }
         })
 
-        viewModel.showMsg.observe(viewLifecycleOwner, EventObserver {
+        viewModel.showMsgEvent.observe(viewLifecycleOwner, EventObserver {
             binding?.root?.showSnackBar(it)
         })
     }
@@ -86,7 +86,7 @@ class DetailFragment : BaseInjectedFragment() {
 
     private fun updateModels(items: List<Album>) {
         detailModels.clear()
-        detailModels.add(DetailModel.ArtistHeaderModel(viewModel.selectedArtist))
+        detailModels.add(DetailModel.ArtistHeaderModel(viewModel.artist))
         detailModels.add(DetailModel.TextModel(getString(R.string.albums_title_header)))
         detailModels.addAll(items.map { DetailModel.AlbumModel(it) })
     }
@@ -100,7 +100,7 @@ class DetailFragment : BaseInjectedFragment() {
     private fun retrieveArtistFromArgs() {
         val artist: Artist? = arguments?.getSerializable(ARG_SELECTED_ARTIST) as? Artist
         artist?.let {
-            viewModel.selectedArtist = it
+            viewModel.artist = it
         }
     }
 
