@@ -5,8 +5,8 @@ import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildAlbumsQuery
 import com.example.musicbrainz.interactors.InteractorGetAlbums
-import com.example.musicbrainz.parser.AlbumMockParser
-import com.example.musicbrainz.parser.ArtistMockParser
+import com.example.musicbrainz.reader.MockAlbumProvider
+import com.example.musicbrainz.reader.MockArtistProvider
 import com.example.musicbrainz.result.AlbumsResult
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailViewModel
 import com.example.musicbrainz.setup.BaseUnitTest
@@ -24,10 +24,10 @@ abstract class DetailViewModelTestSetup : BaseUnitTest() {
     @MockK
     protected lateinit var mockObserverAlbums: Observer<AlbumsResult>
 
-    private val artistParser = ArtistMockParser(fileParser)
+    private val artistParser = MockArtistProvider(fileParser)
     val mockSelectedArtist = artistParser.getMockArtist()
 
-    private val albumParser = AlbumMockParser(fileParser)
+    private val albumParser = MockAlbumProvider(fileParser)
     private val mockAlbums = albumParser.getMockAlbumsFromFeedWithAllItemsValid()
     private val albumsSuccess = AlbumsResult.Success(mockAlbums)
     private val albumsError = AlbumsResult.Error(ERROR_MSG)

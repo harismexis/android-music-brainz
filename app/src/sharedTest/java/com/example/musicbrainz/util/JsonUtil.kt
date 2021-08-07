@@ -1,4 +1,4 @@
-package com.example.musicbrainz.parser
+package com.example.musicbrainz.util
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

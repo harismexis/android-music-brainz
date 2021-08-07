@@ -15,10 +15,10 @@ import com.example.musicbrainz.R
 import com.example.musicbrainz.base.BaseInstrumentedTest
 import com.example.musicbrainz.config.vmfactory.mockHomeViewModel
 import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID
-import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_NO_DATA
-import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY
-import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID
+import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID
+import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_NO_DATA
+import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY
+import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.result.ArtistsResult
 import com.example.musicbrainz.util.RecyclerCountAssertion

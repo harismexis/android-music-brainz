@@ -1,11 +1,11 @@
 package com.example.musicbrainz.extensions
 
 import com.example.musicbrainz.framework.util.extensions.toItems
-import com.example.musicbrainz.parser.ArtistMockParser
-import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID
-import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_NO_DATA
-import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY
-import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID
+import com.example.musicbrainz.reader.MockArtistProvider
+import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID
+import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_NO_DATA
+import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY
+import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID
 import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.util.*
 import org.junit.Test
@@ -16,7 +16,7 @@ import org.junit.runners.JUnit4
 class RemoteArtistExtTest : BaseUnitTest() {
 
     private val verificator = ArtistVerificator()
-    private val mockParser = ArtistMockParser(fileParser)
+    private val mockParser = MockArtistProvider(fileParser)
 
     @Test
     fun feedHasAllItemsValid_then_conversionToItemsIsCorrect() {

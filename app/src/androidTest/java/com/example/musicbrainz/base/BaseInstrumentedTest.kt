@@ -1,13 +1,13 @@
 package com.example.musicbrainz.base
 
-import com.example.musicbrainz.parser.AlbumMockParser
-import com.example.musicbrainz.parser.ArtistMockParser
-import com.example.musicbrainz.util.InstrumentedFileParser
+import com.example.musicbrainz.reader.MockAlbumProvider
+import com.example.musicbrainz.reader.MockArtistProvider
+import com.example.musicbrainz.util.InstrumentedFileReader
 
 open class BaseInstrumentedTest {
 
-    protected val mockParser = InstrumentedFileParser()
-    protected val artistParser = ArtistMockParser(mockParser)
-    protected val albumParser = AlbumMockParser(mockParser)
+    protected val mockParser = InstrumentedFileReader()
+    protected val artistParser = MockArtistProvider(mockParser)
+    protected val albumParser = MockAlbumProvider(mockParser)
 
 }

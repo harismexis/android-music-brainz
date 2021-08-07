@@ -3,7 +3,7 @@ package com.example.musicbrainz.util
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.data.model.artist.ArtistFeed
 import com.example.musicbrainz.framework.datasource.network.model.artist.RemoteArtist
-import com.example.musicbrainz.parser.ArtistMockParser.Companion.EXPECTED_NUM_ARTISTS_WHEN_NO_DATA
+import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_NO_DATA
 import org.junit.Assert
 
 class ArtistVerificator {

@@ -19,10 +19,10 @@ import com.example.musicbrainz.config.vmfactory.mockDetailViewModel
 import com.example.musicbrainz.config.vmfactory.mockHomeViewModel
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.framework.util.extensions.tagString
-import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_ALL_IDS_VALID
-import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_NO_DATA
-import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_EMPTY
-import com.example.musicbrainz.parser.AlbumMockParser.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_IDS_INVALID
+import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_ALL_IDS_VALID
+import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_NO_DATA
+import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_EMPTY
+import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_IDS_INVALID
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
 import com.example.musicbrainz.result.AlbumsResult

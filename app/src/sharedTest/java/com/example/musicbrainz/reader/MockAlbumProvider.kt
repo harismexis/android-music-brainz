@@ -1,10 +1,11 @@
-package com.example.musicbrainz.parser
+package com.example.musicbrainz.reader
 
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.framework.data.model.album.AlbumFeed
 import com.example.musicbrainz.framework.util.extensions.toItems
+import com.example.musicbrainz.util.convertToModel
 
-class AlbumMockParser(private val parser: BaseFileParser) {
+class MockAlbumProvider(private val reader: BaseFileReader) {
 
     companion object {
 
@@ -65,18 +66,18 @@ class AlbumMockParser(private val parser: BaseFileParser) {
     // raw string json
 
     private fun getMockAlbumsDataAllIdsValid(): String =
-        parser.getFileAsString(TEST_ALBUMS_FILE_10_VALID_ITEMS)
+        reader.getFileAsString(TEST_ALBUMS_FILE_10_VALID_ITEMS)
 
     private fun getMockAlbumsDataSomeIdsInvalid(): String =
-        parser.getFileAsString(TEST_ALBUMS_FILE_10_ITEMS_6_IDS_INVALID)
+        reader.getFileAsString(TEST_ALBUMS_FILE_10_ITEMS_6_IDS_INVALID)
 
     private fun getMockAlbumsDataSomeItemsEmpty(): String =
-        parser.getFileAsString(TEST_ALBUMS_FILE_10_ITEMS_5_EMPTY)
+        reader.getFileAsString(TEST_ALBUMS_FILE_10_ITEMS_5_EMPTY)
 
     private fun getMockAlbumsDataAllIdsInvalid(): String =
-        parser.getFileAsString(TEST_ALBUMS_FILE_10_ITEMS_ALL_IDS_INVALID)
+        reader.getFileAsString(TEST_ALBUMS_FILE_10_ITEMS_ALL_IDS_INVALID)
 
     private fun mockAlbumsDataEmptyJson(): String =
-        parser.getFileAsString(TEST_FILE_EMPTY_JSON)
+        reader.getFileAsString(TEST_FILE_EMPTY_JSON)
 
 }

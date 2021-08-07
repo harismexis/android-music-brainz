@@ -5,7 +5,7 @@ import io.mockk.MockKAnnotations
 
 abstract class BaseUnitTest : BaseTest() {
 
-    protected val fileParser = UnitTestFileParser()
+    protected val fileParser = UnitTestFileReader()
 
     open fun initialise() {
         MockKAnnotations.init(this)

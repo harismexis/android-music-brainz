@@ -1,10 +1,11 @@
-package com.example.musicbrainz.parser
+package com.example.musicbrainz.reader
 
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.data.model.artist.ArtistFeed
 import com.example.musicbrainz.framework.util.extensions.toItems
+import com.example.musicbrainz.util.convertToModel
 
-class ArtistMockParser(private val parser: BaseFileParser) {
+class MockArtistProvider(private val reader: BaseFileReader) {
 
     companion object {
 
@@ -67,18 +68,18 @@ class ArtistMockParser(private val parser: BaseFileParser) {
     // raw string json
 
     private fun getMockArtistsDataAllIdsValid(): String =
-        parser.getFileAsString(TEST_ARTISTS_FILE_10_VALID_ITEMS)
+        reader.getFileAsString(TEST_ARTISTS_FILE_10_VALID_ITEMS)
 
     private fun getMockArtistsDataSomeIdsAbsent(): String =
-        parser.getFileAsString(TEST_ARTISTS_FILE_10_ITEMS_4_IDS_INVALID)
+        reader.getFileAsString(TEST_ARTISTS_FILE_10_ITEMS_4_IDS_INVALID)
 
     private fun getMockArtistsDataSomeItemsEmpty(): String =
-        parser.getFileAsString(TEST_ARTISTS_FILE_10_ITEMS_3_EMPTY)
+        reader.getFileAsString(TEST_ARTISTS_FILE_10_ITEMS_3_EMPTY)
 
     private fun getMockArtistsDataAllIdsAbsent(): String =
-        parser.getFileAsString(TEST_ARTISTS_FILE_10_ITEMS_ALL_IDS_INVALID)
+        reader.getFileAsString(TEST_ARTISTS_FILE_10_ITEMS_ALL_IDS_INVALID)
 
     private fun mockArtistsDataEmptyJson(): String =
-        parser.getFileAsString(TEST_ARTISTS_FILE_EMPTY_JSON)
+        reader.getFileAsString(TEST_ARTISTS_FILE_EMPTY_JSON)
 
 }

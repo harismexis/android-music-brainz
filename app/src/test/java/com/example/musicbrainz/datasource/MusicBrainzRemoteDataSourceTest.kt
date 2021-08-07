@@ -4,8 +4,8 @@ import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.data.data.MusicBrainzRemoteDao
 import com.example.musicbrainz.framework.data.data.MusicBrainzRemoteDataSource
-import com.example.musicbrainz.parser.AlbumMockParser
-import com.example.musicbrainz.parser.ArtistMockParser
+import com.example.musicbrainz.reader.MockAlbumProvider
+import com.example.musicbrainz.reader.MockArtistProvider
 import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.util.AlbumVerificator
 import com.example.musicbrainz.util.ArtistVerificator
@@ -24,8 +24,8 @@ class MusicBrainzRemoteDataSourceTest : BaseUnitTest() {
     @MockK
     private lateinit var mockDao: MusicBrainzRemoteDao
 
-    private val artistsParser = ArtistMockParser(fileParser)
-    private val albumParser = AlbumMockParser(fileParser)
+    private val artistsParser = MockArtistProvider(fileParser)
+    private val albumParser = MockAlbumProvider(fileParser)
     private var artistVerificator = ArtistVerificator()
     private var albumVerificator = AlbumVerificator()
     private var searchQuery = "search query"

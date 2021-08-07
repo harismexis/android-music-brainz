@@ -2,7 +2,7 @@ package com.example.musicbrainz.interactors
 
 import com.example.musicbrainz.data.MusicBrainzRemoteRepository
 import com.example.musicbrainz.domain.Album
-import com.example.musicbrainz.parser.AlbumMockParser
+import com.example.musicbrainz.reader.MockAlbumProvider
 import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.util.verifyListsHaveSameSize
 import io.mockk.coEvery
@@ -19,7 +19,7 @@ class InteractorGetAlbumsTest : BaseUnitTest() {
     @MockK
     private lateinit var mockRepository: MusicBrainzRemoteRepository
 
-    private val mockParser = AlbumMockParser(fileParser)
+    private val mockParser = MockAlbumProvider(fileParser)
     private lateinit var mockItems: List<Album>
     private lateinit var subject: InteractorGetAlbums
     private var query = "query"

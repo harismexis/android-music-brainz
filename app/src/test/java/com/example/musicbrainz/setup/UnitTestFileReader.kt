@@ -1,8 +1,8 @@
 package com.example.musicbrainz.setup
 
-import com.example.musicbrainz.parser.BaseFileParser
+import com.example.musicbrainz.reader.BaseFileReader
 
-class UnitTestFileParser : BaseFileParser() {
+class UnitTestFileReader : BaseFileReader() {
 
     override fun getFileAsString(filePath: String): String =
         ClassLoader.getSystemResource(filePath).readText()

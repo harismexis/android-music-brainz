@@ -1,9 +1,9 @@
 package com.example.musicbrainz.util
 
 import androidx.test.platform.app.InstrumentationRegistry
-import com.example.musicbrainz.parser.BaseFileParser
+import com.example.musicbrainz.reader.BaseFileReader
 
-class InstrumentedFileParser: BaseFileParser() {
+class InstrumentedFileReader: BaseFileReader() {
 
     override fun getFileAsString(filePath: String): String =
         InstrumentationRegistry.getInstrumentation().context.classLoader

@@ -5,7 +5,7 @@ import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildSearchQuery
 import com.example.musicbrainz.interactors.InteractorSearchArtists
-import com.example.musicbrainz.parser.ArtistMockParser
+import com.example.musicbrainz.reader.MockArtistProvider
 import com.example.musicbrainz.result.ArtistsResult
 import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeViewModel
 import com.example.musicbrainz.setup.BaseUnitTest
@@ -23,7 +23,7 @@ abstract class HomeViewModelTestSetup : BaseUnitTest() {
     @MockK
     protected lateinit var mockResourceProvider: ResourceProvider
 
-    private val artistParser = ArtistMockParser(fileParser)
+    private val artistParser = MockArtistProvider(fileParser)
     private val artists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
     private val artistsSuccess = ArtistsResult.Success(artists)
     private val artistsError = ArtistsResult.Error(ERROR_MSG)
