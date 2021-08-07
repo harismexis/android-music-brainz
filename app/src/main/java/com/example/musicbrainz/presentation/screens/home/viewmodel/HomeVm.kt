@@ -21,14 +21,16 @@ class HomeVm @Inject constructor(
     private val resProvider: ResourceProvider
 ) : ViewModel() {
 
-    private val TAG = HomeVm::class.qualifiedName
+    companion object {
+        val TAG = HomeVm::class.qualifiedName
+    }
 
     private val mArtistsResult = MutableLiveData<ArtistsResult>()
     val artistsResult: LiveData<ArtistsResult>
         get() = mArtistsResult
 
     private val mShowErrorMessage = MutableLiveData<Event<String>>()
-    val showErrorMessage : LiveData<Event<String>>
+    val showErrorMessage: LiveData<Event<String>>
         get() = mShowErrorMessage
 
     var searchQuery: String? = null
@@ -45,8 +47,7 @@ class HomeVm @Inject constructor(
         if (!connectivity.isOnline()) {
             mArtistsResult.value = ArtistsResult.Error(resProvider.getInternetOffMsg())
             mShowErrorMessage.value = Event(resProvider.getInternetOffMsg())
-        }
-        else fetchArtists(buildSearchQuery(name))
+        } else fetchArtists(buildSearchQuery(name))
     }
 
     private fun fetchArtists(query: String) {

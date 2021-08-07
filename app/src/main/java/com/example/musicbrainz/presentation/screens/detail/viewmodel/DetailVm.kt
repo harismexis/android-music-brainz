@@ -21,7 +21,9 @@ class DetailVm @Inject constructor(
     private val resProvider: ResourceProvider
 ) : ViewModel() {
 
-    private val TAG = DetailVm::class.qualifiedName
+    companion object {
+        val TAG = DetailVm::class.qualifiedName
+    }
 
     private val mAlbumsResult = MutableLiveData<AlbumsResult>()
     val albumsResult: LiveData<AlbumsResult>
