@@ -1,4 +1,4 @@
-package com.example.musicbrainz.framework.di.interactor
+package com.example.musicbrainz.framework.di.module
 
 import com.example.musicbrainz.data.MusicBrainzRemoteRepository
 import com.example.musicbrainz.framework.datasource.network.data.MusicBrainzRemoteDataSource

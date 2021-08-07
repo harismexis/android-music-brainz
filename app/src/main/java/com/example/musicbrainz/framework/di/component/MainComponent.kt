@@ -1,11 +1,7 @@
-package com.example.musicbrainz.framework.di
+package com.example.musicbrainz.framework.di.component
 
 import com.example.musicbrainz.framework.application.MainApplication
-import com.example.musicbrainz.framework.di.api.MusicBrainzApiModule
-import com.example.musicbrainz.framework.di.application.ApplicationModule
-import com.example.musicbrainz.framework.di.interactor.InteractorModule
-import com.example.musicbrainz.framework.di.ui.FragmentBindingsModule
-import com.example.musicbrainz.framework.viewmodelfactory.ViewModelModule
+import com.example.musicbrainz.framework.di.module.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

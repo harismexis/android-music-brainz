@@ -1,8 +1,8 @@
 package com.example.musicbrainz.framework.application
 
 import com.example.musicbrainz.BuildConfig
-import com.example.musicbrainz.framework.di.DaggerMainComponent
-import com.example.musicbrainz.framework.di.MainComponent
+import com.example.musicbrainz.framework.di.component.DaggerMainComponent
+import com.example.musicbrainz.framework.di.component.MainComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector

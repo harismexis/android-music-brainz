@@ -1,4 +1,4 @@
-package com.example.musicbrainz.framework.di.api
+package com.example.musicbrainz.framework.di.module
 
 import com.example.musicbrainz.BuildConfig
 import com.example.musicbrainz.framework.application.MainApplication

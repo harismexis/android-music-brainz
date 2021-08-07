@@ -1,4 +1,4 @@
-package com.example.musicbrainz.framework.di.ui
+package com.example.musicbrainz.framework.di.module
 
 import com.example.musicbrainz.presentation.screens.detail.fragment.DetailFragment
 import com.example.musicbrainz.presentation.screens.home.fragment.HomeFragment

@@ -2,7 +2,7 @@ package com.example.musicbrainz.config.component
 
 import com.example.musicbrainz.config.application.InstrumentedApplication
 import com.example.musicbrainz.config.factory.InstrumentedViewModelModule
-import com.example.musicbrainz.framework.di.ui.FragmentBindingsModule
+import com.example.musicbrainz.framework.di.module.FragmentBindingsModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
