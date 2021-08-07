@@ -27,7 +27,7 @@ class DetailFragment : BaseFragment() {
         private const val ARG_SELECTED_ARTIST = "selected_artist"
     }
 
-    private val viewModel: DetailVm by viewModels { viewModelFactory }
+    private val viewModel: DetailVm by viewModels { vmFactory }
     private var binding: FragmentDetailBinding? = null
     private lateinit var adapter: DetailAdapter
     private var detailModels: MutableList<DetailModel> = mutableListOf()

@@ -13,7 +13,7 @@ import javax.inject.Inject
 abstract class BaseFragment : Fragment() {
 
     @Inject
-    protected lateinit var viewModelFactory: ViewModelProvider.Factory
+    protected lateinit var vmFactory: ViewModelProvider.Factory
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)

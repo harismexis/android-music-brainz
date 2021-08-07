@@ -22,7 +22,7 @@ import com.example.musicbrainz.util.result.ArtistsResult
 class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
     android.widget.SearchView.OnQueryTextListener {
 
-    private val viewModel: HomeVm by viewModels { viewModelFactory }
+    private val viewModel: HomeVm by viewModels { vmFactory }
     private var binding: FragmentHomeBinding? = null
     private lateinit var adapter: ArtistAdapter
     private var uiModels: MutableList<Artist> = mutableListOf()
