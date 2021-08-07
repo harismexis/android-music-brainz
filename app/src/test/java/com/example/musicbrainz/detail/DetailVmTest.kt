@@ -8,11 +8,10 @@ import org.junit.runners.JUnit4
 class DetailVmTest : DetailVmBaseTest() {
 
     @Test
-    fun albumsCallSuccessful_when_albumsRequested_then_resultSuccess() {
+    fun albumsCallSuccessful_albumsResultSuccess() {
         // given
         subject.selectedArtist = mockSelectedArtist
         mockAlbumsCall()
-        mockInternetActive(true)
 
         // when
         subject.fetchAlbums()
@@ -23,11 +22,10 @@ class DetailVmTest : DetailVmBaseTest() {
     }
 
     @Test
-    fun albumsCallThrowsError_when_albumsRequested_then_resultError() {
+    fun albumsCallThrows_albumsResultError() {
         // given
         subject.selectedArtist = mockSelectedArtist
-        mockInternetActive(true)
-        mockAlbumsCallThrowsError()
+        mockAlbumsCallThrows()
 
         // when
         subject.fetchAlbums()
@@ -35,20 +33,6 @@ class DetailVmTest : DetailVmBaseTest() {
         // then
         verifyAlbumsCallDone()
         verifyResultAlbumsCallError()
-    }
-
-    @Test
-    fun internetOff_when_albumsRequested_then_resultError() {
-        // given
-        mockInternetActive(false)
-
-        // when
-        subject.fetchAlbums()
-
-        // then
-        verifyInternetChecked()
-        verifyAlbumsCallNotDone()
-        verifyResultInternetOff()
     }
 
 }

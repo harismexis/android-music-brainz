@@ -24,7 +24,7 @@
 
         <argument
             android:name="selected_artist"
-            app:argType="com.example.musicbrainz.framework.util.parcelable.ArtistParcel" />
+            app:argType="com.example.musicbrainz.domain.Artist" />
 
     </fragment>
 

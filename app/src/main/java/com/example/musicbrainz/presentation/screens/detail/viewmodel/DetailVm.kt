@@ -11,6 +11,7 @@ import com.example.musicbrainz.framework.util.buildAlbumsQuery
 import com.example.musicbrainz.framework.util.extensions.getErrorMessage
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.usecases.InteractorGetAlbums
+import com.example.musicbrainz.util.event.Event
 import com.example.musicbrainz.util.result.AlbumsResult
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,6 +30,10 @@ class DetailVm @Inject constructor(
     val albumsResult: LiveData<AlbumsResult>
         get() = mAlbumsResult
 
+    private val mShowMsg = MutableLiveData<Event<String>>()
+    val showMsg: LiveData<Event<String>>
+        get() = mShowMsg
+
     lateinit var selectedArtist: Artist
 
     fun hasSelectedArtist(): Boolean {
@@ -36,22 +41,19 @@ class DetailVm @Inject constructor(
     }
 
     fun fetchAlbums() {
-        if (!connectivity.isOnline()) {
-            mAlbumsResult.value = AlbumsResult.Error(resProvider.getInternetOffMsg())
-        } else {
-            val query = buildAlbumsQuery(selectedArtist.id)
-            fetchAlbums(query)
-        }
+        val query = buildAlbumsQuery(selectedArtist.id)
+        fetchAlbums(query)
     }
 
     private fun fetchAlbums(query: String) {
         viewModelScope.launch {
             try {
-                val items = irrGetAlbums.invoke(query)
+                val items = irrGetAlbums(query)
                 mAlbumsResult.value = AlbumsResult.Success(items)
             } catch (e: Exception) {
                 Log.d(TAG, e.getErrorMessage())
-                mAlbumsResult.value = AlbumsResult.Error(e.getErrorMessage())
+                mAlbumsResult.value = AlbumsResult.Error(e)
+                mShowMsg.value = Event(e.getErrorMessage())
             }
         }
     }

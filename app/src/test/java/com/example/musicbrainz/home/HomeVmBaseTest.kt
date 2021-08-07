@@ -24,8 +24,8 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
 
     private val artists = artistProvider.getMockArtistsFromFeedWithAllItemsValid()
     private val artistsSuccess = ArtistsResult.Success(artists)
-    private val artistsError = ArtistsResult.Error(ERROR_MSG)
-    private val internetOffError = ArtistsResult.Error(INTERNET_OFF_MSG)
+    val error = Exception(ERROR_MSG)
+    private val artistsError = ArtistsResult.Error(error)
     private val searchArtistInput = "Rory Gallagher"
     private val searchQuery = buildSearchQuery(searchArtistInput)
 
@@ -55,28 +55,20 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
         subject.searchQuery = searchQuery
     }
 
-    protected fun mockInternetActive(active: Boolean) {
-        every { mockConnectivity.isOnline() } returns active
-    }
-
-    protected fun verifyInternetChecked() {
-        verify(exactly = 1) { mockConnectivity.isOnline() }
-    }
-
     protected fun mockSearchCall() {
-        coEvery { mockIrrSearchArtists.invoke(searchQuery) } returns artists
+        coEvery { mockIrrSearchArtists(searchQuery) } returns artists
     }
 
-    protected fun mockSearchCallThrowsError() {
-        coEvery { mockIrrSearchArtists.invoke(searchQuery) } throws IllegalStateException(ERROR_MSG)
+    protected fun mockSearchCallThrows() {
+        coEvery { mockIrrSearchArtists(searchQuery) } throws error
     }
 
     protected fun verifySearchCallDone() {
-        coVerify { mockIrrSearchArtists.invoke(searchQuery) }
+        coVerify { mockIrrSearchArtists(searchQuery) }
     }
 
     protected fun verifySearchCallNotDone() {
-        coVerify(exactly = 0) { mockIrrSearchArtists.invoke(any()) }
+        coVerify(exactly = 0) { mockIrrSearchArtists(any()) }
     }
 
     protected fun initialiseLiveData() {
@@ -90,9 +82,4 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
     protected fun verifySearchResultError() {
         verify(exactly = 1) { mockObserverArtists.onChanged(artistsError) }
     }
-
-    protected fun verifyResultInternetOff() {
-        verify(exactly = 1) { mockObserverArtists.onChanged(internetOffError) }
-    }
-
 }

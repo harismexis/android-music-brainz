@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.musicbrainz.R
 import com.example.musicbrainz.databinding.FragmentDetailBinding
 import com.example.musicbrainz.domain.Album
+import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.base.BaseFragment
 import com.example.musicbrainz.framework.util.extensions.setDivider
-import com.example.musicbrainz.framework.util.extensions.showToast
-import com.example.musicbrainz.framework.util.extensions.toArtist
-import com.example.musicbrainz.framework.util.parcelable.ArtistParcel
+import com.example.musicbrainz.framework.util.extensions.showSnackBar
+import com.example.musicbrainz.framework.util.observer.EventObserver
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailModel
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailVm
@@ -44,7 +44,7 @@ class DetailFragment : BaseFragment() {
     }
 
     override fun onViewCreated() {
-        retrieveSelectedArtist()
+        retrieveArtistFromArgs()
         if (viewModel.hasSelectedArtist()) {
             initialiseRecycler()
             observeLiveData()
@@ -70,6 +70,10 @@ class DetailFragment : BaseFragment() {
                 is AlbumsResult.Error -> populateError(it.error)
             }
         })
+
+        viewModel.showMsg.observe(viewLifecycleOwner, EventObserver {
+            binding?.root?.showSnackBar(it)
+        })
     }
 
     private fun populate(items: List<Album>) {
@@ -87,17 +91,16 @@ class DetailFragment : BaseFragment() {
         detailModels.addAll(items.map { DetailModel.AlbumModel(it) })
     }
 
-    private fun populateError(error: String) {
+    private fun populateError(error: Exception) {
         // we call populate with empty album list to
         // show artist details only
         populate(ArrayList())
-        requireContext().showToast(error)
     }
 
-    private fun retrieveSelectedArtist() {
-        val artistParcel: ArtistParcel? = arguments?.getParcelable(ARG_SELECTED_ARTIST)
-        artistParcel?.let {
-            viewModel.selectedArtist = it.toArtist()
+    private fun retrieveArtistFromArgs() {
+        val artist: Artist? = arguments?.getSerializable(ARG_SELECTED_ARTIST) as? Artist
+        artist?.let {
+            viewModel.selectedArtist = it
         }
     }
 

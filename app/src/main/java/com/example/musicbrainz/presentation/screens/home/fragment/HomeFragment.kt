@@ -11,8 +11,7 @@ import com.example.musicbrainz.databinding.FragmentHomeBinding
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.base.BaseFragment
 import com.example.musicbrainz.framework.util.extensions.setDivider
-import com.example.musicbrainz.framework.util.extensions.showToast
-import com.example.musicbrainz.framework.util.extensions.toParcel
+import com.example.musicbrainz.framework.util.extensions.showSnackBar
 import com.example.musicbrainz.framework.util.observer.EventObserver
 import com.example.musicbrainz.presentation.screens.home.adapter.ArtistAdapter
 import com.example.musicbrainz.presentation.screens.home.viewholder.ArtistViewHolder
@@ -65,8 +64,8 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
             }
         })
 
-        viewModel.showErrorMessage.observe(viewLifecycleOwner, EventObserver {
-            requireContext().showToast(it)
+        viewModel.showMsg.observe(viewLifecycleOwner, EventObserver {
+            binding?.root?.showSnackBar(it)
         })
     }
 
@@ -77,7 +76,7 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
         adapter.notifyDataSetChanged()
     }
 
-    private fun populateError(error: String) {
+    private fun populateError(error: Exception) {
         showProgress(false)
     }
 
@@ -86,7 +85,7 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
         position: Int
     ) {
         binding?.searchView?.clearFocus()
-        val action = HomeFragmentDirections.actionHomeDestToDetailDest(item.toParcel())
+        val action = HomeFragmentDirections.actionHomeDestToDetailDest(item)
         findNavController().navigate(action)
     }
 

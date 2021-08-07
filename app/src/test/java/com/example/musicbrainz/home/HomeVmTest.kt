@@ -8,47 +8,29 @@ import org.junit.runners.JUnit4
 class HomeVmTest : HomeVmBaseTest() {
 
     @Test
-    fun searchCallSuccessful_when_searchArtistTriggered_then_resultSuccess() {
+    fun searchCallSuccessful_searchResultSuccess() {
         // given
-        mockInternetActive(true)
         mockSearchCall()
 
         // when
         triggerSearchArtist()
 
         // then
-        verifyInternetChecked()
         verifySearchCallDone()
         verifySearchResultSuccess()
     }
 
     @Test
-    fun searchCallThrowsError_when_searchTriggered_then_resultError() {
+    fun searchCallThrows_searchResultError() {
         // given
-        mockInternetActive(true)
-        mockSearchCallThrowsError()
+        mockSearchCallThrows()
 
         // when
         triggerSearchArtist()
 
         // then
-        verifyInternetChecked()
         verifySearchCallDone()
         verifySearchResultError()
-    }
-
-    @Test
-    fun internetOff_when_searchTriggered_then_resultError() {
-        // given
-        mockInternetActive(false)
-
-        // when
-        triggerSearchArtist()
-
-        // then
-        verifyInternetChecked()
-        verifySearchCallNotDone()
-        verifyResultInternetOff()
     }
 
 }

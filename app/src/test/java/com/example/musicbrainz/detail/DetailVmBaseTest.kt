@@ -24,8 +24,8 @@ abstract class DetailVmBaseTest : BaseUnitTest() {
     protected val mockSelectedArtist = artistProvider.getMockArtist()
     private val mockAlbums = albumProvider.getMockAlbumsFromFeedWithAllItemsValid()
     private val albumsSuccess = AlbumsResult.Success(mockAlbums)
-    private val albumsError = AlbumsResult.Error(ERROR_MSG)
-    private val internetOffError = AlbumsResult.Error(INTERNET_OFF_MSG)
+    val error = Exception(ERROR_MSG)
+    private val albumsError = AlbumsResult.Error(error)
     private val albumsQuery = buildAlbumsQuery(mockSelectedArtist.id)
 
     protected lateinit var subject: DetailVm
@@ -50,32 +50,24 @@ abstract class DetailVmBaseTest : BaseUnitTest() {
         every { mockObserverAlbums.onChanged(any()) } just runs
     }
 
-    protected fun mockInternetActive(active: Boolean) {
-        every { mockConnectivity.isOnline() } returns active
-    }
-
-    protected fun verifyInternetChecked() {
-        verify(exactly = 1) { mockConnectivity.isOnline() }
-    }
-
     protected fun initialiseLiveData() {
         subject.albumsResult.observeForever(mockObserverAlbums)
     }
 
     protected fun mockAlbumsCall() {
-        coEvery { mockInteractorAlbums.invoke(albumsQuery) } returns mockAlbums
+        coEvery { mockInteractorAlbums(albumsQuery) } returns mockAlbums
     }
 
-    protected fun mockAlbumsCallThrowsError() {
-        coEvery { mockInteractorAlbums.invoke(albumsQuery) } throws IllegalStateException(ERROR_MSG)
+    protected fun mockAlbumsCallThrows() {
+        coEvery { mockInteractorAlbums(albumsQuery) } throws error
     }
 
     protected fun verifyAlbumsCallDone() {
-        coVerify(exactly = 1) { mockInteractorAlbums.invoke(albumsQuery) }
+        coVerify(exactly = 1) { mockInteractorAlbums(albumsQuery) }
     }
 
     protected fun verifyAlbumsCallNotDone() {
-        coVerify(exactly = 0) { mockInteractorAlbums.invoke(any()) }
+        coVerify(exactly = 0) { mockInteractorAlbums(any()) }
     }
 
     protected fun verifyResultAlbumsCallSuccess() {
@@ -84,10 +76,6 @@ abstract class DetailVmBaseTest : BaseUnitTest() {
 
     protected fun verifyResultAlbumsCallError() {
         verify(exactly = 1) { mockObserverAlbums.onChanged(albumsError) }
-    }
-
-    protected fun verifyResultInternetOff() {
-        verify(exactly = 1) { mockObserverAlbums.onChanged(internetOffError) }
     }
 
 }

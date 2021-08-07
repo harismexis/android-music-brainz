@@ -29,36 +29,29 @@ class HomeVm @Inject constructor(
     val artistsResult: LiveData<ArtistsResult>
         get() = mArtistsResult
 
-    private val mShowErrorMessage = MutableLiveData<Event<String>>()
-    val showErrorMessage: LiveData<Event<String>>
-        get() = mShowErrorMessage
+    private val mShowMsg = MutableLiveData<Event<String>>()
+    val showMsg: LiveData<Event<String>>
+        get() = mShowMsg
 
     var searchQuery: String? = null
         set(value) {
             field = value
             value?.let {
                 if (!value.isNullOrBlank()) {
-                    onSearchQueryUpdated(value)
+                    fetchArtists(buildSearchQuery(value))
                 }
             }
         }
 
-    private fun onSearchQueryUpdated(name: String) {
-        if (!connectivity.isOnline()) {
-            mArtistsResult.value = ArtistsResult.Error(resProvider.getInternetOffMsg())
-            mShowErrorMessage.value = Event(resProvider.getInternetOffMsg())
-        } else fetchArtists(buildSearchQuery(name))
-    }
-
     private fun fetchArtists(query: String) {
         viewModelScope.launch {
             try {
-                val items = irrSearchArtists.invoke(query)
+                val items = irrSearchArtists(query)
                 mArtistsResult.value = ArtistsResult.Success(items)
             } catch (e: Exception) {
                 Log.d(TAG, e.getErrorMessage())
-                mArtistsResult.value = ArtistsResult.Error(e.getErrorMessage())
-                mShowErrorMessage.value = Event(e.getErrorMessage())
+                mArtistsResult.value = ArtistsResult.Error(e)
+                mShowMsg.value = Event(e.getErrorMessage())
             }
         }
     }
