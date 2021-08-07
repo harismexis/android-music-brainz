@@ -16,10 +16,10 @@ import com.example.musicbrainz.framework.util.extensions.setDivider
 import com.example.musicbrainz.framework.util.extensions.showToast
 import com.example.musicbrainz.framework.util.extensions.toArtist
 import com.example.musicbrainz.framework.util.parcelable.ArtistParcel
-import com.example.musicbrainz.result.AlbumsResult
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailModel
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailViewModel
+import com.example.musicbrainz.util.result.AlbumsResult
 
 class DetailFragment : BaseFragment() {
 

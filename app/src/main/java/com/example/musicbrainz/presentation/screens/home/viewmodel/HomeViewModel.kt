@@ -5,13 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.musicbrainz.framework.util.event.Event
-import com.example.musicbrainz.framework.util.extensions.getErrorMessage
-import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildSearchQuery
+import com.example.musicbrainz.framework.util.extensions.getErrorMessage
+import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.interactors.InteractorSearchArtists
-import com.example.musicbrainz.result.ArtistsResult
+import com.example.musicbrainz.util.event.Event
+import com.example.musicbrainz.util.result.ArtistsResult
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

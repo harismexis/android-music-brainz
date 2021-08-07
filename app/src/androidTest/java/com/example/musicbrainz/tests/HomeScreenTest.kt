@@ -20,10 +20,10 @@ import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_
 import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY
 import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
-import com.example.musicbrainz.result.ArtistsResult
 import com.example.musicbrainz.util.RecyclerCountAssertion
 import com.example.musicbrainz.util.getExpectedText
 import com.example.musicbrainz.util.getStringRes
+import com.example.musicbrainz.util.result.ArtistsResult
 import com.example.musicbrainz.util.verifyRecyclerItemAt
 import io.mockk.every
 import org.junit.Assert

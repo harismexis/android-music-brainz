@@ -1,4 +1,4 @@
-package com.example.musicbrainz.result
+package com.example.musicbrainz.util.result
 
 import com.example.musicbrainz.domain.Artist
 

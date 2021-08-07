@@ -1,4 +1,4 @@
-package com.example.musicbrainz.framework.util.event
+package com.example.musicbrainz.util.event
 
 
 /**

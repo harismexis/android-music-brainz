@@ -11,7 +11,7 @@ import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildAlbumsQuery
 import com.example.musicbrainz.interactors.InteractorGetAlbums
-import com.example.musicbrainz.result.AlbumsResult
+import com.example.musicbrainz.util.result.AlbumsResult
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

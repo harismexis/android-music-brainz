@@ -2,7 +2,7 @@ package com.example.musicbrainz.datasource
 
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.framework.data.data.MusicBrainzRemoteDao
+import com.example.musicbrainz.framework.data.api.MusicBrainzApi
 import com.example.musicbrainz.framework.data.data.MusicBrainzRemoteDataSource
 import com.example.musicbrainz.reader.MockAlbumProvider
 import com.example.musicbrainz.reader.MockArtistProvider
@@ -22,7 +22,7 @@ import org.junit.runners.JUnit4
 class MusicBrainzRemoteDataSourceTest : BaseUnitTest() {
 
     @MockK
-    private lateinit var mockDao: MusicBrainzRemoteDao
+    private lateinit var mockApi: MusicBrainzApi
 
     private val artistsParser = MockArtistProvider(fileParser)
     private val albumParser = MockAlbumProvider(fileParser)
@@ -38,14 +38,14 @@ class MusicBrainzRemoteDataSourceTest : BaseUnitTest() {
     }
 
     override fun initialiseClassUnderTest() {
-        subject = MusicBrainzRemoteDataSource(mockDao)
+        subject = MusicBrainzRemoteDataSource(mockApi)
     }
 
     @Test
     fun dataSourceRequestsArtists_then_daoRequestsArtists() {
         // given
         val mockFeed = artistsParser.getMockArtistsFeedAllIdsValid()
-        coEvery { mockDao.getArtists(searchQuery) } returns mockFeed
+        coEvery { mockApi.getArtists(searchQuery) } returns mockFeed
 
         // when
         lateinit var items: List<Artist>
@@ -54,7 +54,7 @@ class MusicBrainzRemoteDataSourceTest : BaseUnitTest() {
         }
 
         // then
-        coVerify(exactly = 1) { mockDao.getArtists(searchQuery) }
+        coVerify(exactly = 1) { mockApi.getArtists(searchQuery) }
         verifyListsHaveSameSize(items, mockFeed.artists!!)
         artistVerificator.verifyItemsAgainstRemoteFeed(items, mockFeed)
     }
@@ -64,7 +64,7 @@ class MusicBrainzRemoteDataSourceTest : BaseUnitTest() {
         runBlocking {
             // given
             val mockFeed = albumParser.getMockAlbumsFeedAllIdsValid()
-            coEvery { mockDao.getAlbums(albumsQuery) } returns mockFeed
+            coEvery { mockApi.getAlbums(albumsQuery) } returns mockFeed
 
             // when
             lateinit var items: List<Album>
@@ -73,7 +73,7 @@ class MusicBrainzRemoteDataSourceTest : BaseUnitTest() {
             }
 
             // then
-            coVerify(exactly = 1) { mockDao.getAlbums(albumsQuery) }
+            coVerify(exactly = 1) { mockApi.getAlbums(albumsQuery) }
             verifyListsHaveSameSize(items, mockFeed.releases!!)
             albumVerificator.verifyItemsAgainstRemoteFeed(items, mockFeed)
         }

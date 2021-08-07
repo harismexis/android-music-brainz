@@ -25,9 +25,9 @@ import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_A
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_IDS_INVALID
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
-import com.example.musicbrainz.result.AlbumsResult
-import com.example.musicbrainz.result.ArtistsResult
 import com.example.musicbrainz.util.*
+import com.example.musicbrainz.util.result.AlbumsResult
+import com.example.musicbrainz.util.result.ArtistsResult
 import io.mockk.every
 import io.mockk.just
 import io.mockk.runs
