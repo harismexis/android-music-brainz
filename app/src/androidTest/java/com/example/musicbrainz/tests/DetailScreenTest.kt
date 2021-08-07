@@ -43,7 +43,7 @@ class DetailScreenTest : BaseInstrumentedTest() {
     val testRule: ActivityTestRule<MainActivity> =
         ActivityTestRule(MainActivity::class.java, false, false)
 
-    private var mockArtists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
+    private var mockArtists = artistProvider.getMockArtistsFromFeedWithAllItemsValid()
     private var artistsSuccess = ArtistsResult.Success(mockArtists)
     private var clickIndexOnSearchList = 0
     private var mockArtistsResult = MutableLiveData<ArtistsResult>()
@@ -63,7 +63,7 @@ class DetailScreenTest : BaseInstrumentedTest() {
     @Test
     fun clickSearchResult_opensDetailsAndShowsExpectedDataWhenAlbumFeedHasAllItemsValid() {
         // given
-        mockAlbums = albumParser.getMockAlbumsFromFeedWithAllItemsValid()
+        mockAlbums = albumProvider.getMockAlbumsFromFeedWithAllItemsValid()
         mockAlbumsResultSuccess()
 
         // when
@@ -76,7 +76,7 @@ class DetailScreenTest : BaseInstrumentedTest() {
     @Test
     fun clickSearchResult_opensDetailsAndShowsExpectedDataWhenAlbumFeedHasSomeInvalidIds() {
         // given
-        mockAlbums = albumParser.getMockAlbumsFromFeedWithSomeIdsInvalid()
+        mockAlbums = albumProvider.getMockAlbumsFromFeedWithSomeIdsInvalid()
         mockAlbumsResultSuccess()
 
         // when
@@ -89,7 +89,7 @@ class DetailScreenTest : BaseInstrumentedTest() {
     @Test
     fun clickSearchResult_opensDetailsAndShowsExpectedDataWhenAlbumFeedHasSomeEmptyItems() {
         // given
-        mockAlbums = albumParser.getMockAlbumsFromFeedWithSomeItemsEmpty()
+        mockAlbums = albumProvider.getMockAlbumsFromFeedWithSomeItemsEmpty()
         mockAlbumsResultSuccess()
 
         // when
@@ -102,7 +102,7 @@ class DetailScreenTest : BaseInstrumentedTest() {
     @Test
     fun clickSearchResult_opensDetailsAndShowsExpectedDataWhenAlbumFeedHasAllIdsInvalid() {
         // given
-        mockAlbums = albumParser.getMockAlbumsFromFeedWithAllIdsInvalid()
+        mockAlbums = albumProvider.getMockAlbumsFromFeedWithAllIdsInvalid()
         mockAlbumsResultSuccess()
 
         // when
@@ -115,7 +115,7 @@ class DetailScreenTest : BaseInstrumentedTest() {
     @Test
     fun clickSearchResult_opensDetailsAndShowsExpectedDataWhenAlbumFeedIsEmptyJson() {
         // given
-        mockAlbums = albumParser.getMockAlbumsFromFeedWithEmptyJson()
+        mockAlbums = albumProvider.getMockAlbumsFromFeedWithEmptyJson()
         mockAlbumsResultSuccess()
 
         // when

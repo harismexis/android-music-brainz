@@ -48,7 +48,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
     @Test
     fun artistsFeedHasAllItemsValid_then_listShowsExpectedItems() {
         // given
-        mockArtists = artistParser.getMockArtistsFromFeedWithAllItemsValid()
+        mockArtists = artistProvider.getMockArtistsFromFeedWithAllItemsValid()
         mockSearchResultSuccess()
 
         // when
@@ -61,7 +61,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
     @Test
     fun remoteFeedHasSomeInvalidIds_listShowsExpectedItems() {
         // given
-        mockArtists = artistParser.getMockArtistsFromFeedWithSomeIdsInvalid()
+        mockArtists = artistProvider.getMockArtistsFromFeedWithSomeIdsInvalid()
         mockSearchResultSuccess()
 
         // when
@@ -74,7 +74,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
     @Test
     fun remoteFeedHasSomeEmptyArtistJsonItems_listHasExpectedNumberOfItems() {
         // given
-        mockArtists = artistParser.getMockArtistsFromFeedWithSomeItemsEmpty()
+        mockArtists = artistProvider.getMockArtistsFromFeedWithSomeItemsEmpty()
         mockSearchResultSuccess()
 
         // when
@@ -87,7 +87,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
     @Test
     fun remoteFeedHasAllIdsInvalid_listShowsNoItems() {
         // given
-        mockArtists = artistParser.getMockArtistsFromFeedWithAllIdsInvalid()
+        mockArtists = artistProvider.getMockArtistsFromFeedWithAllIdsInvalid()
         mockSearchResultSuccess()
 
         // when
@@ -100,7 +100,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
     @Test
     fun remoteFeedIsEmptyJson_listShowsNoItems() {
         // given
-        mockArtists = artistParser.getMockArtistsFromFeedWithEmptyJson()
+        mockArtists = artistProvider.getMockArtistsFromFeedWithEmptyJson()
         mockSearchResultSuccess()
 
         // when

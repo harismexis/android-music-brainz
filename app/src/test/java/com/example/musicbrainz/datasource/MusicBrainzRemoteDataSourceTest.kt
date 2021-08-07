@@ -4,8 +4,6 @@ import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.data.api.MusicBrainzApi
 import com.example.musicbrainz.framework.data.data.MusicBrainzRemoteDataSource
-import com.example.musicbrainz.reader.MockAlbumProvider
-import com.example.musicbrainz.reader.MockArtistProvider
 import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.util.AlbumVerificator
 import com.example.musicbrainz.util.ArtistVerificator
@@ -24,18 +22,12 @@ class MusicBrainzRemoteDataSourceTest : BaseUnitTest() {
     @MockK
     private lateinit var mockApi: MusicBrainzApi
 
-    private val artistsParser = MockArtistProvider(fileParser)
-    private val albumParser = MockAlbumProvider(fileParser)
     private var artistVerificator = ArtistVerificator()
     private var albumVerificator = AlbumVerificator()
     private var searchQuery = "search query"
     private var albumsQuery = "albums query"
 
     private lateinit var subject: MusicBrainzRemoteDataSource
-
-    init {
-        initialise()
-    }
 
     override fun initialiseClassUnderTest() {
         subject = MusicBrainzRemoteDataSource(mockApi)
@@ -44,7 +36,7 @@ class MusicBrainzRemoteDataSourceTest : BaseUnitTest() {
     @Test
     fun dataSourceRequestsArtists_then_daoRequestsArtists() {
         // given
-        val mockFeed = artistsParser.getMockArtistsFeedAllIdsValid()
+        val mockFeed = artistProvider.getMockArtistsFeedAllIdsValid()
         coEvery { mockApi.getArtists(searchQuery) } returns mockFeed
 
         // when
@@ -63,7 +55,7 @@ class MusicBrainzRemoteDataSourceTest : BaseUnitTest() {
     fun dataSourceRequestsAlbums_then_daoRequestsAlbums() {
         runBlocking {
             // given
-            val mockFeed = albumParser.getMockAlbumsFeedAllIdsValid()
+            val mockFeed = albumProvider.getMockAlbumsFeedAllIdsValid()
             coEvery { mockApi.getAlbums(albumsQuery) } returns mockFeed
 
             // when

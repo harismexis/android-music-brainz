@@ -1,11 +1,15 @@
 package com.example.musicbrainz.base
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import org.junit.Rule
+import com.example.musicbrainz.reader.BaseFileReader
+import com.example.musicbrainz.reader.MockAlbumProvider
+import com.example.musicbrainz.reader.MockArtistProvider
 
 abstract class BaseTest {
 
-    @get:Rule
-    val instantTaskExecutorRule = InstantTaskExecutorRule()
+    abstract fun getBaseFileReader(): BaseFileReader
+
+    protected val artistProvider by lazy { MockArtistProvider(getBaseFileReader()) }
+    protected val albumProvider by lazy { MockAlbumProvider(getBaseFileReader()) }
+
 
 }

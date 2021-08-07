@@ -2,7 +2,6 @@ package com.example.musicbrainz.usecases
 
 import com.example.musicbrainz.data.MusicBrainzRemoteRepository
 import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.reader.MockArtistProvider
 import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.util.verifyListsHaveSameSize
 import io.mockk.coEvery
@@ -19,14 +18,9 @@ class InteractorSearchArtistsTest : BaseUnitTest() {
     @MockK
     private lateinit var mockRepository: MusicBrainzRemoteRepository
 
-    private val mockParser = MockArtistProvider(fileParser)
     private lateinit var mockItems: List<Artist>
     private lateinit var subject: InteractorSearchArtists
     private var query = "query"
-
-    init {
-        initialise()
-    }
 
     override fun initialiseClassUnderTest() {
         setupMocks()
@@ -34,7 +28,7 @@ class InteractorSearchArtistsTest : BaseUnitTest() {
     }
 
     private fun setupMocks() {
-        mockItems = mockParser.getMockArtistsFromFeedWithAllItemsValid()
+        mockItems = artistProvider.getMockArtistsFromFeedWithAllItemsValid()
         coEvery { mockRepository.getArtists(query) } returns mockItems
     }
 

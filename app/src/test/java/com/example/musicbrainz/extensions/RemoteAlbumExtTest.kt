@@ -1,7 +1,6 @@
 package com.example.musicbrainz.extensions
 
 import com.example.musicbrainz.framework.util.extensions.toItems
-import com.example.musicbrainz.reader.MockAlbumProvider
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_ALL_IDS_VALID
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_NO_DATA
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_EMPTY
@@ -16,12 +15,11 @@ import org.junit.runners.JUnit4
 class RemoteAlbumExtTest : BaseUnitTest() {
 
     private val verificator = AlbumVerificator()
-    private val mockParser = MockAlbumProvider(fileParser)
 
     @Test
     fun feedHasAllItemsValid_then_conversionToItemsIsCorrect() {
         // given
-        val remoteFeed = mockParser.getMockAlbumsFeedAllIdsValid()
+        val remoteFeed = albumProvider.getMockAlbumsFeedAllIdsValid()
 
         // when
         val items = remoteFeed.toItems()
@@ -36,7 +34,7 @@ class RemoteAlbumExtTest : BaseUnitTest() {
     @Test
     fun feedHasSomeIdsAbsent_then_conversionToItemsIsCorrect() {
         // given
-        val remoteFeed = mockParser.getMockAlbumsFeedSomeIdsInvalid()
+        val remoteFeed = albumProvider.getMockAlbumsFeedSomeIdsInvalid()
 
         // when
         val items = remoteFeed.toItems()
@@ -49,7 +47,7 @@ class RemoteAlbumExtTest : BaseUnitTest() {
     @Test
     fun feedHasSomeEmptyItems_then_conversionToItemsIsCorrect() {
         // given
-        val remoteFeed = mockParser.getMockAlbumsFeedSomeItemsEmpty()
+        val remoteFeed = albumProvider.getMockAlbumsFeedSomeItemsEmpty()
 
         // when
         val items = remoteFeed.toItems()
@@ -62,7 +60,7 @@ class RemoteAlbumExtTest : BaseUnitTest() {
     @Test
     fun feedHasAllIdsAbsent_then_itemListIsEmpty() {
         // given
-        val remoteFeed = mockParser.getMockAlbumsFeedAllIdsInvalid()
+        val remoteFeed = albumProvider.getMockAlbumsFeedAllIdsInvalid()
 
         // when
         val items = remoteFeed.toItems()
@@ -74,7 +72,7 @@ class RemoteAlbumExtTest : BaseUnitTest() {
     @Test
     fun feedIsAnEmptyJson_then_itemListIsEmpty() {
         // given
-        val remoteFeed = mockParser.getMockAlbumsFeedEmptyJson()
+        val remoteFeed = albumProvider.getMockAlbumsFeedEmptyJson()
 
         // when
         val items = remoteFeed.toItems()

@@ -4,11 +4,9 @@ import androidx.lifecycle.Observer
 import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildAlbumsQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
-import com.example.musicbrainz.usecases.InteractorGetAlbums
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailVm
-import com.example.musicbrainz.reader.MockAlbumProvider
-import com.example.musicbrainz.reader.MockArtistProvider
 import com.example.musicbrainz.setup.BaseUnitTest
+import com.example.musicbrainz.usecases.InteractorGetAlbums
 import com.example.musicbrainz.util.result.AlbumsResult
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
@@ -24,11 +22,9 @@ abstract class DetailVmBaseTest : BaseUnitTest() {
     @MockK
     protected lateinit var mockObserverAlbums: Observer<AlbumsResult>
 
-    private val artistParser = MockArtistProvider(fileParser)
-    val mockSelectedArtist = artistParser.getMockArtist()
+    val mockSelectedArtist = artistProvider.getMockArtist()
 
-    private val albumParser = MockAlbumProvider(fileParser)
-    private val mockAlbums = albumParser.getMockAlbumsFromFeedWithAllItemsValid()
+    private val mockAlbums = albumProvider.getMockAlbumsFromFeedWithAllItemsValid()
     private val albumsSuccess = AlbumsResult.Success(mockAlbums)
     private val albumsError = AlbumsResult.Error(ERROR_MSG)
     private val internetOffError = AlbumsResult.Error(INTERNET_OFF_MSG)
