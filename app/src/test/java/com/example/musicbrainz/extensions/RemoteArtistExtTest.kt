@@ -81,8 +81,4 @@ class RemoteArtistExtTest : BaseUnitTest() {
         verifyListSizeForNoData(items, EXPECTED_NUM_ARTISTS_WHEN_NO_DATA)
     }
 
-    override fun initialiseClassUnderTest() {
-        // Do nothing
-    }
-
 }

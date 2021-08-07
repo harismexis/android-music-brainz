@@ -22,7 +22,7 @@ class InteractorGetAlbumsTest : BaseUnitTest() {
     private lateinit var subject: InteractorGetAlbums
     private var query = "query"
 
-    override fun initialiseClassUnderTest() {
+    override fun onDoBefore() {
         setupMocks()
         subject = InteractorGetAlbums(mockRepository)
     }

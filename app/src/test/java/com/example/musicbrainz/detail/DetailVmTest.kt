@@ -1,17 +1,11 @@
 package com.example.musicbrainz.detail
 
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
 class DetailVmTest : DetailVmBaseTest() {
-
-    @Before
-    fun doBeforeEachTest() {
-        initialiseLiveData()
-    }
 
     @Test
     fun albumsCallSuccessful_when_albumsRequested_then_resultSuccess() {

@@ -36,7 +36,12 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
         const val INTERNET_OFF_MSG = "please activate internet"
     }
 
-    override fun initialiseClassUnderTest() {
+    override fun onDoBefore() {
+        initClassUnderTest()
+        initialiseLiveData()
+    }
+
+    private fun initClassUnderTest() {
         subject = HomeVm(
             mockIrrSearchArtists,
             mockConnectivity,

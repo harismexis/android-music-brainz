@@ -22,7 +22,7 @@ class InteractorSearchArtistsTest : BaseUnitTest() {
     private lateinit var subject: InteractorSearchArtists
     private var query = "query"
 
-    override fun initialiseClassUnderTest() {
+    override fun onDoBefore() {
         setupMocks()
         subject = InteractorSearchArtists(mockRepository)
     }

@@ -15,11 +15,10 @@ abstract class BaseUnitTest : BaseTest() {
     @Before
     fun doBefore() {
         MockKAnnotations.init(this)
-        initialiseClassUnderTest()
+        onDoBefore()
     }
 
-    abstract fun initialiseClassUnderTest()
+    open fun onDoBefore() {}
 
     override fun getBaseFileReader(): BaseFileReader = UnitTestFileReader()
-
 }

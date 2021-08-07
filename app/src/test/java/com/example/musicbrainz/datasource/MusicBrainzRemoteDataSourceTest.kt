@@ -29,7 +29,7 @@ class MusicBrainzRemoteDataSourceTest : BaseUnitTest() {
 
     private lateinit var subject: MusicBrainzRemoteDataSource
 
-    override fun initialiseClassUnderTest() {
+    override fun onDoBefore() {
         subject = MusicBrainzRemoteDataSource(mockApi)
     }
 

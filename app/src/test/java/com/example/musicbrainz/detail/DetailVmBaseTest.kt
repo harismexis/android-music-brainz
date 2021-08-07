@@ -21,9 +21,7 @@ abstract class DetailVmBaseTest : BaseUnitTest() {
     protected lateinit var mockInteractorAlbums: InteractorGetAlbums
     @MockK
     protected lateinit var mockObserverAlbums: Observer<AlbumsResult>
-
-    val mockSelectedArtist = artistProvider.getMockArtist()
-
+    protected val mockSelectedArtist = artistProvider.getMockArtist()
     private val mockAlbums = albumProvider.getMockAlbumsFromFeedWithAllItemsValid()
     private val albumsSuccess = AlbumsResult.Success(mockAlbums)
     private val albumsError = AlbumsResult.Error(ERROR_MSG)
@@ -37,7 +35,12 @@ abstract class DetailVmBaseTest : BaseUnitTest() {
         const val INTERNET_OFF_MSG = "please activate internet"
     }
 
-    override fun initialiseClassUnderTest() {
+    override fun onDoBefore() {
+        initClassUnderTest()
+        initialiseLiveData()
+    }
+
+    private fun initClassUnderTest() {
         subject = DetailVm(
             mockInteractorAlbums,
             mockConnectivity,
