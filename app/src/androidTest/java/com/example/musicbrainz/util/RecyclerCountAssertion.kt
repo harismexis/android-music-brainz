@@ -1,4 +1,4 @@
-package com.example.musicbrainz.setup.util
+package com.example.musicbrainz.util
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

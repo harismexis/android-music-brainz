@@ -1,6 +1,6 @@
 package com.example.musicbrainz.config.application
 
-import com.example.musicbrainz.config.component.DaggerInstrumentedComponent
+import com.example.musicbrainz.config.di.component.DaggerInstrumentedComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 

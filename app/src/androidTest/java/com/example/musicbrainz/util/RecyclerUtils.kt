@@ -1,4 +1,4 @@
-package com.example.musicbrainz.setup.util
+package com.example.musicbrainz.util
 
 import androidx.annotation.IdRes
 import androidx.test.espresso.Espresso

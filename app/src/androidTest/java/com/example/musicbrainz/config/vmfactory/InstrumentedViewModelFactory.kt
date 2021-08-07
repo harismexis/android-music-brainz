@@ -1,11 +1,9 @@
-package com.example.musicbrainz.config.factory
+package com.example.musicbrainz.config.vmfactory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailViewModel
 import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeViewModel
-import dagger.Binds
-import dagger.Module
 import io.mockk.mockk
 import javax.inject.Inject
 import javax.inject.Provider
@@ -18,14 +16,6 @@ val mockDetailViewModel: DetailViewModel = mockk(relaxed = true)
 class InstrumentedViewModelFactory @Inject constructor() : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>) =
         getMockViewModelsMap()[modelClass]?.get() as T
-}
-
-@Module
-abstract class InstrumentedViewModelModule {
-
-    @Binds
-    internal abstract fun bindViewModelFactory(factory: InstrumentedViewModelFactory)
-            : ViewModelProvider.Factory
 }
 
 fun getMockViewModelsMap(): MutableMap<Class<out ViewModel>, Provider<ViewModel>> {
