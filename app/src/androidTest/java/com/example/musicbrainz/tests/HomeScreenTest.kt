@@ -112,7 +112,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
 
     private fun mockSearchResultSuccess() {
         artistsSuccess = ArtistsResult.Success(mockArtists)
-        every { mockHomeViewModel.artistsResult } returns mockArtistsResult
+        every { mockHomeViewModel.artists } returns mockArtistsResult
     }
 
     private fun launchActivityAndTriggerSearchResult() {

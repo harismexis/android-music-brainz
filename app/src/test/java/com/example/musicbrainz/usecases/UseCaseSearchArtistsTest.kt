@@ -13,18 +13,18 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-class InteractorSearchArtistsTest : BaseUnitTest() {
+class UseCaseSearchArtistsTest : BaseUnitTest() {
 
     @MockK
     private lateinit var mockRepository: MusicBrainzRemoteRepository
 
     private lateinit var mockItems: List<Artist>
-    private lateinit var subject: InteractorSearchArtists
+    private lateinit var subject: UseCaseSearchArtists
     private var query = "query"
 
     override fun onDoBefore() {
         setupMocks()
-        subject = InteractorSearchArtists(mockRepository)
+        subject = UseCaseSearchArtists(mockRepository)
     }
 
     private fun setupMocks() {

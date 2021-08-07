@@ -3,7 +3,9 @@ package com.example.musicbrainz.framework.util.resource
 import android.content.Context
 import androidx.annotation.StringRes
 import com.example.musicbrainz.R
+import javax.inject.Singleton
 
+@Singleton
 class ResourceProvider(context: Context) {
 
     private val appContext = context.applicationContext

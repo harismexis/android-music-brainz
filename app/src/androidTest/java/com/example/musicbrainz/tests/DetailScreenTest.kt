@@ -54,7 +54,7 @@ class DetailScreenTest : BaseInstrumentedTest() {
     private val numOfDetailHeaders = DetailAdapter.Companion.NUM_OF_HEADERS
 
     init {
-        every { mockHomeViewModel.artistsResult } returns mockArtistsResult
+        every { mockHomeViewModel.artists } returns mockArtistsResult
         every { mockDetailViewModel.fetchAlbums() } just runs
         every { mockDetailViewModel.hasSelectedArtist() } returns true
         every { mockDetailViewModel.selectedArtist } returns mockArtists[clickIndexOnSearchList]
@@ -127,7 +127,7 @@ class DetailScreenTest : BaseInstrumentedTest() {
 
     private fun mockAlbumsResultSuccess() {
         albumsSuccess = AlbumsResult.Success(mockAlbums)
-        every { mockDetailViewModel.albumsResult } returns mockAlbumsResult
+        every { mockDetailViewModel.albums } returns mockAlbumsResult
     }
 
     private fun openSearchAndClickFirstItemAndLoadAlbums() {

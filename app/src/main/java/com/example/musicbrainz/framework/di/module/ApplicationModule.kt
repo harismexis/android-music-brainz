@@ -15,8 +15,8 @@ class ApplicationModule {
     }
 
     @Provides
-    fun provideResourceProvider(context: Context): ResourceProvider {
-        return ResourceProvider(context.applicationContext)
+    fun provideResourceProvider(app: MainApplication): ResourceProvider {
+        return ResourceProvider(app.applicationContext)
     }
 
 }

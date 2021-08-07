@@ -6,7 +6,7 @@ import com.example.musicbrainz.framework.util.buildSearchQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeVm
 import com.example.musicbrainz.setup.BaseUnitTest
-import com.example.musicbrainz.usecases.InteractorSearchArtists
+import com.example.musicbrainz.usecases.UseCaseSearchArtists
 import com.example.musicbrainz.util.result.ArtistsResult
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
@@ -14,7 +14,7 @@ import io.mockk.impl.annotations.MockK
 abstract class HomeVmBaseTest : BaseUnitTest() {
 
     @MockK
-    protected lateinit var mockIrrSearchArtists: InteractorSearchArtists
+    protected lateinit var mockIrrSearchArtists: UseCaseSearchArtists
     @MockK
     protected lateinit var mockConnectivity: ConnectivityMonitor
     @MockK
@@ -72,7 +72,7 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
     }
 
     protected fun initialiseLiveData() {
-        subject.artistsResult.observeForever(mockObserverArtists)
+        subject.artists.observeForever(mockObserverArtists)
     }
 
     protected fun verifySearchResultSuccess() {

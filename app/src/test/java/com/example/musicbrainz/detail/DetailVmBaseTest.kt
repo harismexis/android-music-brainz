@@ -6,7 +6,7 @@ import com.example.musicbrainz.framework.util.buildAlbumsQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailVm
 import com.example.musicbrainz.setup.BaseUnitTest
-import com.example.musicbrainz.usecases.InteractorGetAlbums
+import com.example.musicbrainz.usecases.UseCaseGetAlbums
 import com.example.musicbrainz.util.result.AlbumsResult
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
@@ -18,7 +18,7 @@ abstract class DetailVmBaseTest : BaseUnitTest() {
     @MockK
     protected lateinit var mockResourceProvider: ResourceProvider
     @MockK
-    protected lateinit var mockInteractorAlbums: InteractorGetAlbums
+    protected lateinit var mockUseCaseAlbums: UseCaseGetAlbums
     @MockK
     protected lateinit var mockObserverAlbums: Observer<AlbumsResult>
     protected val mockSelectedArtist = artistProvider.getMockArtist()
@@ -42,7 +42,7 @@ abstract class DetailVmBaseTest : BaseUnitTest() {
 
     private fun initClassUnderTest() {
         subject = DetailVm(
-            mockInteractorAlbums,
+            mockUseCaseAlbums,
             mockConnectivity,
             mockResourceProvider
         )
@@ -51,23 +51,23 @@ abstract class DetailVmBaseTest : BaseUnitTest() {
     }
 
     protected fun initialiseLiveData() {
-        subject.albumsResult.observeForever(mockObserverAlbums)
+        subject.albums.observeForever(mockObserverAlbums)
     }
 
     protected fun mockAlbumsCall() {
-        coEvery { mockInteractorAlbums(albumsQuery) } returns mockAlbums
+        coEvery { mockUseCaseAlbums(albumsQuery) } returns mockAlbums
     }
 
     protected fun mockAlbumsCallThrows() {
-        coEvery { mockInteractorAlbums(albumsQuery) } throws error
+        coEvery { mockUseCaseAlbums(albumsQuery) } throws error
     }
 
     protected fun verifyAlbumsCallDone() {
-        coVerify(exactly = 1) { mockInteractorAlbums(albumsQuery) }
+        coVerify(exactly = 1) { mockUseCaseAlbums(albumsQuery) }
     }
 
     protected fun verifyAlbumsCallNotDone() {
-        coVerify(exactly = 0) { mockInteractorAlbums(any()) }
+        coVerify(exactly = 0) { mockUseCaseAlbums(any()) }
     }
 
     protected fun verifyResultAlbumsCallSuccess() {

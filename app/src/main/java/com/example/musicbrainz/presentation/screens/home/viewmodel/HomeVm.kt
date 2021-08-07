@@ -9,14 +9,14 @@ import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildSearchQuery
 import com.example.musicbrainz.framework.util.extensions.getErrorMessage
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
-import com.example.musicbrainz.usecases.InteractorSearchArtists
+import com.example.musicbrainz.usecases.UseCaseSearchArtists
 import com.example.musicbrainz.util.event.Event
 import com.example.musicbrainz.util.result.ArtistsResult
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeVm @Inject constructor(
-    private val irrSearchArtists: InteractorSearchArtists,
+    private val searchArtists: UseCaseSearchArtists,
     private val connectivity: ConnectivityMonitor,
     private val resProvider: ResourceProvider
 ) : ViewModel() {
@@ -25,9 +25,9 @@ class HomeVm @Inject constructor(
         val TAG = HomeVm::class.qualifiedName
     }
 
-    private val mArtistsResult = MutableLiveData<ArtistsResult>()
-    val artistsResult: LiveData<ArtistsResult>
-        get() = mArtistsResult
+    private val mArtists = MutableLiveData<ArtistsResult>()
+    val artists: LiveData<ArtistsResult>
+        get() = mArtists
 
     private val mShowMsg = MutableLiveData<Event<String>>()
     val showMsg: LiveData<Event<String>>
@@ -46,11 +46,11 @@ class HomeVm @Inject constructor(
     private fun fetchArtists(query: String) {
         viewModelScope.launch {
             try {
-                val items = irrSearchArtists(query)
-                mArtistsResult.value = ArtistsResult.Success(items)
+                val items = searchArtists(query)
+                mArtists.value = ArtistsResult.Success(items)
             } catch (e: Exception) {
                 Log.d(TAG, e.getErrorMessage())
-                mArtistsResult.value = ArtistsResult.Error(e)
+                mArtists.value = ArtistsResult.Error(e)
                 mShowMsg.value = Event(e.getErrorMessage())
             }
         }

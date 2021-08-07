@@ -57,7 +57,7 @@ class HomeFragment : BaseFragment(), ArtistViewHolder.ArtistClickListener,
     }
 
     override fun observeLiveData() {
-        viewModel.artistsResult.observe(viewLifecycleOwner, {
+        viewModel.artists.observe(viewLifecycleOwner, {
             when (it) {
                 is ArtistsResult.Success -> populate(it.items)
                 is ArtistsResult.Error -> populateError(it.error)

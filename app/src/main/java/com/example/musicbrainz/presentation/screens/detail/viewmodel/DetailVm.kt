@@ -10,14 +10,14 @@ import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildAlbumsQuery
 import com.example.musicbrainz.framework.util.extensions.getErrorMessage
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
-import com.example.musicbrainz.usecases.InteractorGetAlbums
+import com.example.musicbrainz.usecases.UseCaseGetAlbums
 import com.example.musicbrainz.util.event.Event
 import com.example.musicbrainz.util.result.AlbumsResult
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class DetailVm @Inject constructor(
-    private val irrGetAlbums: InteractorGetAlbums,
+    private val getAlbums: UseCaseGetAlbums,
     private val connectivity: ConnectivityMonitor,
     private val resProvider: ResourceProvider
 ) : ViewModel() {
@@ -26,9 +26,9 @@ class DetailVm @Inject constructor(
         val TAG = DetailVm::class.qualifiedName
     }
 
-    private val mAlbumsResult = MutableLiveData<AlbumsResult>()
-    val albumsResult: LiveData<AlbumsResult>
-        get() = mAlbumsResult
+    private val mAlbums = MutableLiveData<AlbumsResult>()
+    val albums: LiveData<AlbumsResult>
+        get() = mAlbums
 
     private val mShowMsg = MutableLiveData<Event<String>>()
     val showMsg: LiveData<Event<String>>
@@ -48,11 +48,11 @@ class DetailVm @Inject constructor(
     private fun fetchAlbums(query: String) {
         viewModelScope.launch {
             try {
-                val items = irrGetAlbums(query)
-                mAlbumsResult.value = AlbumsResult.Success(items)
+                val items = getAlbums(query)
+                mAlbums.value = AlbumsResult.Success(items)
             } catch (e: Exception) {
                 Log.d(TAG, e.getErrorMessage())
-                mAlbumsResult.value = AlbumsResult.Error(e)
+                mAlbums.value = AlbumsResult.Error(e)
                 mShowMsg.value = Event(e.getErrorMessage())
             }
         }

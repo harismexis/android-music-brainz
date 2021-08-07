@@ -16,7 +16,9 @@ import javax.inject.Singleton
         ViewModelModule::class,
         ApplicationModule::class,
         MusicBrainzApiModule::class,
-        InteractorModule::class
+        UseCaseModule::class,
+        RepositoryModule::class,
+        DatasourceModule::class
     ]
 )
 interface MainComponent : AndroidInjector<MainApplication> {
