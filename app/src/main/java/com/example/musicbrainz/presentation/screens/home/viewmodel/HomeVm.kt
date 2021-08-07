@@ -9,19 +9,19 @@ import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildSearchQuery
 import com.example.musicbrainz.framework.util.extensions.getErrorMessage
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
-import com.example.musicbrainz.interactors.InteractorSearchArtists
+import com.example.musicbrainz.usecases.InteractorSearchArtists
 import com.example.musicbrainz.util.event.Event
 import com.example.musicbrainz.util.result.ArtistsResult
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(
+class HomeVm @Inject constructor(
     private val irrSearchArtists: InteractorSearchArtists,
     private val connectivity: ConnectivityMonitor,
     private val resProvider: ResourceProvider
 ) : ViewModel() {
 
-    private val TAG = HomeViewModel::class.qualifiedName
+    private val TAG = HomeVm::class.qualifiedName
 
     private val mArtistsResult = MutableLiveData<ArtistsResult>()
     val artistsResult: LiveData<ArtistsResult>

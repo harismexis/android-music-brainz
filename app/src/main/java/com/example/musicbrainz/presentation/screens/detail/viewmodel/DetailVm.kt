@@ -6,22 +6,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.framework.util.extensions.getErrorMessage
-import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildAlbumsQuery
-import com.example.musicbrainz.interactors.InteractorGetAlbums
+import com.example.musicbrainz.framework.util.extensions.getErrorMessage
+import com.example.musicbrainz.framework.util.resource.ResourceProvider
+import com.example.musicbrainz.usecases.InteractorGetAlbums
 import com.example.musicbrainz.util.result.AlbumsResult
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class DetailViewModel @Inject constructor(
+class DetailVm @Inject constructor(
     private val irrGetAlbums: InteractorGetAlbums,
     private val connectivity: ConnectivityMonitor,
     private val resProvider: ResourceProvider
 ) : ViewModel() {
 
-    private val TAG = DetailViewModel::class.qualifiedName
+    private val TAG = DetailVm::class.qualifiedName
 
     private val mAlbumsResult = MutableLiveData<AlbumsResult>()
     val albumsResult: LiveData<AlbumsResult>

@@ -4,15 +4,15 @@ import androidx.lifecycle.Observer
 import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildSearchQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
-import com.example.musicbrainz.interactors.InteractorSearchArtists
-import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeViewModel
+import com.example.musicbrainz.usecases.InteractorSearchArtists
+import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeVm
 import com.example.musicbrainz.reader.MockArtistProvider
 import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.util.result.ArtistsResult
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 
-abstract class HomeViewModelTestSetup : BaseUnitTest() {
+abstract class HomeVmBaseTest : BaseUnitTest() {
 
     @MockK
     protected lateinit var mockIrrSearchArtists: InteractorSearchArtists
@@ -31,7 +31,7 @@ abstract class HomeViewModelTestSetup : BaseUnitTest() {
     private val searchArtistInput = "Rory Gallagher"
     private val searchQuery = buildSearchQuery(searchArtistInput)
 
-    protected lateinit var subject: HomeViewModel
+    protected lateinit var subject: HomeVm
 
     companion object {
         const val ERROR_MSG = "error"
@@ -39,7 +39,7 @@ abstract class HomeViewModelTestSetup : BaseUnitTest() {
     }
 
     override fun initialiseClassUnderTest() {
-        subject = HomeViewModel(
+        subject = HomeVm(
             mockIrrSearchArtists,
             mockConnectivity,
             mockResourceProvider

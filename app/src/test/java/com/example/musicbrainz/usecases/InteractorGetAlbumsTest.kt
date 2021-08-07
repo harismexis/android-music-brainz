@@ -1,8 +1,8 @@
-package com.example.musicbrainz.interactors
+package com.example.musicbrainz.usecases
 
 import com.example.musicbrainz.data.MusicBrainzRemoteRepository
-import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.reader.MockArtistProvider
+import com.example.musicbrainz.domain.Album
+import com.example.musicbrainz.reader.MockAlbumProvider
 import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.util.verifyListsHaveSameSize
 import io.mockk.coEvery
@@ -14,14 +14,14 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-class InteractorSearchArtistsTest : BaseUnitTest() {
+class InteractorGetAlbumsTest : BaseUnitTest() {
 
     @MockK
     private lateinit var mockRepository: MusicBrainzRemoteRepository
 
-    private val mockParser = MockArtistProvider(fileParser)
-    private lateinit var mockItems: List<Artist>
-    private lateinit var subject: InteractorSearchArtists
+    private val mockParser = MockAlbumProvider(fileParser)
+    private lateinit var mockItems: List<Album>
+    private lateinit var subject: InteractorGetAlbums
     private var query = "query"
 
     init {
@@ -30,24 +30,24 @@ class InteractorSearchArtistsTest : BaseUnitTest() {
 
     override fun initialiseClassUnderTest() {
         setupMocks()
-        subject = InteractorSearchArtists(mockRepository)
+        subject = InteractorGetAlbums(mockRepository)
     }
 
     private fun setupMocks() {
-        mockItems = mockParser.getMockArtistsFromFeedWithAllItemsValid()
-        coEvery { mockRepository.getArtists(query) } returns mockItems
+        mockItems = mockParser.getMockAlbumsFromFeedWithAllItemsValid()
+        coEvery { mockRepository.getAlbums(query) } returns mockItems
     }
 
     @Test
     fun interactorInvoked_then_repositoryCallsExpectedMethodWithExpectedArgs() {
         // when
-        lateinit var items: List<Artist>
+        lateinit var items: List<Album>
         runBlocking {
             items = subject.invoke(query)
         }
 
         // then
-        coVerify(exactly = 1) { mockRepository.getArtists(query) }
+        coVerify(exactly = 1) { mockRepository.getAlbums(query) }
         verifyListsHaveSameSize(mockItems, items)
     }
 

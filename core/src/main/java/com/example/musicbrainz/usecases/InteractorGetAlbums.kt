@@ -1,4 +1,4 @@
-package com.example.musicbrainz.interactors
+package com.example.musicbrainz.usecases
 
 import com.example.musicbrainz.data.MusicBrainzRemoteRepository
 

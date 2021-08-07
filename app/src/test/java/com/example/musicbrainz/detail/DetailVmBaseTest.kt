@@ -4,8 +4,8 @@ import androidx.lifecycle.Observer
 import com.example.musicbrainz.framework.util.ConnectivityMonitor
 import com.example.musicbrainz.framework.util.buildAlbumsQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
-import com.example.musicbrainz.interactors.InteractorGetAlbums
-import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailViewModel
+import com.example.musicbrainz.usecases.InteractorGetAlbums
+import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailVm
 import com.example.musicbrainz.reader.MockAlbumProvider
 import com.example.musicbrainz.reader.MockArtistProvider
 import com.example.musicbrainz.setup.BaseUnitTest
@@ -13,7 +13,7 @@ import com.example.musicbrainz.util.result.AlbumsResult
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 
-abstract class DetailViewModelTestSetup : BaseUnitTest() {
+abstract class DetailVmBaseTest : BaseUnitTest() {
 
     @MockK
     protected lateinit var mockConnectivity: ConnectivityMonitor
@@ -34,7 +34,7 @@ abstract class DetailViewModelTestSetup : BaseUnitTest() {
     private val internetOffError = AlbumsResult.Error(INTERNET_OFF_MSG)
     private val albumsQuery = buildAlbumsQuery(mockSelectedArtist.id)
 
-    protected lateinit var subject: DetailViewModel
+    protected lateinit var subject: DetailVm
 
     companion object {
         const val ERROR_MSG = "error"
@@ -42,7 +42,7 @@ abstract class DetailViewModelTestSetup : BaseUnitTest() {
     }
 
     override fun initialiseClassUnderTest() {
-        subject = DetailViewModel(
+        subject = DetailVm(
             mockInteractorAlbums,
             mockConnectivity,
             mockResourceProvider

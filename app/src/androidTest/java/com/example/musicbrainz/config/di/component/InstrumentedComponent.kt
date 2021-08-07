@@ -1,7 +1,7 @@
 package com.example.musicbrainz.config.di.component
 
 import com.example.musicbrainz.config.application.InstrumentedApplication
-import com.example.musicbrainz.config.di.module.InstrumentedViewModelModule
+import com.example.musicbrainz.config.di.module.InstrumentedVmModule
 import com.example.musicbrainz.framework.di.module.FragmentBindingsModule
 import dagger.BindsInstance
 import dagger.Component
@@ -14,7 +14,7 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         FragmentBindingsModule::class,
-        InstrumentedViewModelModule::class,
+        InstrumentedVmModule::class,
     ]
 )
 interface InstrumentedComponent : AndroidInjector<InstrumentedApplication> {

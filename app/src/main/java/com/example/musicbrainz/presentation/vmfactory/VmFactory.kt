@@ -7,7 +7,7 @@ import javax.inject.Provider
 import javax.inject.Singleton
 
 @Singleton
-class ViewModelFactory @Inject constructor(
+class VmFactory @Inject constructor(
     private val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")

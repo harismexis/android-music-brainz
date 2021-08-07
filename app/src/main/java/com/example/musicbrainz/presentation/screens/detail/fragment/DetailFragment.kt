@@ -18,7 +18,7 @@ import com.example.musicbrainz.framework.util.extensions.toArtist
 import com.example.musicbrainz.framework.util.parcelable.ArtistParcel
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailModel
-import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailViewModel
+import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailVm
 import com.example.musicbrainz.util.result.AlbumsResult
 
 class DetailFragment : BaseFragment() {
@@ -27,7 +27,7 @@ class DetailFragment : BaseFragment() {
         private const val ARG_SELECTED_ARTIST = "selected_artist"
     }
 
-    private val viewModel: DetailViewModel by viewModels { viewModelFactory }
+    private val viewModel: DetailVm by viewModels { viewModelFactory }
     private var binding: FragmentDetailBinding? = null
     private lateinit var adapter: DetailAdapter
     private var detailModels: MutableList<DetailModel> = mutableListOf()
