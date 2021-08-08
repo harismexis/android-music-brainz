@@ -15,6 +15,7 @@
 
     <style name="ToolbarText" parent="BaseTxtv">
         <item name="android:textSize">@dimen/toolbar_text_size</item>
+        <item name="android:maxLines">1</item>
     </style>
 
     <style name="AppToolbar">

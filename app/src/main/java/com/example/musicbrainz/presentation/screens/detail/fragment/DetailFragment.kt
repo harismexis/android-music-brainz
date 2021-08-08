@@ -1,5 +1,6 @@
 package com.example.musicbrainz.presentation.screens.detail.fragment
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,11 @@ class DetailFragment : BaseInjectedFragment() {
     private lateinit var adapter: DetailAdapter
     private var detailModels: MutableList<DetailModel> = mutableListOf()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retrieveArtistFromArgs()
+    }
+
     override fun initialiseViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -44,7 +50,6 @@ class DetailFragment : BaseInjectedFragment() {
     }
 
     override fun onViewCreated() {
-        retrieveArtistFromArgs()
         if (viewModel.hasSelectedArtist()) {
             initialiseRecycler()
             observeLiveData()
@@ -92,8 +97,7 @@ class DetailFragment : BaseInjectedFragment() {
     }
 
     private fun populateError(error: Exception) {
-        // we call populate with empty album list to
-        // show artist details only
+        // populate with empty album list to show only artist details
         populate(ArrayList())
     }
 
@@ -111,6 +115,7 @@ class DetailFragment : BaseInjectedFragment() {
             it.setupWithNavController(navController, appBarConf)
             it.setNavigationIcon(R.drawable.ic_arrow_left_white_rounded_24dp)
         }
+        binding?.toolbarTitle?.text = viewModel.artist.name
     }
 
     override fun onDestroyView() {
