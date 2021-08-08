@@ -47,7 +47,7 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
     }
 
     protected fun triggerSearchArtist() {
-        subject.searchQuery = searchQuery
+        subject.search(searchQuery)
     }
 
     protected fun mockSearchCall() {

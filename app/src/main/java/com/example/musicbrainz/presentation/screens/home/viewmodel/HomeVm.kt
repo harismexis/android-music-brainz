@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.musicbrainz.framework.util.extensions.getErrorMessage
-import com.example.musicbrainz.framework.util.formatArtistsQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.presentation.base.BaseVm
 import com.example.musicbrainz.usecases.UseCaseSearchArtists
@@ -26,17 +25,16 @@ class HomeVm @Inject constructor(
     val artists: LiveData<ArtistsResult>
         get() = mArtists
 
-    var searchQuery: String? = null
-        set(value) {
-            field = value
-            value?.let {
-                if (!value.isNullOrBlank()) {
-                    fetchArtists(formatArtistsQuery(value))
-                }
-            }
-        }
+    private var searchQuery: String? = null
 
-    private fun fetchArtists(query: String) {
+    fun search(query: String) {
+        searchQuery = query
+        searchQuery?.let {
+            executeSearch(it)
+        }
+    }
+
+    private fun executeSearch(query: String) {
         viewModelScope.launch {
             try {
                 val items = searchArtists(query)

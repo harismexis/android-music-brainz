@@ -16,7 +16,7 @@ import androidx.test.rule.ActivityTestRule
 import com.example.musicbrainz.R
 import com.example.musicbrainz.base.BaseInstrumentedTest
 import com.example.musicbrainz.config.vmfactory.mockDetailViewModel
-import com.example.musicbrainz.config.vmfactory.mockHomeViewModel
+import com.example.musicbrainz.config.vmfactory.mockHomeVm
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.framework.util.extensions.tagString
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
@@ -54,7 +54,7 @@ class DetailScreenTest : BaseInstrumentedTest() {
     private val numOfDetailHeaders = DetailAdapter.Companion.NUM_OF_HEADERS
 
     init {
-        every { mockHomeViewModel.artists } returns mockArtistsResult
+        every { mockHomeVm.artists } returns mockArtistsResult
         every { mockDetailViewModel.fetchAlbums() } just runs
         every { mockDetailViewModel.hasSelectedArtist() } returns true
         every { mockDetailViewModel.artist } returns mockArtists[clickIndexOnSearchList]

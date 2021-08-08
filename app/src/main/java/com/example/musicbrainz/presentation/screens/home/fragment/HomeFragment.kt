@@ -98,11 +98,15 @@ class HomeFragment : BaseInjectedFragment(),
         findNavController().navigate(action)
     }
 
+    private fun doBeforeSearch() {
+        binding?.noResults?.visibility = View.GONE
+        showProgress(true)
+    }
+
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (!query.isNullOrBlank()) {
-            binding?.noResults?.visibility = View.GONE
-            showProgress(true)
-            viewModel.searchQuery = query
+            doBeforeSearch()
+            viewModel.search(query)
         }
         return false
     }
