@@ -7,9 +7,8 @@ Details Screen where the user can see information for the selected Artist and th
 
 ### Technologies:
 
-The project is written in Kotlin with Clean Architecture + MVVM and uses JetPack 
-i.e. Navigation, Coroutines, LiveData, ViewModel. Also some libraries have been used
-i.e. Retrofit, Gson, Dagger, Mockk, Espresso.
+Kotlin, Clean Architecture + MVVM ,JetPack, Navigation, Coroutines, LiveData, ViewModel, 
+Retrofit, Gson, Dagger, MockK, Espresso.
 
 ### Tests:
 
@@ -18,11 +17,7 @@ The project contains Unit Tests and Instrumented Tests.
 ### Screenshots:
 
 #### Home
-![Alt text](screenshots/search-screen-1.png?raw=true "app screenshot")
-
-![Alt text](screenshots/search-screen-2.png?raw=true "app screenshot")
+![Alt text](screenshots/home.png?raw=true "app screenshot")
 
 #### Details
-![Alt text](screenshots/details-screen-1.png?raw=true "app screenshot")
-
-![Alt text](screenshots/details-screen-2.png?raw=true "app screenshot")
+![Alt text](screenshots/details.png?raw=true "app screenshot")
