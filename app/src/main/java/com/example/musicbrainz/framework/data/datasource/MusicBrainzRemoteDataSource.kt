@@ -1,4 +1,4 @@
-package com.example.musicbrainz.framework.data.data
+package com.example.musicbrainz.framework.data.datasource
 
 import com.example.musicbrainz.data.MusicBrainzBaseRemoteDataSource
 import com.example.musicbrainz.domain.Album

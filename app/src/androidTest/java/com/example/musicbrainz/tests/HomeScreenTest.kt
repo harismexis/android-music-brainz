@@ -15,17 +15,17 @@ import com.example.musicbrainz.R
 import com.example.musicbrainz.base.BaseInstrumentedTest
 import com.example.musicbrainz.config.vmfactory.mockHomeViewModel
 import com.example.musicbrainz.domain.Artist
+import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID
-import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_NO_DATA
 import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY
 import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID
-import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.util.RecyclerCountAssertion
 import com.example.musicbrainz.util.getExpectedText
 import com.example.musicbrainz.util.getStringRes
 import com.example.musicbrainz.util.result.ArtistsResult
 import com.example.musicbrainz.util.verifyRecyclerItemAt
 import io.mockk.every
+import org.hamcrest.CoreMatchers
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
@@ -46,7 +46,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
     private lateinit var artistsSuccess: ArtistsResult.Success
 
     @Test
-    fun artistsFeedHasAllItemsValid_then_listShowsExpectedItems() {
+    fun artistsResponseHasAllItemsValid_then_listShowsExpectedItems() {
         // given
         mockArtists = artistProvider.getMockArtistsFromFeedWithAllItemsValid()
         mockSearchResultSuccess()
@@ -59,7 +59,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
     }
 
     @Test
-    fun remoteFeedHasSomeInvalidIds_listShowsExpectedItems() {
+    fun artistsResponseHasSomeInvalidIds_listShowsExpectedItems() {
         // given
         mockArtists = artistProvider.getMockArtistsFromFeedWithSomeIdsInvalid()
         mockSearchResultSuccess()
@@ -72,7 +72,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
     }
 
     @Test
-    fun remoteFeedHasSomeEmptyArtistJsonItems_listHasExpectedNumberOfItems() {
+    fun artistsResponseHasSomeEmptyItems_listHasExpectedNumberOfItems() {
         // given
         mockArtists = artistProvider.getMockArtistsFromFeedWithSomeItemsEmpty()
         mockSearchResultSuccess()
@@ -85,7 +85,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
     }
 
     @Test
-    fun remoteFeedHasAllIdsInvalid_listShowsNoItems() {
+    fun artistsResponseHasAllIdsInvalid_listShowsNoItems() {
         // given
         mockArtists = artistProvider.getMockArtistsFromFeedWithAllIdsInvalid()
         mockSearchResultSuccess()
@@ -94,11 +94,11 @@ class HomeScreenTest : BaseInstrumentedTest() {
         launchActivityAndTriggerSearchResult()
 
         // then
-        verifyRecycler(EXPECTED_NUM_ARTISTS_WHEN_NO_DATA)
+        verifyRecyclerEmpty()
     }
 
     @Test
-    fun remoteFeedIsEmptyJson_listShowsNoItems() {
+    fun artistsResponseIsEmptyJson_listShowsNoItems() {
         // given
         mockArtists = artistProvider.getMockArtistsFromFeedWithEmptyJson()
         mockSearchResultSuccess()
@@ -107,7 +107,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
         launchActivityAndTriggerSearchResult()
 
         // then
-        verifyRecycler(EXPECTED_NUM_ARTISTS_WHEN_NO_DATA)
+        verifyRecyclerEmpty()
     }
 
     private fun mockSearchResultSuccess() {
@@ -122,32 +122,65 @@ class HomeScreenTest : BaseInstrumentedTest() {
         }
     }
 
-    private fun verifyRecycler(expectedNumberOfItems: Int) {
-        onView(withId(R.id.artist_list)).check(matches(isDisplayed()))
+    private fun verifyRecyclerEmpty() {
+        verifyRecycler(0)
+    }
+
+    private fun verifyRecycler(expectedNumItems: Int) {
+        if (expectedNumItems == 0) {
+            verifyNoResultsVisible(true)
+            verifyRecyclerVisible(false)
+        } else {
+            verifyNoResultsVisible(false)
+            verifyRecyclerVisible(true)
+        }
+        verifyRecyclerData(expectedNumItems)
+    }
+
+    private fun verifyRecyclerVisible(
+        visible: Boolean
+    ) {
+        verifyViewVisible(R.id.artist_list, visible)
+    }
+
+    private fun verifyNoResultsVisible(
+        visible: Boolean
+    ) {
+        verifyViewVisible(R.id.no_results, visible)
+    }
+
+    private fun verifyViewVisible(
+        @IdRes id: Int,
+        visible: Boolean
+    ) {
+        if (visible)
+            onView(withId(id)).check(matches(isDisplayed()))
+        else
+            onView(withId(id)).check(matches(CoreMatchers.not(isDisplayed())))
+    }
+
+    private fun verifyRecyclerData(
+        expectedNumberOfItems: Int
+    ) {
         verifyRecyclerCount(expectedNumberOfItems)
-        verifyRecyclerData()
+        verifyRecyclerRows()
     }
 
     private fun verifyRecyclerCount(expectedNumberOfItems: Int) {
-        // Checking if the mock result success has correct number of items
+        // Checking also if the mock result success has expected number of items
         Assert.assertEquals(artistsSuccess.items.size, expectedNumberOfItems)
-        // Checking if recycler has correct number of items
+        // Checking if recycler has expected number of items
         onView(withId(R.id.artist_list)).check(RecyclerCountAssertion(expectedNumberOfItems))
     }
 
-    private fun verifyRecyclerData() {
+    private fun verifyRecyclerRows() {
         mockArtists.forEachIndexed { index, artist ->
-
             onView(withId(R.id.artist_list)).perform(scrollToPosition<RecyclerView.ViewHolder>(index))
-
             verifyRecyclerValue(index, R.id.txt_name, artist.name)
-
             verifyRecyclerLabel(index, R.id.txt_type_label, R.string.artist_type_label)
             verifyRecyclerValue(index, R.id.txt_type, artist.type)
-
             verifyRecyclerLabel(index, R.id.txt_country_label, R.string.artist_country_label)
             verifyRecyclerValue(index, R.id.txt_country, artist.country)
-
             verifyRecyclerLabel(index, R.id.txt_score_label, R.string.artist_score_label)
             verifyRecyclerValue(index, R.id.txt_score, artist.score.toString())
         }

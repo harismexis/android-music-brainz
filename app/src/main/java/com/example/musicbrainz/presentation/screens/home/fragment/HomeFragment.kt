@@ -70,10 +70,17 @@ class HomeFragment : BaseInjectedFragment(),
         })
     }
 
-    private fun populate(models: List<Artist>) {
+    private fun populate(items: List<Artist>) {
         showProgress(false)
+        binding?.let {
+            val hasItems = items.isNotEmpty()
+            val recyclerVisib = if (hasItems) View.VISIBLE else View.GONE
+            val emptyViewVisib = if (hasItems) View.GONE else View.VISIBLE
+            it.artistList.visibility = recyclerVisib
+            it.noResults.visibility = emptyViewVisib
+        }
         uiModels.clear()
-        uiModels.addAll(models)
+        uiModels.addAll(items)
         adapter.notifyDataSetChanged()
     }
 

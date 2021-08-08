@@ -3,7 +3,7 @@ package com.example.musicbrainz.datasource
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.data.api.MusicBrainzApi
-import com.example.musicbrainz.framework.data.data.MusicBrainzRemoteDataSource
+import com.example.musicbrainz.framework.data.datasource.MusicBrainzRemoteDataSource
 import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.util.AlbumVerificator
 import com.example.musicbrainz.util.ArtistVerificator
