@@ -1,6 +1,7 @@
 package com.example.musicbrainz.home
 
 import androidx.lifecycle.Observer
+import androidx.lifecycle.SavedStateHandle
 import com.example.musicbrainz.framework.util.formatArtistsQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeVm
@@ -18,6 +19,8 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
     protected lateinit var mockObserverArtists: Observer<ArtistsResult>
     @MockK
     protected lateinit var mockResourceProvider: ResourceProvider
+    @MockK
+    protected lateinit var mockStateHandle: SavedStateHandle
     private val artists = artistProvider.getMockArtistsFromFeedWithAllItemsValid()
     private val artistsSuccess = ArtistsResult.Success(artists)
     private val error = Exception(ERROR_MSG)
@@ -40,7 +43,8 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
     private fun initClassUnderTest() {
         subject = HomeVm(
             mockIrrSearchArtists,
-            mockResourceProvider
+            mockResourceProvider,
+            mockStateHandle
         )
         every { mockResourceProvider.getInternetOffMsg() } returns INTERNET_OFF_MSG
         every { mockObserverArtists.onChanged(any()) } just runs

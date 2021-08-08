@@ -12,17 +12,26 @@ import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.util.extensions.setDivider
 import com.example.musicbrainz.framework.util.extensions.showSnackBar
 import com.example.musicbrainz.framework.util.observer.EventObserver
-import com.example.musicbrainz.presentation.base.BaseInjectedFragment
+import com.example.musicbrainz.presentation.base.BaseDIFragment
 import com.example.musicbrainz.presentation.screens.home.adapter.ArtistAdapter
 import com.example.musicbrainz.presentation.screens.home.viewholder.ArtistViewHolder
 import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeVm
+import com.example.musicbrainz.presentation.vmfactory.assisted.StateVmFactory
+import com.example.musicbrainz.presentation.vmfactory.assisted.VmAssistedFactory
 import com.example.musicbrainz.util.result.ArtistsResult
+import javax.inject.Inject
 
-class HomeFragment : BaseInjectedFragment(),
+class HomeFragment : BaseDIFragment(),
     ArtistViewHolder.ArtistClickListener,
     android.widget.SearchView.OnQueryTextListener {
 
-    private val viewModel: HomeVm by viewModels { vmFactory }
+    @Inject
+    internal lateinit var vmFactory: VmAssistedFactory<HomeVm>
+
+    private val viewModel: HomeVm by viewModels {
+        StateVmFactory(vmFactory, this)
+    }
+
     private var binding: FragmentHomeBinding? = null
     private lateinit var adapter: ArtistAdapter
     private var uiModels: MutableList<Artist> = mutableListOf()

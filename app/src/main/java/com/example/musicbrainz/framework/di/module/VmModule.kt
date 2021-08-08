@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailVm
 import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeVm
 import com.example.musicbrainz.presentation.vmfactory.VmFactory
+import com.example.musicbrainz.presentation.vmfactory.assisted.HomeVmFactory
+import com.example.musicbrainz.presentation.vmfactory.assisted.VmAssistedFactory
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
@@ -24,12 +26,10 @@ internal annotation class ViewModelKey(val value: KClass<out ViewModel>)
 abstract class ViewModelModule {
 
     @Binds
-    internal abstract fun bindViewModelFactory(factory: VmFactory): ViewModelProvider.Factory
+    internal abstract fun bindVmFactory(factory: VmFactory): ViewModelProvider.Factory
 
     @Binds
-    @IntoMap
-    @ViewModelKey(HomeVm::class)
-    internal abstract fun homeViewModel(viewModel: HomeVm): ViewModel
+    internal abstract fun bindHomeVmFactory(factory: HomeVmFactory): VmAssistedFactory<HomeVm>
 
     @Binds
     @IntoMap

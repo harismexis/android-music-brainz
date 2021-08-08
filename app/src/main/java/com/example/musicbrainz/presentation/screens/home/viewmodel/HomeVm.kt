@@ -3,6 +3,7 @@ package com.example.musicbrainz.presentation.screens.home.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.musicbrainz.framework.util.extensions.getErrorMessage
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
@@ -10,11 +11,11 @@ import com.example.musicbrainz.presentation.base.BaseVm
 import com.example.musicbrainz.usecases.UseCaseSearchArtists
 import com.example.musicbrainz.util.result.ArtistsResult
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class HomeVm @Inject constructor(
+class HomeVm (
     private val searchArtists: UseCaseSearchArtists,
-    private val resProvider: ResourceProvider
+    private val resProvider: ResourceProvider,
+    private val stateHandle: SavedStateHandle
 ) : BaseVm() {
 
     companion object {
