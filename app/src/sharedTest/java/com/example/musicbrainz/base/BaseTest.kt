@@ -10,6 +10,4 @@ abstract class BaseTest {
 
     protected val artistProvider by lazy { MockArtistProvider(getBaseFileReader()) }
     protected val albumProvider by lazy { MockAlbumProvider(getBaseFileReader()) }
-
-
 }

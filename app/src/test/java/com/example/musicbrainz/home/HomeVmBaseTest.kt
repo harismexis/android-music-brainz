@@ -22,8 +22,8 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
     private val artistsSuccess = ArtistsResult.Success(artists)
     private val error = Exception(ERROR_MSG)
     private val artistsError = ArtistsResult.Error(error)
-    private val searchArtistInput = "Rory Gallagher"
-    private val searchQuery = formatArtistsQuery(searchArtistInput)
+    private val searchInput = "Rory Gallagher"
+    private val searchQuery = formatArtistsQuery(searchInput)
 
     protected lateinit var subject: HomeVm
 
@@ -34,7 +34,7 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
 
     override fun onDoBefore() {
         initClassUnderTest()
-        initialiseLiveData()
+        initLiveData()
     }
 
     private fun initClassUnderTest() {
@@ -46,7 +46,7 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
         every { mockObserverArtists.onChanged(any()) } just runs
     }
 
-    protected fun triggerSearchArtist() {
+    protected fun search() {
         subject.search(searchQuery)
     }
 
@@ -66,7 +66,7 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
         coVerify(exactly = 0) { mockIrrSearchArtists(any()) }
     }
 
-    protected fun initialiseLiveData() {
+    protected fun initLiveData() {
         subject.artists.observeForever(mockObserverArtists)
     }
 

@@ -13,7 +13,7 @@ class HomeVmTest : HomeVmBaseTest() {
         mockSearchCall()
 
         // when
-        triggerSearchArtist()
+        search()
 
         // then
         verifySearchCallDone()
@@ -26,7 +26,7 @@ class HomeVmTest : HomeVmBaseTest() {
         mockSearchCallThrows()
 
         // when
-        triggerSearchArtist()
+        search()
 
         // then
         verifySearchCallDone()

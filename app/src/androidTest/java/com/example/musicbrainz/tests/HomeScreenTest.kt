@@ -17,11 +17,14 @@ import com.example.musicbrainz.base.BaseInstrumentedTest
 import com.example.musicbrainz.config.vmfactory.mockHomeVm
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
-import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID
-import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY
-import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID
-import com.example.musicbrainz.util.*
+import com.example.musicbrainz.util.SearchViewActionExtension
+import com.example.musicbrainz.util.event.Event
+import com.example.musicbrainz.util.getExpectedText
+import com.example.musicbrainz.util.getStringRes
+import com.example.musicbrainz.util.recycler.RecyclerCountAssertion
+import com.example.musicbrainz.util.recycler.verifyRecyclerItemAt
 import com.example.musicbrainz.util.result.ArtistsResult
+import com.example.musicbrainz.util.verifySnackBar
 import io.mockk.every
 import org.hamcrest.CoreMatchers
 import org.junit.Test
@@ -30,7 +33,9 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class HomeScreenTest : BaseInstrumentedTest() {
 
-    private var liveData = MutableLiveData<ArtistsResult>()
+    private val searchResult = MutableLiveData<ArtistsResult>()
+    private val showMsg = MutableLiveData<Event<String>>()
+
     private lateinit var mockArtists: List<Artist>
 
     private fun startActivity(): ActivityScenario<MainActivity> {
@@ -47,7 +52,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
         performSearch("metallica")
 
         // then
-        verifyRecycler(EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID)
+        verifyRecycler()
     }
 
     @Test
@@ -60,7 +65,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
         performSearch("metallica")
 
         // then
-        verifyRecycler(EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID)
+        verifyRecycler()
     }
 
     @Test
@@ -73,7 +78,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
         performSearch("metallica")
 
         // then
-        verifyRecycler(EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY)
+        verifyRecycler()
     }
 
     @Test
@@ -86,7 +91,7 @@ class HomeScreenTest : BaseInstrumentedTest() {
         performSearch("metallica")
 
         // then
-        verifyRecyclerEmpty()
+        verifyRecycler()
     }
 
     @Test
@@ -99,7 +104,21 @@ class HomeScreenTest : BaseInstrumentedTest() {
         performSearch("metallica")
 
         // then
-        verifyRecyclerEmpty()
+        verifyRecycler()
+    }
+
+    @Test
+    fun searchThrowsError_snackBarShown() {
+        // given
+        val errorMsg = "Sorry, failed to retrieve results"
+        mockSearchError(errorMsg)
+
+        // when
+        startActivity()
+        performSearch("metallica")
+
+        // then
+        verifySnackBar(errorMsg)
     }
 
     private fun mockSearchResults(
@@ -107,26 +126,32 @@ class HomeScreenTest : BaseInstrumentedTest() {
     ) {
         mockArtists = mockData
         every { mockHomeVm.search(any()) } answers {
-            liveData.value = ArtistsResult.Success(mockArtists)
+            searchResult.value = ArtistsResult.Success(mockArtists)
         }
-        every { mockHomeVm.artists } returns liveData
+        every { mockHomeVm.artists } returns searchResult
+    }
+
+    private fun mockSearchError(error: String) {
+        every { mockHomeVm.search(any()) } answers {
+            searchResult.value = ArtistsResult.Error(Exception(error))
+            showMsg.value = Event(error)
+        }
+        every { mockHomeVm.artists } returns searchResult
+        every { mockHomeVm.showMsgEvent } returns showMsg
     }
 
     private fun performSearch(text: String) {
         onView(withId(R.id.searchView)).perform(
             SearchViewActionExtension
-            .submitQuery(text))
+                .submitQuery(text)
+        )
     }
 
-    private fun verifyRecyclerEmpty() {
-        verifyRecycler(0)
-    }
-
-    private fun verifyRecycler(expectedNumItems: Int) {
-        val hasItems = expectedNumItems > 0
+    private fun verifyRecycler() {
+        val hasItems = mockArtists.isNotEmpty()
         verifyNoResultsVisible(!hasItems)
         verifyRecyclerVisible(hasItems)
-        verifyRecyclerData(expectedNumItems)
+        verifyRecyclerData(mockArtists.size)
     }
 
     private fun verifyRecyclerVisible(

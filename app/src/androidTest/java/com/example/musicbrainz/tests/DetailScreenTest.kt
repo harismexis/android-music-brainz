@@ -26,6 +26,9 @@ import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_A
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_EMPTY
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_IDS_INVALID
 import com.example.musicbrainz.util.*
+import com.example.musicbrainz.util.recycler.RecyclerCountAssertion
+import com.example.musicbrainz.util.recycler.verifyRecyclerItemAt
+import com.example.musicbrainz.util.recycler.verifyRecyclerItemGoneAt
 import com.example.musicbrainz.util.result.AlbumsResult
 import com.example.musicbrainz.util.result.ArtistsResult
 import io.mockk.every

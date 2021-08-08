@@ -53,7 +53,6 @@ ext {
 
     androidTestLibraries = [
             test_core_ktx    : "androidx.test:core-ktx:$androidx_test",
-            //test_core        : "androidx.test:core:$androidx_test",
             runner           : "androidx.test:runner:$androidx_test",
             rules            : "androidx.test:rules:$androidx_test",
             junit            : "androidx.test.ext:junit:$androidx_junit",

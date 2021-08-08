@@ -1,4 +1,4 @@
-package com.example.musicbrainz.util
+package com.example.musicbrainz.util.recycler
 
 import android.content.res.Resources
 import android.content.res.Resources.NotFoundException
