@@ -64,7 +64,13 @@ class HomeFragment : BaseDIFragment(),
 
     override fun onViewCreated() {
         observeLiveData()
-        binding?.searchView?.setQuery(viewModel.getSearchQuery(), true)
+        submitQueryFromSavedSate()
+    }
+
+    private fun submitQueryFromSavedSate() {
+        viewModel.getSearchQuery()?.let {
+            binding?.searchView?.setQuery(it, true)
+        }
     }
 
     override fun observeLiveData() {

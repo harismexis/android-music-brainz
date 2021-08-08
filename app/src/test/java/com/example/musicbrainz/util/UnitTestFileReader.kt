@@ -1,4 +1,4 @@
-package com.example.musicbrainz.setup
+package com.example.musicbrainz.util
 
 import com.example.musicbrainz.reader.BaseFileReader
 

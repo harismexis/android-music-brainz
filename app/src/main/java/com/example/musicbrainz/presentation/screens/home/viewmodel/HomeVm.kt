@@ -20,23 +20,20 @@ class HomeVm (
 
     companion object {
         val TAG = HomeVm::class.qualifiedName
+        const val KEY_SEARCH_QUERY = "search_query"
     }
 
     private val mArtists = MutableLiveData<ArtistsResult>()
     val artists: LiveData<ArtistsResult>
         get() = mArtists
 
-    private var searchQuery: String? = null
-
     fun search(query: String) {
-        searchQuery = query
-        searchQuery?.let {
-            executeSearch(it)
-        }
+        stateHandle[KEY_SEARCH_QUERY] = query
+        executeSearch(query)
     }
 
     fun getSearchQuery(): String? {
-        return searchQuery
+        return stateHandle[KEY_SEARCH_QUERY]
     }
 
     private fun executeSearch(query: String) {

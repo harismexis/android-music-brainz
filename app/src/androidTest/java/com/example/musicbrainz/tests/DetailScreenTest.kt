@@ -52,7 +52,7 @@ class DetailScreenTest : BaseSearchFlowTest() {
 
         // when
         startActivity()
-        performSearch("Metallica")
+        performSearch()
         clickArtistToOpenDetails()
 
         // then
@@ -66,7 +66,7 @@ class DetailScreenTest : BaseSearchFlowTest() {
 
         // when
         startActivity()
-        performSearch("Metallica")
+        performSearch()
         clickArtistToOpenDetails()
 
         // then
@@ -80,7 +80,7 @@ class DetailScreenTest : BaseSearchFlowTest() {
 
         // when
         startActivity()
-        performSearch("Metallica")
+        performSearch()
         clickArtistToOpenDetails()
 
         // then
@@ -94,7 +94,7 @@ class DetailScreenTest : BaseSearchFlowTest() {
 
         // when
         startActivity()
-        performSearch("Metallica")
+        performSearch()
         clickArtistToOpenDetails()
 
         // then
@@ -108,7 +108,7 @@ class DetailScreenTest : BaseSearchFlowTest() {
 
         // when
         startActivity()
-        performSearch("Metallica")
+        performSearch()
         clickArtistToOpenDetails()
 
         // then

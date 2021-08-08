@@ -1,10 +1,10 @@
-package com.example.musicbrainz.detail
+package com.example.musicbrainz.tests.detail
 
 import androidx.lifecycle.Observer
+import com.example.musicbrainz.base.BaseUnitTest
 import com.example.musicbrainz.framework.util.formatAlbumsQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailVm
-import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.usecases.UseCaseGetAlbums
 import com.example.musicbrainz.util.result.AlbumsResult
 import io.mockk.*

@@ -8,7 +8,7 @@ import org.junit.Assert
 
 class ArtistVerificator {
 
-    fun verifyItemsAgainstRemoteFeed(
+    fun verifyItemsAgainstResponse(
         actualItems: List<Artist>,
         remoteFeed: ArtistsResponse?
     ) {

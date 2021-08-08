@@ -8,7 +8,7 @@ import org.junit.Assert
 
 class AlbumVerificator {
 
-    fun verifyItemsAgainstRemoteFeed(
+    fun verifyItemsAgainstResponse(
         actualItems: List<Album>,
         remoteFeed: AlbumsResponse?
     ) {

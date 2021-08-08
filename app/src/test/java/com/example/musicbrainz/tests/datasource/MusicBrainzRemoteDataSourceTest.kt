@@ -1,10 +1,10 @@
-package com.example.musicbrainz.datasource
+package com.example.musicbrainz.tests.datasource
 
+import com.example.musicbrainz.base.BaseUnitTest
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.data.api.MusicBrainzApi
 import com.example.musicbrainz.framework.data.datasource.MusicBrainzRemoteDataSource
-import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.util.AlbumVerificator
 import com.example.musicbrainz.util.ArtistVerificator
 import com.example.musicbrainz.util.verifyListsHaveSameSize
@@ -48,7 +48,7 @@ class MusicBrainzRemoteDataSourceTest : BaseUnitTest() {
         // then
         coVerify(exactly = 1) { mockApi.getArtists(searchQuery) }
         verifyListsHaveSameSize(items, mockFeed.artists!!)
-        artistVerificator.verifyItemsAgainstRemoteFeed(items, mockFeed)
+        artistVerificator.verifyItemsAgainstResponse(items, mockFeed)
     }
 
     @Test
@@ -67,7 +67,7 @@ class MusicBrainzRemoteDataSourceTest : BaseUnitTest() {
             // then
             coVerify(exactly = 1) { mockApi.getAlbums(albumsQuery) }
             verifyListsHaveSameSize(items, mockFeed.releases!!)
-            albumVerificator.verifyItemsAgainstRemoteFeed(items, mockFeed)
+            albumVerificator.verifyItemsAgainstResponse(items, mockFeed)
         }
     }
 

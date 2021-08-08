@@ -1,11 +1,11 @@
-package com.example.musicbrainz.extensions
+package com.example.musicbrainz.tests.extensions
 
+import com.example.musicbrainz.base.BaseUnitTest
 import com.example.musicbrainz.framework.util.extensions.toItems
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_ALL_IDS_VALID
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_NO_DATA
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_EMPTY
 import com.example.musicbrainz.reader.MockAlbumProvider.Companion.EXPECTED_NUM_ALBUMS_WHEN_SOME_IDS_INVALID
-import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.util.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,65 +17,65 @@ class RemoteAlbumExtTest : BaseUnitTest() {
     private val verificator = AlbumVerificator()
 
     @Test
-    fun feedHasAllItemsValid_then_conversionToItemsIsCorrect() {
+    fun responseHasAllItemsValid_then_conversionToItemsIsCorrect() {
         // given
-        val remoteFeed = albumProvider.getMockAlbumsFeedAllIdsValid()
+        val response = albumProvider.getMockAlbumsFeedAllIdsValid()
 
         // when
-        val items = remoteFeed.toItems()
+        val items = response.toItems()
 
         // then
-        verifyListsHaveSameSize(remoteFeed.releases!!, items)
-        verifyListSizeWhenAllIdsValid(remoteFeed.releases!!, EXPECTED_NUM_ALBUMS_WHEN_ALL_IDS_VALID)
+        verifyListsHaveSameSize(response.releases!!, items)
+        verifyListSizeWhenAllIdsValid(response.releases!!, EXPECTED_NUM_ALBUMS_WHEN_ALL_IDS_VALID)
         verifyListSizeWhenAllIdsValid(items, EXPECTED_NUM_ALBUMS_WHEN_ALL_IDS_VALID)
-        verificator.verifyItemsAgainstRemoteFeed(items, remoteFeed)
+        verificator.verifyItemsAgainstResponse(items, response)
     }
 
     @Test
-    fun feedHasSomeIdsAbsent_then_conversionToItemsIsCorrect() {
+    fun responseHasSomeIdsAbsent_then_conversionToItemsIsCorrect() {
         // given
-        val remoteFeed = albumProvider.getMockAlbumsFeedSomeIdsInvalid()
+        val response = albumProvider.getMockAlbumsFeedSomeIdsInvalid()
 
         // when
-        val items = remoteFeed.toItems()
+        val items = response.toItems()
 
         // then
         verifyListSizeWhenSomeIdsAbsent(items, EXPECTED_NUM_ALBUMS_WHEN_SOME_IDS_INVALID)
-        verificator.verifyItemsAgainstRemoteFeed(items, remoteFeed)
+        verificator.verifyItemsAgainstResponse(items, response)
     }
 
     @Test
-    fun feedHasSomeEmptyItems_then_conversionToItemsIsCorrect() {
+    fun responseHasSomeEmptyItems_then_conversionToItemsIsCorrect() {
         // given
-        val remoteFeed = albumProvider.getMockAlbumsFeedSomeItemsEmpty()
+        val response = albumProvider.getMockAlbumsFeedSomeItemsEmpty()
 
         // when
-        val items = remoteFeed.toItems()
+        val items = response.toItems()
 
         // then
         verifyListSizeWhenSomeItemsEmpty(items, EXPECTED_NUM_ALBUMS_WHEN_SOME_EMPTY)
-        verificator.verifyItemsAgainstRemoteFeed(items, remoteFeed)
+        verificator.verifyItemsAgainstResponse(items, response)
     }
 
     @Test
-    fun feedHasAllIdsAbsent_then_itemListIsEmpty() {
+    fun responseHasAllIdsAbsent_then_itemListIsEmpty() {
         // given
-        val remoteFeed = albumProvider.getMockAlbumsFeedAllIdsInvalid()
+        val response = albumProvider.getMockAlbumsFeedAllIdsInvalid()
 
         // when
-        val items = remoteFeed.toItems()
+        val items = response.toItems()
 
         // then
         verifyListSizeForNoData(items, EXPECTED_NUM_ALBUMS_WHEN_NO_DATA)
     }
 
     @Test
-    fun feedIsAnEmptyJson_then_itemListIsEmpty() {
+    fun responseIsAnEmptyJson_then_itemListIsEmpty() {
         // given
-        val remoteFeed = albumProvider.getMockAlbumsFeedEmptyJson()
+        val response = albumProvider.getMockAlbumsFeedEmptyJson()
 
         // when
-        val items = remoteFeed.toItems()
+        val items = response.toItems()
 
         // then
         verifyListSizeForNoData(items, EXPECTED_NUM_ALBUMS_WHEN_NO_DATA)

@@ -1,11 +1,11 @@
-package com.example.musicbrainz.extensions
+package com.example.musicbrainz.tests.extensions
 
+import com.example.musicbrainz.base.BaseUnitTest
 import com.example.musicbrainz.framework.util.extensions.toItems
 import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID
 import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_NO_DATA
 import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY
 import com.example.musicbrainz.reader.MockArtistProvider.Companion.EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID
-import com.example.musicbrainz.setup.BaseUnitTest
 import com.example.musicbrainz.util.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,65 +17,65 @@ class RemoteArtistExtTest : BaseUnitTest() {
     private val verificator = ArtistVerificator()
 
     @Test
-    fun feedHasAllItemsValid_then_conversionToItemsIsCorrect() {
+    fun responseHasAllItemsValid_then_conversionToItemsIsCorrect() {
         // given
-        val remoteFeed = artistProvider.getMockArtistsFeedAllIdsValid()
+        val response = artistProvider.getMockArtistsFeedAllIdsValid()
 
         // when
-        val items = remoteFeed.toItems()
+        val items = response.toItems()
 
         // then
-        verifyListsHaveSameSize(remoteFeed.artists!!, items)
-        verifyListSizeWhenAllIdsValid(remoteFeed.artists!!, EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID)
+        verifyListsHaveSameSize(response.artists!!, items)
+        verifyListSizeWhenAllIdsValid(response.artists!!, EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID)
         verifyListSizeWhenAllIdsValid(items, EXPECTED_NUM_ARTISTS_WHEN_ALL_IDS_VALID)
-        verificator.verifyItemsAgainstRemoteFeed(items, remoteFeed)
+        verificator.verifyItemsAgainstResponse(items, response)
     }
 
     @Test
-    fun feedHasSomeIdsAbsent_then_conversionToItemsIsCorrect() {
+    fun responseHasSomeIdsAbsent_then_conversionToItemsIsCorrect() {
         // given
-        val remoteFeed = artistProvider.getMockArtistsFeedSomeIdsAbsent()
+        val response = artistProvider.getMockArtistsFeedSomeIdsAbsent()
 
         // when
-        val items = remoteFeed.toItems()
+        val items = response.toItems()
 
         // then
         verifyListSizeWhenSomeIdsAbsent(items, EXPECTED_NUM_ARTISTS_WHEN_SOME_IDS_INVALID)
-        verificator.verifyItemsAgainstRemoteFeed(items, remoteFeed)
+        verificator.verifyItemsAgainstResponse(items, response)
     }
 
     @Test
-    fun feedHasSomeEmptyItems_then_conversionToItemsIsCorrect() {
+    fun responseHasSomeEmptyItems_then_conversionToItemsIsCorrect() {
         // given
-        val remoteFeed = artistProvider.getMockArtistsFeedSomeItemsEmpty()
+        val response = artistProvider.getMockArtistsFeedSomeItemsEmpty()
 
         // when
-        val items = remoteFeed.toItems()
+        val items = response.toItems()
 
         // then
         verifyListSizeWhenSomeItemsEmpty(items, EXPECTED_NUM_ARTISTS_WHEN_SOME_EMPTY)
-        verificator.verifyItemsAgainstRemoteFeed(items, remoteFeed)
+        verificator.verifyItemsAgainstResponse(items, response)
     }
 
     @Test
-    fun feedHasAllIdsAbsent_then_itemListIsEmpty() {
+    fun responseHasAllIdsAbsent_then_itemListIsEmpty() {
         // given
-        val remoteFeed = artistProvider.getMockArtistsFeedAllIdsAbsent()
+        val response = artistProvider.getMockArtistsFeedAllIdsAbsent()
 
         // when
-        val items = remoteFeed.toItems()
+        val items = response.toItems()
 
         // then
         verifyListSizeForNoData(items, EXPECTED_NUM_ARTISTS_WHEN_NO_DATA)
     }
 
     @Test
-    fun feedIsAnEmptyJson_then_itemListIsEmpty() {
+    fun responseIsAnEmptyJson_then_itemListIsEmpty() {
         // given
-        val remoteFeed = artistProvider.getMockArtistsFeedEmptyJson()
+        val response = artistProvider.getMockArtistsFeedEmptyJson()
 
         // when
-        val items = remoteFeed.toItems()
+        val items = response.toItems()
 
         // then
         verifyListSizeForNoData(items, EXPECTED_NUM_ARTISTS_WHEN_NO_DATA)

@@ -33,7 +33,7 @@ class HomeScreenTest : BaseSearchFlowTest() {
 
         // when
         startActivity()
-        performSearch("metallica")
+        performSearch()
 
         // then
         verifyRecycler()
@@ -46,7 +46,7 @@ class HomeScreenTest : BaseSearchFlowTest() {
 
         // when
         startActivity()
-        performSearch("metallica")
+        performSearch()
 
         // then
         verifyRecycler()
@@ -59,7 +59,7 @@ class HomeScreenTest : BaseSearchFlowTest() {
 
         // when
         startActivity()
-        performSearch("metallica")
+        performSearch()
 
         // then
         verifyRecycler()
@@ -72,7 +72,7 @@ class HomeScreenTest : BaseSearchFlowTest() {
 
         // when
         startActivity()
-        performSearch("metallica")
+        performSearch()
 
         // then
         verifyRecycler()
@@ -85,7 +85,7 @@ class HomeScreenTest : BaseSearchFlowTest() {
 
         // when
         startActivity()
-        performSearch("metallica")
+        performSearch()
 
         // then
         verifyRecycler()
@@ -99,7 +99,7 @@ class HomeScreenTest : BaseSearchFlowTest() {
 
         // when
         startActivity()
-        performSearch("metallica")
+        performSearch()
 
         // then
         verifySnackBar(errorMsg)

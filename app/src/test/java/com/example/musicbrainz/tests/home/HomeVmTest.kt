@@ -1,4 +1,4 @@
-package com.example.musicbrainz.home
+package com.example.musicbrainz.tests.home
 
 import org.junit.Test
 import org.junit.runner.RunWith

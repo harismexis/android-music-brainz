@@ -1,4 +1,4 @@
-package com.example.musicbrainz.util
+package com.example.musicbrainz.util.searchview
 
 import android.view.View
 import android.widget.SearchView
@@ -9,7 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 
-class SearchViewActionExtension {
+class SearchViewActions {
 
     companion object {
 

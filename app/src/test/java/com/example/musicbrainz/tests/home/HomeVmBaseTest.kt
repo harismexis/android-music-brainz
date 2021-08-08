@@ -1,11 +1,12 @@
-package com.example.musicbrainz.home
+package com.example.musicbrainz.tests.home
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateHandle
+import com.example.musicbrainz.base.BaseUnitTest
 import com.example.musicbrainz.framework.util.formatArtistsQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeVm
-import com.example.musicbrainz.setup.BaseUnitTest
+import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeVm.Companion.KEY_SEARCH_QUERY
 import com.example.musicbrainz.usecases.UseCaseSearchArtists
 import com.example.musicbrainz.util.result.ArtistsResult
 import io.mockk.*
@@ -14,7 +15,7 @@ import io.mockk.impl.annotations.MockK
 abstract class HomeVmBaseTest : BaseUnitTest() {
 
     @MockK
-    protected lateinit var mockIrrSearchArtists: UseCaseSearchArtists
+    protected lateinit var mockCaseSearchArtists: UseCaseSearchArtists
     @MockK
     protected lateinit var mockObserverArtists: Observer<ArtistsResult>
     @MockK
@@ -42,12 +43,14 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
 
     private fun initClassUnderTest() {
         subject = HomeVm(
-            mockIrrSearchArtists,
+            mockCaseSearchArtists,
             mockResourceProvider,
             mockStateHandle
         )
         every { mockResourceProvider.getInternetOffMsg() } returns INTERNET_OFF_MSG
         every { mockObserverArtists.onChanged(any()) } just runs
+        every { mockStateHandle.set(KEY_SEARCH_QUERY, searchQuery) } answers {  }
+        every { mockStateHandle.get(KEY_SEARCH_QUERY) as? String} returns searchQuery
     }
 
     protected fun search() {
@@ -55,19 +58,15 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
     }
 
     protected fun mockSearchCall() {
-        coEvery { mockIrrSearchArtists(searchQuery) } returns artists
+        coEvery { mockCaseSearchArtists(searchQuery) } returns artists
     }
 
     protected fun mockSearchCallThrows() {
-        coEvery { mockIrrSearchArtists(searchQuery) } throws error
+        coEvery { mockCaseSearchArtists(searchQuery) } throws error
     }
 
     protected fun verifySearchCallDone() {
-        coVerify { mockIrrSearchArtists(searchQuery) }
-    }
-
-    protected fun verifySearchCallNotDone() {
-        coVerify(exactly = 0) { mockIrrSearchArtists(any()) }
+        coVerify { mockCaseSearchArtists(searchQuery) }
     }
 
     protected fun initLiveData() {

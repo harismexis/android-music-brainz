@@ -1,8 +1,9 @@
-package com.example.musicbrainz.usecases
+package com.example.musicbrainz.tests.usecases
 
+import com.example.musicbrainz.base.BaseUnitTest
 import com.example.musicbrainz.data.MusicBrainzRemoteRepository
 import com.example.musicbrainz.domain.Album
-import com.example.musicbrainz.setup.BaseUnitTest
+import com.example.musicbrainz.usecases.UseCaseGetAlbums
 import com.example.musicbrainz.util.verifyListsHaveSameSize
 import io.mockk.coEvery
 import io.mockk.coVerify
