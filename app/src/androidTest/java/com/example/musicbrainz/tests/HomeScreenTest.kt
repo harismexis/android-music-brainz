@@ -127,13 +127,9 @@ class HomeScreenTest : BaseInstrumentedTest() {
     }
 
     private fun verifyRecycler(expectedNumItems: Int) {
-        if (expectedNumItems == 0) {
-            verifyNoResultsVisible(true)
-            verifyRecyclerVisible(false)
-        } else {
-            verifyNoResultsVisible(false)
-            verifyRecyclerVisible(true)
-        }
+        val hasItems = expectedNumItems > 0
+        verifyNoResultsVisible(!hasItems)
+        verifyRecyclerVisible(hasItems)
         verifyRecyclerData(expectedNumItems)
     }
 

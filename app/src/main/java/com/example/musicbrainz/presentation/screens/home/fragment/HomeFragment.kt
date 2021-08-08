@@ -82,6 +82,7 @@ class HomeFragment : BaseInjectedFragment(),
         uiModels.clear()
         uiModels.addAll(items)
         adapter.notifyDataSetChanged()
+        binding?.artistList?.scrollToPosition(0)
     }
 
     private fun populateError(error: Exception) {
