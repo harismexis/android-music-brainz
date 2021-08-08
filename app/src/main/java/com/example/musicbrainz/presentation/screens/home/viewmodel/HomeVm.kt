@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.musicbrainz.framework.util.buildSearchQuery
 import com.example.musicbrainz.framework.util.extensions.getErrorMessage
+import com.example.musicbrainz.framework.util.formatArtistsQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.presentation.base.BaseVm
 import com.example.musicbrainz.usecases.UseCaseSearchArtists
@@ -31,7 +31,7 @@ class HomeVm @Inject constructor(
             field = value
             value?.let {
                 if (!value.isNullOrBlank()) {
-                    fetchArtists(buildSearchQuery(value))
+                    fetchArtists(formatArtistsQuery(value))
                 }
             }
         }

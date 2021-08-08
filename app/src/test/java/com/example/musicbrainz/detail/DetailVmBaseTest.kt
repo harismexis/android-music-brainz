@@ -1,7 +1,7 @@
 package com.example.musicbrainz.detail
 
 import androidx.lifecycle.Observer
-import com.example.musicbrainz.framework.util.buildAlbumsQuery
+import com.example.musicbrainz.framework.util.formatAlbumsQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.presentation.screens.detail.viewmodel.DetailVm
 import com.example.musicbrainz.setup.BaseUnitTest
@@ -23,7 +23,7 @@ abstract class DetailVmBaseTest : BaseUnitTest() {
     private val albumsSuccess = AlbumsResult.Success(mockAlbums)
     private val error = Exception(ERROR_MSG)
     private val albumsError = AlbumsResult.Error(error)
-    private val albumsQuery = buildAlbumsQuery(mockSelectedArtist.id)
+    private val albumsQuery = formatAlbumsQuery(mockSelectedArtist.id)
 
     protected lateinit var subject: DetailVm
 

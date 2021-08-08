@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.framework.util.buildAlbumsQuery
 import com.example.musicbrainz.framework.util.extensions.getErrorMessage
+import com.example.musicbrainz.framework.util.formatAlbumsQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.presentation.base.BaseVm
 import com.example.musicbrainz.usecases.UseCaseGetAlbums
@@ -34,7 +34,7 @@ class DetailVm @Inject constructor(
     }
 
     fun fetchAlbums() {
-        val query = buildAlbumsQuery(artist.id)
+        val query = formatAlbumsQuery(artist.id)
         viewModelScope.launch {
             try {
                 val items = getAlbums(query)

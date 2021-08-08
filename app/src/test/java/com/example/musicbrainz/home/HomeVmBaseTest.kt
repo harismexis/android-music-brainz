@@ -1,7 +1,7 @@
 package com.example.musicbrainz.home
 
 import androidx.lifecycle.Observer
-import com.example.musicbrainz.framework.util.buildSearchQuery
+import com.example.musicbrainz.framework.util.formatArtistsQuery
 import com.example.musicbrainz.framework.util.resource.ResourceProvider
 import com.example.musicbrainz.presentation.screens.home.viewmodel.HomeVm
 import com.example.musicbrainz.setup.BaseUnitTest
@@ -23,7 +23,7 @@ abstract class HomeVmBaseTest : BaseUnitTest() {
     private val error = Exception(ERROR_MSG)
     private val artistsError = ArtistsResult.Error(error)
     private val searchArtistInput = "Rory Gallagher"
-    private val searchQuery = buildSearchQuery(searchArtistInput)
+    private val searchQuery = formatArtistsQuery(searchArtistInput)
 
     protected lateinit var subject: HomeVm
 

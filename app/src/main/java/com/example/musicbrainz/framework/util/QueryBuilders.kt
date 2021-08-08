@@ -2,10 +2,10 @@ package com.example.musicbrainz.framework.util
 
 import org.apache.lucene.queryparser.classic.QueryParser
 
-fun buildSearchQuery(artistName: String): String {
+fun formatArtistsQuery(artistName: String): String {
     return QueryParser.escape(artistName)
 }
 
-fun buildAlbumsQuery(artistId: String): String {
+fun formatAlbumsQuery(artistId: String): String {
     return "arid:$artistId"
 }
