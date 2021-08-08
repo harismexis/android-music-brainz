@@ -2,10 +2,7 @@ package com.example.musicbrainz.tests
 
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.core.app.ActivityScenario
-import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
@@ -13,11 +10,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.musicbrainz.R
-import com.example.musicbrainz.base.BaseInstrumentedTest
 import com.example.musicbrainz.config.vmfactory.mockHomeVm
-import com.example.musicbrainz.domain.Artist
-import com.example.musicbrainz.presentation.screens.activity.MainActivity
-import com.example.musicbrainz.util.SearchViewActionExtension
 import com.example.musicbrainz.util.event.Event
 import com.example.musicbrainz.util.getExpectedText
 import com.example.musicbrainz.util.getStringRes
@@ -31,16 +24,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class HomeScreenTest : BaseInstrumentedTest() {
-
-    private val searchResult = MutableLiveData<ArtistsResult>()
-    private val showMsg = MutableLiveData<Event<String>>()
-
-    private lateinit var mockArtists: List<Artist>
-
-    private fun startActivity(): ActivityScenario<MainActivity> {
-        return launchActivity()
-    }
+class HomeScreenTest : BaseSearchFlowTest() {
 
     @Test
     fun artistsResponseHasAllItemsValid_then_listShowsExpectedItems() {
@@ -121,16 +105,6 @@ class HomeScreenTest : BaseInstrumentedTest() {
         verifySnackBar(errorMsg)
     }
 
-    private fun mockSearchResults(
-        mockData: List<Artist>
-    ) {
-        mockArtists = mockData
-        every { mockHomeVm.search(any()) } answers {
-            searchResult.value = ArtistsResult.Success(mockArtists)
-        }
-        every { mockHomeVm.artists } returns searchResult
-    }
-
     private fun mockSearchError(error: String) {
         every { mockHomeVm.search(any()) } answers {
             searchResult.value = ArtistsResult.Error(Exception(error))
@@ -138,13 +112,6 @@ class HomeScreenTest : BaseInstrumentedTest() {
         }
         every { mockHomeVm.artists } returns searchResult
         every { mockHomeVm.showMsgEvent } returns showMsg
-    }
-
-    private fun performSearch(text: String) {
-        onView(withId(R.id.searchView)).perform(
-            SearchViewActionExtension
-                .submitQuery(text)
-        )
     }
 
     private fun verifyRecycler() {

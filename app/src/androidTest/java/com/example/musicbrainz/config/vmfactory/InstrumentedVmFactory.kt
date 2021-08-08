@@ -12,7 +12,7 @@ import javax.inject.Provider
 import javax.inject.Singleton
 
 val mockHomeVm: HomeVm = mockk(relaxed = true)
-val mockDetailViewModel: DetailVm = mockk(relaxed = true)
+val mockDetailVm: DetailVm = mockk(relaxed = true)
 
 @Singleton
 class InstrumentedVmFactory @Inject constructor() : ViewModelProvider.Factory {
@@ -30,6 +30,6 @@ class InstrumentedHomeVmFactory @Inject constructor() :
 
 fun getMockVmsMap(): MutableMap<Class<out ViewModel>, Provider<ViewModel>> {
     val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>> = mutableMapOf()
-    viewModels[DetailVm::class.java] = Provider { mockDetailViewModel }
+    viewModels[DetailVm::class.java] = Provider { mockDetailVm }
     return viewModels
 }
