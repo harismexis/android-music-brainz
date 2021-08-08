@@ -13,7 +13,7 @@ import com.example.musicbrainz.util.result.ArtistsResult
 import com.example.musicbrainz.util.searchview.submitSearchQuery
 import io.mockk.every
 
-open class BaseSearchFlowTest: BaseInstrumentedTest() {
+abstract class BaseSearchFlowTest: BaseInstrumentedTest() {
 
     protected val searchResult = MutableLiveData<ArtistsResult>()
     protected val showMsg = MutableLiveData<Event<String>>()
@@ -34,7 +34,7 @@ open class BaseSearchFlowTest: BaseInstrumentedTest() {
     }
 
     protected fun performSearch() {
-        submitSearchQuery(R.id.searchView, "Metallica")
+        submitSearchQuery(R.id.searchView, "Rory Gallagher")
     }
 
 }
