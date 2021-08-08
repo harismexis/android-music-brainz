@@ -100,6 +100,7 @@ class HomeFragment : BaseInjectedFragment(),
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (!query.isNullOrBlank()) {
+            binding?.noResults?.visibility = View.GONE
             showProgress(true)
             viewModel.searchQuery = query
         }
