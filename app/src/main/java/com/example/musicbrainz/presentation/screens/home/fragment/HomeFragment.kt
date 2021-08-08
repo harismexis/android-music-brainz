@@ -36,7 +36,7 @@ class HomeFragment : BaseInjectedFragment(),
 
     override fun initialiseView() {
         initialiseRecycler()
-        initialiseSearchView()
+        initSearchView()
     }
 
     private fun initialiseRecycler() {
@@ -49,12 +49,13 @@ class HomeFragment : BaseInjectedFragment(),
         }
     }
 
-    private fun initialiseSearchView() {
+    private fun initSearchView() {
         binding?.searchView?.setOnQueryTextListener(this)
     }
 
     override fun onViewCreated() {
         observeLiveData()
+        binding?.searchView?.setQuery(viewModel.getSearchQuery(), true)
     }
 
     override fun observeLiveData() {

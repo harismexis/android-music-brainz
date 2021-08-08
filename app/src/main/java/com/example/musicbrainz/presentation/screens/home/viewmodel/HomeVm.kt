@@ -34,6 +34,10 @@ class HomeVm @Inject constructor(
         }
     }
 
+    fun getSearchQuery(): String? {
+        return searchQuery
+    }
+
     private fun executeSearch(query: String) {
         viewModelScope.launch {
             try {
