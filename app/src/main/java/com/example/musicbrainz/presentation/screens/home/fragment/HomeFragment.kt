@@ -103,10 +103,7 @@ class HomeFragment : BaseInjectedFragment(),
     }
 
     private fun showProgress(show: Boolean) {
-        val visibility = if (show) View.VISIBLE else View.GONE
-        binding?.let {
-            it.progressBar.visibility = visibility
-        }
+        binding?.progressBar?.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     override fun onDestroyView() {
@@ -115,5 +112,4 @@ class HomeFragment : BaseInjectedFragment(),
     }
 
     override fun getRootView() = binding?.root
-
 }

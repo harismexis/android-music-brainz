@@ -1,11 +1,9 @@
 package com.example.musicbrainz.framework.util.extensions
 
 import android.content.Context
-import android.view.Gravity
-import android.widget.Toast
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 
-fun Context.showToast(msg: String) {
-    val toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT)
-    toast.setGravity(Gravity.CENTER, 0, 0)
-    toast.show()
+fun Context.getColorCompat(@ColorRes colorResId: Int): Int {
+    return ContextCompat.getColor(this, colorResId)
 }
