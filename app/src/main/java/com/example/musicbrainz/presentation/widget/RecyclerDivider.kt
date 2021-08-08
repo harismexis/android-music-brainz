@@ -2,29 +2,43 @@ package com.example.musicbrainz.presentation.widget
 
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 
 class RecyclerDivider(
-    private val mDivider: Drawable
+    private val divider: Drawable
 ) : ItemDecoration() {
 
     override fun onDrawOver(
         canvas: Canvas,
-        parent: RecyclerView,
+        recycler: RecyclerView,
         state: RecyclerView.State
     ) {
-        val childCount = parent.childCount
+        val childCount = recycler.childCount
         if (childCount < 2) return
-        val dividerLeft = parent.paddingLeft
-        val dividerRight = parent.width - parent.paddingRight
+        val dividerLeft = recycler.paddingLeft
+        val dividerRight = recycler.width - recycler.paddingRight
         for (i in 0..childCount - 2) {
-            val child = parent.getChildAt(i)
-            val params = child.layoutParams as RecyclerView.LayoutParams
-            val dividerTop = child.bottom + params.bottomMargin
-            val dividerBottom = dividerTop + mDivider.intrinsicHeight
-            mDivider.setBounds(dividerLeft, dividerTop, dividerRight, dividerBottom)
-            mDivider.draw(canvas)
+            drawDivider(
+                recycler.getChildAt(i),
+                dividerLeft,
+                dividerRight,
+                canvas
+            )
         }
+    }
+
+    private fun drawDivider(
+        child: View,
+        dividerLeft: Int,
+        dividerRight: Int,
+        canvas: Canvas
+    ) {
+        val params = child.layoutParams as RecyclerView.LayoutParams
+        val dividerTop = child.bottom + params.bottomMargin
+        val dividerBottom = dividerTop + divider.intrinsicHeight
+        divider.setBounds(dividerLeft, dividerTop, dividerRight, dividerBottom)
+        divider.draw(canvas)
     }
 }

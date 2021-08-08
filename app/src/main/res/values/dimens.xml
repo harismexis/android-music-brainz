@@ -12,7 +12,7 @@
     <dimen name="search_view_text_size">16sp</dimen>
 
     <!-- vh item -->
-    <dimen name="vh_item_title_text_size">18sp</dimen>
+    <dimen name="vh_item_title_text_size">17sp</dimen>
     <dimen name="vh_item_title_text_size_large">20sp</dimen>
     <dimen name="vh_item_meta_text_size">16sp</dimen>
     <dimen name="vh_item_meta_txt_margin_start">10dp</dimen>
