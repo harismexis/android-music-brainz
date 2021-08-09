@@ -151,9 +151,6 @@ class HomeScreenTest : BaseSearchFlowTest() {
     }
 
     private fun verifyRecyclerCount(expectedNumberOfItems: Int) {
-        // Checking also if the mock result success has expected number of items
-        // TODO:
-        // Assert.assertEquals(artistsResult.items.size, expectedNumberOfItems)
         // Checking if recycler has expected number of items
         onView(withId(R.id.artist_list)).check(RecyclerCountAssertion(expectedNumberOfItems))
     }
