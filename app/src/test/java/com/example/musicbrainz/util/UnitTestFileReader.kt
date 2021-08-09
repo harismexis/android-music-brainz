@@ -6,6 +6,5 @@ class UnitTestFileReader : BaseFileReader() {
 
     override fun getFileAsString(filePath: String): String =
         ClassLoader.getSystemResource(filePath).readText()
-
 }
 
