@@ -5,8 +5,8 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.launchActivity
 import com.example.musicbrainz.R
 import com.example.musicbrainz.base.BaseInstrumentedTest
-import com.example.musicbrainz.config.vmfactory.mockHomeVm
 import com.example.musicbrainz.domain.Artist
+import com.example.musicbrainz.mocks.mockHomeVm
 import com.example.musicbrainz.presentation.screens.activity.MainActivity
 import com.example.musicbrainz.util.event.Event
 import com.example.musicbrainz.util.result.ArtistsResult

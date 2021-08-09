@@ -13,9 +13,9 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.musicbrainz.R
-import com.example.musicbrainz.config.vmfactory.mockDetailVm
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.framework.util.extensions.tagString
+import com.example.musicbrainz.mocks.mockDetailVm
 import com.example.musicbrainz.presentation.screens.detail.adapter.DetailAdapter
 import com.example.musicbrainz.util.getExpectedText
 import com.example.musicbrainz.util.getStringRes

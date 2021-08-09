@@ -10,7 +10,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.musicbrainz.R
-import com.example.musicbrainz.config.vmfactory.mockHomeVm
+import com.example.musicbrainz.mocks.mockHomeVm
 import com.example.musicbrainz.util.event.Event
 import com.example.musicbrainz.util.getExpectedText
 import com.example.musicbrainz.util.getStringRes
