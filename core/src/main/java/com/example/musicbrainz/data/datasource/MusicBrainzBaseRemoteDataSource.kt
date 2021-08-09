@@ -1,4 +1,4 @@
-package com.example.musicbrainz.data
+package com.example.musicbrainz.data.datasource
 
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.domain.Artist

@@ -1,6 +1,6 @@
 package com.example.musicbrainz.usecases
 
-import com.example.musicbrainz.data.MusicBrainzRemoteRepository
+import com.example.musicbrainz.data.repository.MusicBrainzRemoteRepository
 
 class UseCaseSearchArtists(
     private val repository: MusicBrainzRemoteRepository

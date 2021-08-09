@@ -2,7 +2,7 @@ package com.example.musicbrainz.framework.util.extensions
 
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.data.model.artist.ArtistsResponse
-import com.example.musicbrainz.framework.datasource.network.model.artist.RemoteArtist
+import com.example.musicbrainz.framework.data.model.artist.RemoteArtist
 
 fun ArtistsResponse?.toItems(): List<Artist> {
     val items = mutableListOf<Artist>()

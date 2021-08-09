@@ -9,7 +9,6 @@ import dagger.android.HasAndroidInjector
 import dagger.android.support.DaggerApplication
 import javax.inject.Inject
 
-
 class MainApplication : DaggerApplication(), HasAndroidInjector {
 
     @Inject

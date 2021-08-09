@@ -1,6 +1,6 @@
 package com.example.musicbrainz.framework.di.module
 
-import com.example.musicbrainz.data.MusicBrainzRemoteRepository
+import com.example.musicbrainz.data.repository.MusicBrainzRemoteRepository
 import com.example.musicbrainz.usecases.UseCaseGetAlbums
 import com.example.musicbrainz.usecases.UseCaseSearchArtists
 import dagger.Module

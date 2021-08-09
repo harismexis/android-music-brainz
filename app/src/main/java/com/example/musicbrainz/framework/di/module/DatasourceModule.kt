@@ -1,6 +1,6 @@
 package com.example.musicbrainz.framework.di.module
 
-import com.example.musicbrainz.data.MusicBrainzBaseRemoteDataSource
+import com.example.musicbrainz.data.datasource.MusicBrainzBaseRemoteDataSource
 import com.example.musicbrainz.framework.data.api.MusicBrainzApi
 import com.example.musicbrainz.framework.data.datasource.MusicBrainzRemoteDataSource
 import dagger.Module

@@ -1,7 +1,7 @@
 package com.example.musicbrainz.tests.usecases
 
 import com.example.musicbrainz.base.BaseUnitTest
-import com.example.musicbrainz.data.MusicBrainzRemoteRepository
+import com.example.musicbrainz.data.repository.MusicBrainzRemoteRepository
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.usecases.UseCaseSearchArtists
 import com.example.musicbrainz.util.verifyListsHaveSameSize

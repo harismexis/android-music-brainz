@@ -1,6 +1,6 @@
 package com.example.musicbrainz.framework.data.datasource
 
-import com.example.musicbrainz.data.MusicBrainzBaseRemoteDataSource
+import com.example.musicbrainz.data.datasource.MusicBrainzBaseRemoteDataSource
 import com.example.musicbrainz.domain.Album
 import com.example.musicbrainz.domain.Artist
 import com.example.musicbrainz.framework.data.api.MusicBrainzApi

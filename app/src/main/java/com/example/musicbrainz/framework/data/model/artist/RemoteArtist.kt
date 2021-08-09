@@ -1,8 +1,5 @@
-package com.example.musicbrainz.framework.datasource.network.model.artist
+package com.example.musicbrainz.framework.data.model.artist
 
-import com.example.musicbrainz.framework.data.model.artist.Area
-import com.example.musicbrainz.framework.data.model.artist.LifeSpan
-import com.example.musicbrainz.framework.data.model.artist.Tag
 import com.google.gson.annotations.SerializedName
 
 data class RemoteArtist(
