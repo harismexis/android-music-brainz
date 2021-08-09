@@ -28,11 +28,11 @@
                     android:id="@+id/searchView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:queryHint="Search artists..."
                     android:theme="@style/SearchViewTextStyle"
                     app:closeIcon="@drawable/ic_close_white_18dp"
                     app:iconifiedByDefault="false"
                     app:queryBackground="@null"
+                    app:queryHint="@string/search_hint"
                     app:searchHintIcon="@null"
                     app:searchIcon="@drawable/ic_search_white_18dp" />
 
@@ -54,7 +54,7 @@
         android:id="@+id/no_results"
         style="@style/BaseTxtv"
         android:layout_gravity="center"
-        android:text="No results"
+        android:text="@string/no_results"
         android:textSize="16sp"
         android:visibility="visible" />
 

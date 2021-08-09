@@ -5,6 +5,8 @@
     <string name="screen_home_label">Artists</string>
     <string name="screen_artist_detail_label">Details</string>
     <string name="missing_value">n/a</string>
+    <string name="no_results">No results</string>
+    <string name="search_hint">Search artists…</string>
 
     <!-- vh artist -->
     <string name="artist_name_label">name</string>
