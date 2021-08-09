@@ -23,7 +23,7 @@ import javax.inject.Inject
 
 class HomeFragment : BaseDIFragment(),
     ArtistViewHolder.ArtistClickListener,
-    android.widget.SearchView.OnQueryTextListener {
+    androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
     @Inject
     internal lateinit var vmFactory: VmAssistedFactory<HomeVm>

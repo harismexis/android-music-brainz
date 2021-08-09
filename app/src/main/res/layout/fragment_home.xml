@@ -24,15 +24,17 @@
                 android:layout_height="wrap_content"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
-                <SearchView
+                <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchView"
-                    style="@style/SearchViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:iconifiedByDefault="false"
-                    android:queryHint="Search Artists"
-                    app:theme="@style/SearchViewTextStyle" />
+                    app:queryHint="Search artists..."
+                    android:theme="@style/SearchViewTextStyle"
+                    app:closeIcon="@drawable/ic_close_white_18dp"
+                    app:iconifiedByDefault="false"
+                    app:queryBackground="@null"
+                    app:searchHintIcon="@null"
+                    app:searchIcon="@drawable/ic_search_white_18dp" />
 
             </androidx.appcompat.widget.Toolbar>
 
